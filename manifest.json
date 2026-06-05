@@ -1,0 +1,16 @@
+{
+  "name": "MiniMentes - Aprende Jugando",
+  "short_name": "MiniMentes",
+  "description": "App educativa para niños de 4 a 6 años",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFBF0",
+  "theme_color": "#FF6B6B",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["education", "kids"],
+  "lang": "es"
+}

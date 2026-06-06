@@ -25,7 +25,7 @@ const GameFrases = {
         <div class="bank-label">📦 Palabras disponibles</div>
         <div class="word-bank" id="f-bank"></div>
         <div class="action-row">
-          <button class="btn-action btn-clear2" onclick="GameFrases.clear()">🔄 Borrar</button>
+          <button class="btn-action btn-clear2" id="f-clear" onclick="GameFrases.clear()">🔄 Borrar</button>
           <button class="btn-action btn-check" id="f-check" onclick="GameFrases.check()" disabled>✔️ Comprobar</button>
           <button class="btn-action btn-next" id="f-next" onclick="GameFrases.next()" style="display:none">Siguiente ➡️</button>
         </div>
@@ -47,17 +47,14 @@ const GameFrases = {
     const sent = sentences[this.idx % sentences.length];
     const shuffled = App.shuffle(sent);
 
-    // Progress
     const pct = (this.idx / this.total) * 100;
     document.getElementById('f-pbar').style.width = pct + '%';
     document.getElementById('f-plabel').textContent = `Frase ${this.idx+1} de ${this.total}`;
 
-    // Drop zone
     const drop = document.getElementById('f-drop');
     drop.innerHTML = '<span class="drop-placeholder">Toca las palabras de abajo...</span>';
     drop.className = 'drop-zone';
 
-    // Bank
     const bank = document.getElementById('f-bank');
     bank.innerHTML = '';
     shuffled.forEach((word, i) => {
@@ -74,6 +71,8 @@ const GameFrases = {
     document.getElementById('f-check').disabled = true;
     document.getElementById('f-check').style.display = '';
     document.getElementById('f-next').style.display = 'none';
+    // BUGFIX: clear always enabled, even after check
+    document.getElementById('f-clear').disabled = false;
   },
 
   addWord(btn) {
@@ -101,24 +100,23 @@ const GameFrases = {
   renderDrop() {
     const drop = document.getElementById('f-drop');
     drop.innerHTML = '';
-    if (!this.answer.length) { drop.innerHTML = '<span class="drop-placeholder">Toca las palabras de abajo...</span>'; return; }
+    if (!this.answer.length) {
+      drop.innerHTML = '<span class="drop-placeholder">Toca las palabras de abajo...</span>';
+      return;
+    }
     this.answer.forEach((item, i) => {
       const t = document.createElement('button');
       t.className = `answer-tile ${item.color}`;
       t.textContent = item.word;
-      t.onclick = () => this.removeWord(i);
+      // Only allow removing if not checked
+      t.onclick = () => { if (!this.checked) this.removeWord(i); };
       drop.appendChild(t);
     });
   },
 
   clear() {
-    if (this.checked) return;
-    this.answer = [];
-    document.querySelectorAll('#f-bank .word-tile').forEach(b => b.classList.remove('used'));
-    const drop = document.getElementById('f-drop');
-    drop.innerHTML = '<span class="drop-placeholder">Toca las palabras de abajo...</span>';
-    drop.className = 'drop-zone';
-    document.getElementById('f-check').disabled = true;
+    // BUGFIX: always works, even after a failed check — reloads full sentence
+    this.loadSentence();
   },
 
   check() {
@@ -130,9 +128,16 @@ const GameFrases = {
     const drop = document.getElementById('f-drop');
     drop.classList.add(ok ? 'correct' : 'wrong');
     if (ok) { this.correct++; App.confetti(); App.speak(correct.join(' ')); }
-    App.showFeedback(ok);
+    // After wrong: show Borrar so child can retry; hide Comprobar
     document.getElementById('f-check').style.display = 'none';
+    if (!ok) {
+      // Show clear button prominently, hide next
+      document.getElementById('f-clear').style.background = '#FF6B6B';
+      document.getElementById('f-clear').style.color = 'white';
+      document.getElementById('f-clear').textContent = '🔄 Reintentar';
+    }
     document.getElementById('f-next').style.display = '';
+    App.showFeedback(ok);
   },
 
   next() {

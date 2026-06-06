@@ -4,10 +4,11 @@ const GameLetras = {
   ctx: null, canvas: null,
   drawing: false,
   lastX: 0, lastY: 0,
-  strokes: 0,
+  pixelsCovered: 0,
+  MIN_PIXELS: 800, // minimum drawing effort required
 
   init(container) {
-    this.mode = 'upper'; this.idx = 0; this.strokes = 0;
+    this.mode = 'upper'; this.idx = 0; this.pixelsCovered = 0;
     container.innerHTML = `
       <div class="game-level-bar">
         <button class="lvl-btn lvl-easy active" id="ll-up" onclick="GameLetras.setMode('upper')">🔠 Mayús.</button>
@@ -25,11 +26,12 @@ const GameLetras = {
         <button class="letter-nav-btn btn-next-letter" onclick="GameLetras.next()">Siguiente ▶</button>
       </div>
       <div style="text-align:center;font-family:'Fredoka One',cursive;font-size:0.85rem;color:#aaa;padding:6px">
-        Toca el botón cuando termines
+        Traza la letra y pulsa ¡Listo! cuando acabes
       </div>
       <div class="action-row" style="padding-bottom:16px">
         <button class="btn-action btn-check" onclick="GameLetras.celebrate()">🌟 ¡Listo!</button>
-      </div>`;
+      </div>
+      <div id="l-feedback" style="text-align:center;font-family:'Fredoka One',cursive;font-size:1rem;color:#c94e4e;min-height:24px;padding:0 16px"></div>`;
     this.setupCanvas();
     this.renderLetter();
   },
@@ -39,12 +41,13 @@ const GameLetras = {
     this.ctx = this.canvas.getContext('2d');
     const wrap = document.getElementById('l-wrap');
     const w = Math.min(wrap.clientWidth, 360);
-    this.canvas.width = w; this.canvas.height = w * 0.75;
+    this.canvas.width = w; this.canvas.height = Math.round(w * 0.75);
 
     const evts = [
       ['mousedown',  e => this.startDraw(e)],
       ['mousemove',  e => this.draw(e)],
       ['mouseup',    () => { this.drawing = false; }],
+      ['mouseleave', () => { this.drawing = false; }],
       ['touchstart', e => { e.preventDefault(); this.startDraw(e.touches[0]); }, {passive:false}],
       ['touchmove',  e => { e.preventDefault(); this.draw(e.touches[0]); }, {passive:false}],
       ['touchend',   () => { this.drawing = false; }],
@@ -65,21 +68,25 @@ const GameLetras = {
     const ctx = this.ctx;
     ctx.beginPath(); ctx.arc(p.x, p.y, 9, 0, Math.PI*2);
     ctx.fillStyle = '#6EC6F5'; ctx.fill();
+    this.pixelsCovered += 10;
+    document.getElementById('l-feedback').textContent = '';
   },
 
   draw(e) {
     if (!this.drawing) return;
     const p = this.getPos(e);
     const ctx = this.ctx;
+    const dist = Math.hypot(p.x - this.lastX, p.y - this.lastY);
     ctx.beginPath(); ctx.moveTo(this.lastX, this.lastY); ctx.lineTo(p.x, p.y);
     ctx.strokeStyle = '#6EC6F5'; ctx.lineWidth = 18; ctx.lineCap='round'; ctx.stroke();
     this.lastX = p.x; this.lastY = p.y;
-    this.strokes++;
+    this.pixelsCovered += dist;
   },
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.strokes = 0;
+    this.pixelsCovered = 0;
+    document.getElementById('l-feedback').textContent = '';
   },
 
   currentChar() {
@@ -102,12 +109,28 @@ const GameLetras = {
     this.renderLetter();
   },
 
-  prev() { const list = DATA.letras[this.mode]; this.idx = (this.idx-1+list.length)%list.length; this.renderLetter(); },
-  next() { const list = DATA.letras[this.mode]; this.idx = (this.idx+1)%list.length; this.renderLetter(); },
+  prev() {
+    const list = DATA.letras[this.mode];
+    this.idx = (this.idx-1+list.length)%list.length;
+    this.renderLetter();
+  },
+  next() {
+    const list = DATA.letras[this.mode];
+    this.idx = (this.idx+1)%list.length;
+    this.renderLetter();
+  },
 
   celebrate() {
-    if (this.strokes < 5) { App.speak('¡Dibuja la letra primero!'); return; }
-    App.confetti(); App.showFeedback(true);
+    const fb = document.getElementById('l-feedback');
+    // BUGFIX: require minimum drawing effort
+    if (this.pixelsCovered < this.MIN_PIXELS) {
+      fb.textContent = '¡Dibuja la letra primero! ✏️';
+      App.speak('¡Dibuja la letra primero!');
+      return;
+    }
+    fb.textContent = '';
+    App.confetti();
+    App.showFeedback(true);
     App.speak('¡Muy bien! ¡Qué bonita letra!');
     App.saveScore('letras', Math.min(this.idx+1, 5));
     setTimeout(() => this.next(), 1600);

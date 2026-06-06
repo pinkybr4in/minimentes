@@ -7,7 +7,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="MiniMentes">
-<meta name="description" content="App educativa para niños de 4 a 6 años">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>MiniMentes 🌟</title>
@@ -16,20 +15,15 @@
 </head>
 <body>
 
-<!-- SPLASH SCREEN -->
 <div id="splash">
-  <div class="splash-bg"></div>
   <div class="splash-content">
     <div class="splash-logo">🌟</div>
     <div class="splash-title">MiniMentes</div>
     <div class="splash-sub">¡Aprende jugando!</div>
-    <div class="splash-dots">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="splash-dots"><span></span><span></span><span></span></div>
   </div>
 </div>
 
-<!-- HOME SCREEN -->
 <div id="homeScreen" class="screen hidden">
   <div class="home-header">
     <div class="home-sky">
@@ -49,52 +43,52 @@
       <div class="game-icon">📝</div>
       <div class="game-name">Ordena la Frase</div>
       <div class="game-desc">Pon las palabras en orden</div>
-      <div class="game-stars" id="stars-frases">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-frases">☆☆☆☆☆</div>
     </button>
-
     <button class="game-card" onclick="openGame('colorear')" style="--card-color:#6BCB77;--card-shadow:#45a352">
       <div class="game-icon">🎨</div>
       <div class="game-name">Colorea</div>
       <div class="game-desc">Pinta dibujos bonitos</div>
-      <div class="game-stars" id="stars-colorear">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-colorear">☆☆☆☆☆</div>
     </button>
-
     <button class="game-card" onclick="openGame('puntos')" style="--card-color:#6EC6F5;--card-shadow:#4a9ec9">
       <div class="game-icon">🔢</div>
       <div class="game-name">Une los Puntos</div>
       <div class="game-desc">Sigue los números</div>
-      <div class="game-stars" id="stars-puntos">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-puntos">☆☆☆☆☆</div>
     </button>
-
     <button class="game-card" onclick="openGame('letras')" style="--card-color:#C77DFF;--card-shadow:#9955cc">
       <div class="game-icon">✏️</div>
       <div class="game-name">Traza la Letra</div>
       <div class="game-desc">Aprende a escribir</div>
-      <div class="game-stars" id="stars-letras">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-letras">☆☆☆☆☆</div>
     </button>
-
     <button class="game-card" onclick="openGame('contar')" style="--card-color:#FFD93D;--card-shadow:#c9a820">
       <div class="game-icon">🔢</div>
       <div class="game-name">¿Cuántos hay?</div>
       <div class="game-desc">Cuenta los objetos</div>
-      <div class="game-stars" id="stars-contar">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-contar">☆☆☆☆☆</div>
     </button>
-
     <button class="game-card" onclick="openGame('sombras')" style="--card-color:#FF9F43;--card-shadow:#cc7a1e">
       <div class="game-icon">🌑</div>
       <div class="game-name">¿Qué Sombra es?</div>
       <div class="game-desc">Adivina la silueta</div>
-      <div class="game-stars" id="stars-sombras">⭐⭐⭐⭐⭐</div>
+      <div class="game-stars" id="stars-sombras">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('ingles')" style="--card-color:#4a9ec9;--card-shadow:#2c6e8a;grid-column:span 2">
+      <div class="game-icon">🇬🇧</div>
+      <div class="game-name">¡Aprende Inglés!</div>
+      <div class="game-desc">Transportes · Profesiones · Animales</div>
+      <div class="game-stars" id="stars-ingles">☆☆☆☆☆</div>
     </button>
   </div>
 
   <div class="home-footer">
     <div class="total-stars-label">Estrellas totales</div>
-    <div class="total-stars-count" id="totalStarsDisplay">0 / 30</div>
+    <div class="total-stars-count" id="totalStarsDisplay">0 / 35</div>
   </div>
 </div>
 
-<!-- GAME CONTAINER -->
 <div id="gameContainer" class="screen hidden">
   <div class="game-topbar" id="gameTopbar">
     <button class="back-btn" onclick="goHome()">← Inicio</button>
@@ -104,10 +98,7 @@
   <div id="gameContent"></div>
 </div>
 
-<!-- CONFETTI -->
 <div class="confetti-container" id="confettiContainer"></div>
-
-<!-- FEEDBACK OVERLAY -->
 <div class="feedback-overlay" id="feedbackOverlay">
   <div class="feedback-emoji" id="feedbackEmoji"></div>
   <div class="feedback-text" id="feedbackText"></div>
@@ -121,5 +112,6 @@
 <script src="js/games/letras.js"></script>
 <script src="js/games/contar.js"></script>
 <script src="js/games/sombras.js"></script>
+<script src="js/games/ingles.js"></script>
 </body>
 </html>

@@ -364,3 +364,50 @@ canvas { display: block; width: 100%; touch-action: none; }
 .feedback-text  { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: white; text-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
 .feedback-overlay.fb-correct { background: rgba(107,203,119,0.88); }
 .feedback-overlay.fb-wrong   { background: rgba(255,107,107,0.82); }
+
+/* ===== SHADOW FIX: silhouette shown as black, options normal ===== */
+.shadow-silhouette-box {
+  width: 160px; height: 160px; margin: 0 auto 16px;
+  border-radius: var(--radius); background: #1a1a2e;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.shadow-emoji {
+  font-size: 90px; line-height: 1;
+  filter: brightness(0) invert(0);  /* pure black silhouette */
+  transition: filter 0.5s ease;
+}
+.shadow-emoji.revealed { filter: none; }
+
+/* ===== ENGLISH GAME ===== */
+.english-scene {
+  margin: 8px 14px; border-radius: var(--radius);
+  background: white; box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 24px 16px; min-height: 160px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.english-category {
+  font-family: 'Fredoka One', cursive; font-size: 0.85rem;
+  color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em;
+}
+.english-image { font-size: 5rem; line-height: 1; }
+.english-sound-btn {
+  background: var(--blue); border: none; border-radius: 50%;
+  width: 44px; height: 44px; font-size: 1.3rem; cursor: pointer;
+  box-shadow: var(--shadow-sm); transition: transform 0.1s;
+  display: flex; align-items: center; justify-content: center;
+}
+.english-sound-btn:active { transform: scale(0.88); }
+.english-question { font-family: 'Fredoka One', cursive; font-size: 1rem; color: var(--gray); text-align: center; padding: 4px 14px; }
+.english-options { display: flex; flex-direction: column; gap: 10px; padding: 8px 14px; }
+.english-btn {
+  font-family: 'Fredoka One', cursive; font-size: 1.2rem;
+  padding: 14px 20px; border-radius: var(--radius-sm); border: none;
+  cursor: pointer; color: white; box-shadow: var(--shadow-sm);
+  transition: transform 0.12s; text-align: left;
+  display: flex; align-items: center; gap: 12px;
+}
+.english-btn:active { transform: scale(0.96); }
+.english-btn.correct-en { background: var(--green) !important; box-shadow: 0 4px 0 var(--green-s); animation: correctPop 0.5s; }
+.english-btn.wrong-en   { background: var(--red)   !important; box-shadow: 0 4px 0 var(--red-s); animation: shake 0.4s; }
+.english-btn-icon { font-size: 1.5rem; }

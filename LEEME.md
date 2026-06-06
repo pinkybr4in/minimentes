@@ -62,3 +62,21 @@ Una vez instalada, la app funciona completamente sin conexión.
 - ✏️ Traza la Letra (mayúsculas, minúsculas y números)
 - 🔢 ¿Cuántos hay? (3 niveles, 10 preguntas cada uno)
 - 🌑 ¿Qué Sombra es? (15 animales)
+
+---
+
+## Cómo actualizar la app en GitHub (cuando hay cambios)
+
+1. Entra en **https://github.com/pinkybr4in/minimentes**
+2. Haz clic en el archivo que quieras actualizar (por ejemplo `js/data.js`)
+3. Pulsa el icono del **lápiz** ✏️ (arriba a la derecha del contenido)
+4. Borra todo el contenido y pega el nuevo
+5. Haz clic en **"Commit changes"**
+
+**Para subir varios archivos a la vez (más fácil):**
+1. En tu repositorio, haz clic en **"Add file" → "Upload files"**
+2. Arrastra los archivos nuevos/modificados
+3. Haz clic en **"Commit changes"**
+4. GitHub Pages se actualiza automáticamente en 1-2 minutos
+
+**Truco:** Si la app en el móvil no se actualiza, ciérrala del todo y vuelve a abrirla, o borra la caché del navegador.

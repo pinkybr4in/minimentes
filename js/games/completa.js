@@ -39,27 +39,39 @@ const GameCompleta = {
     document.getElementById('cp-pbar').style.width=(this.idx/total*100)+'%';
     document.getElementById('cp-plabel').textContent=`Pregunta ${this.idx+1} de ${total}`;
 
-    // Build displayed word with blanks
-    const display=q.word.split('').map((ch,i)=>
-      q.blanks.includes(i)
-        ? `<span class="word-blank" id="blank-${i}">_</span>`
-        : `<span class="word-letter">${ch}</span>`
-    ).join('');
+    // Build word display: shown letters + blank slots
+    const letters=q.word.split('');
+    const displayHTML=letters.map((ch,i)=>{
+      if(q.blanks.includes(i)){
+        return `<span class="word-blank" id="blank-${i}" data-pos="${i}">_</span>`;
+      }
+      return `<span class="word-letter">${ch}</span>`;
+    }).join('');
 
+    // Options — always strings, safe to iterate
     const opts=App.shuffle([...q.options]);
-    const colors=['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D','#C77DFF'];
-    const optsHTML=opts.map((o,i)=>
-      `<button class="count-btn" style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.4rem;width:64px;height:64px"
-        id="cpb-${encodeURIComponent(o)}" onclick="GameCompleta.answer('${o}',${JSON.stringify(q.answers)})">${o}</button>`
-    ).join('');
+    const colors=['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D','#C77DFF','#FF9F43'];
+
+    const optsHTML=opts.map((opt,i)=>{
+      const safeOpt=String(opt);
+      const safeId='cpb_'+safeOpt.replace(/[^a-zA-Z0-9]/g,'_')+'_'+i;
+      return `<button class="count-btn"
+        id="${safeId}"
+        style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.3rem;min-width:60px;height:60px;padding:0 10px"
+        onclick="GameCompleta.answer(this,'${safeOpt.replace(/'/g,"\\'")}')">
+        ${safeOpt}
+      </button>`;
+    }).join('');
 
     document.getElementById('cp-area').innerHTML=`
       <div style="text-align:center;padding:16px 14px 8px">
         <div style="font-size:4rem;margin-bottom:8px">${q.emoji}</div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#aaa;margin-bottom:10px">¿Qué letras faltan?</div>
-        <div class="word-display">${display}</div>
+        <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#aaa;margin-bottom:12px">
+          ¿Qué letra falta? Toca la respuesta
+        </div>
+        <div class="word-display" style="margin-bottom:16px">${displayHTML}</div>
       </div>
-      <div class="count-options" style="justify-content:center;padding:10px 14px">${optsHTML}</div>
+      <div class="count-options" style="justify-content:center;padding:10px 14px;gap:12px">${optsHTML}</div>
       <div class="action-row">
         <button class="btn-action btn-next" id="cp-next" onclick="GameCompleta.next()" style="display:none">Siguiente ➡️</button>
       </div>`;
@@ -67,24 +79,40 @@ const GameCompleta = {
     App.speak(q.word);
   },
 
-  answer(val, answers) {
+  answer(btnEl, val) {
     if(this.answered) return;
-    const ok=answers.includes(val);
-    if(ok) {
-      // Fill blanks
-      document.querySelectorAll('.word-blank').forEach(b=>{ b.textContent=val; b.style.color='#6BCB77'; });
-      this.correct++; App.confetti();
-    }
-    const btn=document.getElementById('cpb-'+encodeURIComponent(val));
-    if(btn) btn.classList.add(ok?'correct-btn':'wrong-btn');
-    if(!ok) {
-      // Show a correct option
-      const cb=document.getElementById('cpb-'+encodeURIComponent(answers[0]));
-      if(cb) cb.classList.add('correct-btn');
-    }
     this.answered=true;
+
+    const items=DATA.completa[this.level];
+    const q=items[this.order[this.idx%items.length]];
+
+    // Check if val matches any of the accepted answers
+    const ok=q.answers.map(a=>String(a).toUpperCase()).includes(String(val).toUpperCase());
+
+    if(ok){
+      // Fill all blanks with the chosen letter
+      document.querySelectorAll('.word-blank').forEach(b=>{
+        b.textContent=val;
+        b.style.color='#45a352';
+        b.style.borderBottomColor='#45a352';
+      });
+      this.correct++;
+      App.confetti();
+      App.speak('¡Correcto! '+q.word);
+    } else {
+      btnEl.classList.add('wrong-btn');
+      // Reveal correct answer in blanks
+      q.blanks.forEach(pos=>{
+        const bl=document.getElementById('blank-'+pos);
+        if(bl){ bl.textContent=q.word[pos]; bl.style.color='#c94e4e'; bl.style.borderBottomColor='#c94e4e'; }
+      });
+      App.speak('La respuesta es '+q.word);
+    }
+
+    btnEl.classList.add(ok?'correct-btn':'wrong-btn');
+    // Disable all buttons
+    document.querySelectorAll('#cp-area .count-btn').forEach(b=>{ b.disabled=true; b.style.cursor='default'; });
     App.showFeedback(ok);
-    document.querySelectorAll('.count-btn').forEach(b=>b.disabled=true);
     document.getElementById('cp-next').style.display='';
   },
 

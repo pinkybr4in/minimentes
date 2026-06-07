@@ -277,6 +277,126 @@ colorear: [
       <circle cx="282" cy="265" r="10" fill="white" stroke="#333" stroke-width="2"/>
     </svg>`
   },
+,
+  {
+    name:"🦁 León",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="140" r="90" fill="white" stroke="#333" stroke-width="3"/>
+      <circle cx="150" cy="140" r="62" fill="white" stroke="#333" stroke-width="3"/>
+      <ellipse cx="119" cy="138" rx="14" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="181" cy="138" rx="14" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <circle cx="121" cy="140" r="7" fill="white" stroke="#333" stroke-width="1.5"/>
+      <circle cx="183" cy="140" r="7" fill="white" stroke="#333" stroke-width="1.5"/>
+      <ellipse cx="150" cy="160" rx="24" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M136,167 Q150,180 164,167" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="108" cy="55" rx="16" ry="20" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="192" cy="55" rx="16" ry="20" fill="white" stroke="#333" stroke-width="2.5"/>
+      <line x1="88" y1="155" x2="126" y2="162" stroke="#333" stroke-width="1.5"/>
+      <line x1="88" y1="163" x2="126" y2="164" stroke="#333" stroke-width="1.5"/>
+      <line x1="174" y1="162" x2="212" y2="155" stroke="#333" stroke-width="1.5"/>
+      <line x1="174" y1="164" x2="212" y2="163" stroke="#333" stroke-width="1.5"/>
+      <ellipse cx="150" cy="255" rx="65" ry="40" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="100" cy="278" rx="25" ry="15" fill="white" stroke="#333" stroke-width="2"/>
+      <ellipse cx="200" cy="278" rx="25" ry="15" fill="white" stroke="#333" stroke-width="2"/>
+      <path d="M260,200 Q295,230 285,260" fill="none" stroke="#333" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="282" cy="265" r="10" fill="white" stroke="#333" stroke-width="2"/>
+    </svg>`
+  },
+  {
+    name:"🏰 Castillo",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="140" width="240" height="150" rx="4" fill="white" stroke="#333" stroke-width="3"/>
+      <rect x="30" y="100" width="60" height="45" rx="4" fill="white" stroke="#333" stroke-width="2.5"/>
+      <rect x="210" y="100" width="60" height="45" rx="4" fill="white" stroke="#333" stroke-width="2.5"/>
+      <rect x="110" y="80" width="80" height="65" rx="4" fill="white" stroke="#333" stroke-width="2.5"/>
+      <rect x="30" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="52" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="74" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="210" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="232" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="254" y="80" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="110" y="58" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="134" y="58" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="158" y="58" width="16" height="24" rx="3" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="118" y="175" width="64" height="75" rx="32" fill="white" stroke="#333" stroke-width="2.5"/>
+      <rect x="60" y="165" width="40" height="35" rx="6" fill="white" stroke="#333" stroke-width="2"/>
+      <rect x="200" y="165" width="40" height="35" rx="6" fill="white" stroke="#333" stroke-width="2"/>
+      <line x1="150" y1="175" x2="150" y2="250" stroke="#333" stroke-width="1.5"/>
+    </svg>`
+  },
+  {
+    name:"🌊 Delfín",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40,160 Q80,80 160,100 Q230,110 270,150 Q240,190 160,185 Q90,180 40,160Z" fill="white" stroke="#333" stroke-width="3"/>
+      <path d="M270,150 Q285,130 295,110 Q280,120 265,130 Q270,140 270,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M270,150 Q285,170 295,190 Q280,178 265,168 Q270,159 270,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M40,160 Q20,140 10,110 Q30,130 50,148Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="70" cy="148" rx="12" ry="14" fill="white" stroke="#333" stroke-width="2.5"/>
+      <circle cx="68" cy="146" r="6" fill="white" stroke="#333" stroke-width="1.5"/>
+      <path d="M160,100 Q150,60 170,40 Q175,70 165,100Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M100,175 Q90,210 75,230 Q95,215 115,185Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M200,175 Q210,200 225,215 Q205,205 190,180Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M60,158 Q80,155 100,158" fill="none" stroke="#333" stroke-width="2"/>
+      <path d="M110,154 Q130,150 150,155" fill="none" stroke="#333" stroke-width="2"/>
+      <circle cx="65" cy="144" r="2.5" fill="#333"/>
+    </svg>`
+  },
+  {
+    name:"🦄 Unicornio",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="165" cy="190" rx="90" ry="65" fill="white" stroke="#333" stroke-width="3"/>
+      <circle cx="110" cy="125" r="60" fill="white" stroke="#333" stroke-width="3"/>
+      <polygon points="110,65 130,15 125,65" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="80" cy="85" rx="18" ry="28" fill="white" stroke="#333" stroke-width="2.5" transform="rotate(-20 80 85)"/>
+      <ellipse cx="88" cy="88" rx="12" ry="20" fill="white" stroke="#ccc" stroke-width="1.5" transform="rotate(-20 88 88)"/>
+      <ellipse cx="92" cy="122" rx="13" ry="15" fill="white" stroke="#333" stroke-width="2.5"/>
+      <circle cx="94" cy="124" r="7" fill="white" stroke="#333" stroke-width="1.5"/>
+      <ellipse cx="145" cy="145" rx="20" ry="12" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M133,152 Q145,165 157,152" fill="white" stroke="#333" stroke-width="2.5"/>
+      <line x1="65" y1="135" x2="115" y2="140" stroke="#333" stroke-width="1.5"/>
+      <line x1="65" y1="143" x2="115" y2="143" stroke="#333" stroke-width="1.5"/>
+      <line x1="65" y1="143" x2="60" y2="160" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
+      <ellipse cx="100" cy="260" rx="22" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="150" cy="265" rx="22" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="200" cy="260" rx="22" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <ellipse cx="240" cy="255" rx="22" ry="16" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M240,200 Q275,190 280,220 Q270,240 255,235" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+    </svg>`
+  },
+  {
+    name:"🌴 Palmera",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <path d="M140,280 Q145,200 150,150 Q155,200 160,280Z" fill="white" stroke="#333" stroke-width="3"/>
+      <line x1="150" y1="170" x2="148" y2="280" stroke="#ccc" stroke-width="2"/>
+      <line x1="150" y1="190" x2="152" y2="280" stroke="#ccc" stroke-width="2"/>
+      <ellipse cx="220" cy="285" rx="80" ry="18" fill="white" stroke="#333" stroke-width="2"/>
+      <path d="M150,150 Q120,100 60,80 Q90,90 110,120 Q130,140 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M150,150 Q90,130 50,150 Q80,140 115,145 Q135,148 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M150,150 Q100,160 70,200 Q100,170 130,158 Q142,154 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M150,150 Q180,100 240,80 Q210,90 190,120 Q170,140 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M150,150 Q210,130 250,150 Q220,140 185,145 Q165,148 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M150,150 Q200,160 230,200 Q200,170 170,158 Q158,154 150,150Z" fill="white" stroke="#333" stroke-width="2.5"/>
+      <circle cx="148" cy="165" r="14" fill="white" stroke="#333" stroke-width="2"/>
+      <circle cx="158" cy="175" r="12" fill="white" stroke="#333" stroke-width="2"/>
+      <circle cx="144" cy="178" r="12" fill="white" stroke="#333" stroke-width="2"/>
+    </svg>`
+  },
+  {
+    name:"🎃 Calabaza",
+    svg:`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <rect x="135" y="25" width="30" height="40" rx="10" fill="white" stroke="#333" stroke-width="2.5"/>
+      <path d="M60,120 Q50,180 70,230 Q100,270 150,275 Q200,270 230,230 Q250,180 240,120 Q220,80 185,75 Q165,60 150,65 Q135,60 115,75 Q80,80 60,120Z" fill="white" stroke="#333" stroke-width="3"/>
+      <line x1="150" y1="75" x2="150" y2="270" stroke="#ccc" stroke-width="1.5"/>
+      <path d="M115,75 Q105,160 115,255" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <path d="M185,75 Q195,160 185,255" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <polygon points="110,140 130,120 140,140" fill="white" stroke="#333" stroke-width="2.5"/>
+      <polygon points="160,140 170,120 190,140" fill="white" stroke="#333" stroke-width="2.5"/>
+      <polygon points="120,175 150,155 180,175 165,200 135,200" fill="white" stroke="#333" stroke-width="2.5"/>
+      <line x1="120" y1="200" x2="130" y2="215" stroke="#333" stroke-width="2.5"/>
+      <line x1="150" y1="200" x2="150" y2="218" stroke="#333" stroke-width="2.5"/>
+      <line x1="180" y1="200" x2="170" y2="215" stroke="#333" stroke-width="2.5"/>
+    </svg>`
+  },
 ],
 
 // ===== PUNTOS =====
@@ -299,6 +419,8 @@ puntos: {
     {name:"🦋 Mariposa",points:[{n:1,x:150,y:80},{n:2,x:120,y:60},{n:3,x:80,y:55},{n:4,x:50,y:80},{n:5,x:40,y:120},{n:6,x:60,y:160},{n:7,x:100,y:180},{n:8,x:140,y:165},{n:9,x:150,y:150},{n:10,x:160,y:165},{n:11,x:200,y:180},{n:12,x:240,y:160},{n:13,x:260,y:120},{n:14,x:250,y:80},{n:15,x:220,y:55},{n:16,x:180,y:60},{n:17,x:150,y:80},{n:18,x:145,y:220},{n:19,x:110,y:260},{n:20,x:150,y:255},{n:21,x:190,y:260},{n:22,x:155,y:220}]},
     {name:"🐘 Elefante",points:[{n:1,x:60,y:80},{n:2,x:100,y:50},{n:3,x:160,y:45},{n:4,x:210,y:60},{n:5,x:250,y:90},{n:6,x:265,y:140},{n:7,x:250,y:190},{n:8,x:220,y:220},{n:9,x:200,y:260},{n:10,x:175,y:285},{n:11,x:155,y:260},{n:12,x:160,y:220},{n:13,x:145,y:260},{n:14,x:125,y:285},{n:15,x:105,y:260},{n:16,x:110,y:220},{n:17,x:90,y:260},{n:18,x:70,y:280},{n:19,x:55,y:255},{n:20,x:65,y:220},{n:21,x:60,y:180},{n:22,x:40,y:140},{n:23,x:45,y:100}]},
     {name:"🏰 Castillo",points:[{n:1,x:40,y:280},{n:2,x:40,y:180},{n:3,x:60,y:180},{n:4,x:60,y:200},{n:5,x:80,y:200},{n:6,x:80,y:180},{n:7,x:100,y:180},{n:8,x:100,y:130},{n:9,x:80,y:100},{n:10,x:80,y:80},{n:11,x:100,y:80},{n:12,x:100,y:100},{n:13,x:130,y:100},{n:14,x:130,y:60},{n:15,x:150,y:40},{n:16,x:170,y:60},{n:17,x:170,y:100},{n:18,x:200,y:100},{n:19,x:200,y:80},{n:20,x:220,y:80},{n:21,x:220,y:100},{n:22,x:200,y:130},{n:23,x:200,y:180},{n:24,x:220,y:180},{n:25,x:220,y:200},{n:26,x:240,y:200},{n:27,x:240,y:180},{n:28,x:260,y:180},{n:29,x:260,y:280}]},
+    {name:"🦕 Dinosaurio",points:[{n:1,x:50,y:200},{n:2,x:60,y:240},{n:3,x:90,y:270},{n:4,x:120,y:265},{n:5,x:130,y:240},{n:6,x:140,y:210},{n:7,x:160,y:200},{n:8,x:190,y:210},{n:9,x:210,y:240},{n:10,x:220,y:265},{n:11,x:250,y:270},{n:12,x:265,y:240},{n:13,x:260,y:200},{n:14,x:240,y:170},{n:15,x:220,y:150},{n:16,x:230,y:120},{n:17,x:250,y:100},{n:18,x:240,y:80},{n:19,x:210,y:90},{n:20,x:200,y:110},{n:21,x:185,y:130},{n:22,x:165,y:140},{n:23,x:145,y:130},{n:24,x:120,y:110},{n:25,x:90,y:120},{n:26,x:70,y:150},{n:27,x:55,y:175}]},
+    {name:"🚀 Cohete",points:[{n:1,x:150,y:30},{n:2,x:175,y:60},{n:3,x:190,y:100},{n:4,x:195,y:150},{n:5,x:230,y:180},{n:6,x:255,y:220},{n:7,x:240,y:250},{n:8,x:210,y:235},{n:9,x:195,y:210},{n:10,x:195,y:260},{n:11,x:185,y:280},{n:12,x:165,y:270},{n:13,x:150,y:250},{n:14,x:135,y:270},{n:15,x:115,y:280},{n:16,x:105,y:260},{n:17,x:105,y:210},{n:18,x:90,y:235},{n:19,x:60,y:250},{n:20,x:45,y:220},{n:21,x:70,y:180},{n:22,x:105,y:150},{n:23,x:110,y:100},{n:24,x:125,y:60}]},
   ]
 },
 
@@ -366,36 +488,36 @@ contar: {
 
 // ===== SOMBRAS (30 animales) =====
 sombras:[
-  {answer:'🐘',options:['🐘','🦒','🦏'],label:'elefante'},
-  {answer:'🦒',options:['🐘','🦒','🐊'],label:'jirafa'},
-  {answer:'🐬',options:['🐟','🐬','🦈'],label:'delfín'},
-  {answer:'🦁',options:['🐯','🦁','🐻'],label:'león'},
-  {answer:'🐊',options:['🦎','🐊','🐸'],label:'cocodrilo'},
-  {answer:'🦈',options:['🐟','🦈','🐬'],label:'tiburón'},
-  {answer:'🐙',options:['🦑','🐙','🦀'],label:'pulpo'},
-  {answer:'🦀',options:['🐙','🦀','🦞'],label:'cangrejo'},
-  {answer:'🦋',options:['🐝','🦋','🐞'],label:'mariposa'},
-  {answer:'🐸',options:['🐊','🦎','🐸'],label:'rana'},
-  {answer:'🦚',options:['🦜','🦚','🐦'],label:'pavo real'},
-  {answer:'🦭',options:['🐧','🦭','🐋'],label:'foca'},
-  {answer:'🐋',options:['🐬','🦭','🐋'],label:'ballena'},
-  {answer:'🦜',options:['🦜','🦚','🐦'],label:'loro'},
-  {answer:'🐞',options:['🐝','🦋','🐞'],label:'mariquita'},
-  {answer:'🦓',options:['🐴','🦓','🦌'],label:'cebra'},
-  {answer:'🐧',options:['🐦','🦅','🐧'],label:'pingüino'},
-  {answer:'🦊',options:['🐺','🦊','🐱'],label:'zorro'},
-  {answer:'🦅',options:['🦅','🦉','🦜'],label:'águila'},
-  {answer:'🦉',options:['🦅','🦉','🐦'],label:'búho'},
-  {answer:'🐺',options:['🦊','🐺','🐕'],label:'lobo'},
-  {answer:'🦦',options:['🦫','🦦','🐿️'],label:'nutria'},
-  {answer:'🦩',options:['🦢','🦩','🕊️'],label:'flamenco'},
-  {answer:'🦢',options:['🦢','🦩','🕊️'],label:'cisne'},
-  {answer:'🐿️',options:['🦫','🦦','🐿️'],label:'ardilla'},
-  {answer:'🦌',options:['🐴','🦓','🦌'],label:'ciervo'},
-  {answer:'🦏',options:['🐘','🦛','🦏'],label:'rinoceronte'},
-  {answer:'🦛',options:['🐘','🦛','🦏'],label:'hipopótamo'},
-  {answer:'🐆',options:['🐆','🐯','🦁'],label:'leopardo'},
-  {answer:'🦫',options:['🦦','🦫','🐿️'],label:'castor'},
+  {answer:'🐘',options:['🐘','🦒','🦏'],label:'elefante',article:'un'},
+  {answer:'🦒',options:['🐘','🦒','🐊'],label:'jirafa',article:'una'},
+  {answer:'🐬',options:['🐟','🐬','🦈'],label:'delfín',article:'un'},
+  {answer:'🦁',options:['🐯','🦁','🐻'],label:'león',article:'un'},
+  {answer:'🐊',options:['🦎','🐊','🐸'],label:'cocodrilo',article:'un'},
+  {answer:'🦈',options:['🐟','🦈','🐬'],label:'tiburón',article:'un'},
+  {answer:'🐙',options:['🦑','🐙','🦀'],label:'pulpo',article:'un'},
+  {answer:'🦀',options:['🐙','🦀','🦞'],label:'cangrejo',article:'un'},
+  {answer:'🦋',options:['🐝','🦋','🐞'],label:'mariposa',article:'una'},
+  {answer:'🐸',options:['🐊','🦎','🐸'],label:'rana',article:'una'},
+  {answer:'🦚',options:['🦜','🦚','🐦'],label:'pavo real',article:'un'},
+  {answer:'🦭',options:['🐧','🦭','🐋'],label:'foca',article:'una'},
+  {answer:'🐋',options:['🐬','🦭','🐋'],label:'ballena',article:'una'},
+  {answer:'🦜',options:['🦜','🦚','🐦'],label:'loro',article:'un'},
+  {answer:'🐞',options:['🐝','🦋','🐞'],label:'mariquita',article:'una'},
+  {answer:'🦓',options:['🐴','🦓','🦌'],label:'cebra',article:'una'},
+  {answer:'🐧',options:['🐦','🦅','🐧'],label:'pingüino',article:'un'},
+  {answer:'🦊',options:['🐺','🦊','🐱'],label:'zorro',article:'un'},
+  {answer:'🦅',options:['🦅','🦉','🦜'],label:'águila',article:'un'},
+  {answer:'🦉',options:['🦅','🦉','🐦'],label:'búho',article:'un'},
+  {answer:'🐺',options:['🦊','🐺','🐕'],label:'lobo',article:'un'},
+  {answer:'🦦',options:['🦫','🦦','🐿️'],label:'nutria',article:'una'},
+  {answer:'🦩',options:['🦢','🦩','🕊️'],label:'flamenco',article:'un'},
+  {answer:'🦢',options:['🦢','🦩','🕊️'],label:'cisne',article:'un'},
+  {answer:'🐿️',options:['🦫','🦦','🐿️'],label:'ardilla',article:'una'},
+  {answer:'🦌',options:['🐴','🦓','🦌'],label:'ciervo',article:'un'},
+  {answer:'🦏',options:['🐘','🦛','🦏'],label:'rinoceronte',article:'un'},
+  {answer:'🦛',options:['🐘','🦛','🦏'],label:'hipopótamo',article:'un'},
+  {answer:'🐆',options:['🐆','🐯','🦁'],label:'leopardo',article:'un'},
+  {answer:'🦫',options:['🦦','🦫','🐿️'],label:'castor',article:'un'},
 ],
 
 // ===== INGLÉS =====

@@ -601,3 +601,304 @@ ingles: {
 }
 
 }; // end DATA
+
+// ===== COMPLETA LA PALABRA =====
+DATA.completa = {
+  easy: [
+    {emoji:'🐱',word:'GATO', blanks:[1,3], answers:['A','O'], options:['A','E','O','U']},
+    {emoji:'🐶',word:'PERRO',blanks:[1,3], answers:['E','O'], options:['A','E','O','I']},
+    {emoji:'🌸',word:'FLOR', blanks:[2,3], answers:['O','R'], options:['A','O','R','E']},
+    {emoji:'🌙',word:'LUNA', blanks:[1,3], answers:['U','A'], options:['U','A','E','I']},
+    {emoji:'☀️',word:'SOL',  blanks:[1,2], answers:['O','L'], options:['O','L','A','E']},
+    {emoji:'🐟',word:'PEZ',  blanks:[1],   answers:['E'],     options:['A','E','I','O']},
+    {emoji:'🐸',word:'RANA', blanks:[1,3], answers:['A'],     options:['A','E','O','U']},
+    {emoji:'🍎',word:'MANZANA',blanks:[1,3],answers:['A'],    options:['A','E','O','I']},
+    {emoji:'🐻',word:'OSO',  blanks:[0,2], answers:['O'],     options:['A','O','E','U']},
+    {emoji:'🌊',word:'MAR',  blanks:[1],   answers:['A'],     options:['A','E','O','U']},
+    {emoji:'🦁',word:'LEON', blanks:[1,3], answers:['E','O'], options:['A','E','O','U']},
+    {emoji:'🍌',word:'PLATANO',blanks:[2,5],answers:['A'],    options:['A','E','O','I']},
+    {emoji:'🐘',word:'ELEFANTE',blanks:[0,2],answers:['E'],   options:['A','E','I','O']},
+    {emoji:'🦋',word:'MARIPOSA',blanks:[1,5],answers:['A','O'],options:['A','E','O','U']},
+    {emoji:'🌻',word:'GIRASOL',blanks:[1,4],answers:['I','A'],options:['A','E','I','O']},
+  ],
+  medium: [
+    {emoji:'🚗',word:'COCHE', blanks:[1,3], answers:['O','H'], options:['O','H','A','E']},
+    {emoji:'🌈',word:'ARCOIRIS',blanks:[1,4],answers:['R','I'],options:['R','I','L','E']},
+    {emoji:'🐬',word:'DELFIN',blanks:[2,4],answers:['L','I'],options:['L','I','N','E']},
+    {emoji:'🦄',word:'UNICORNIO',blanks:[1,5],answers:['N','N'],options:['N','M','R','L']},
+    {emoji:'🍕',word:'PIZZA',blanks:[1,3],answers:['I','Z'],options:['I','Z','A','E']},
+    {emoji:'🎈',word:'GLOBO',blanks:[1,3],answers:['L','B'],options:['L','B','R','M']},
+    {emoji:'🌴',word:'PALMERA',blanks:[1,4],answers:['A','E'],options:['A','E','I','O']},
+    {emoji:'🦊',word:'ZORRO',blanks:[1,3],answers:['O'],options:['A','O','E','U']},
+    {emoji:'🐼',word:'PANDA',blanks:[1,4],answers:['A'],options:['A','E','O','I']},
+    {emoji:'🚀',word:'COHETE',blanks:[1,3],answers:['O','E'],options:['A','O','E','I']},
+    {emoji:'🎺',word:'TROMPETA',blanks:[2,5],answers:['O','E'],options:['A','O','E','I']},
+    {emoji:'🐙',word:'PULPO',blanks:[1,4],answers:['U','O'],options:['A','U','O','I']},
+    {emoji:'🏠',word:'CASTILLO',blanks:[1,5],answers:['A','L'],options:['A','L','E','R']},
+    {emoji:'🌺',word:'MARGARITA',blanks:[1,5],answers:['A'],options:['A','E','O','I']},
+    {emoji:'🦩',word:'FLAMENCO',blanks:[2,5],answers:['A','E'],options:['A','E','O','I']},
+  ],
+  hard: [
+    {emoji:'🦒',word:'JIRAFA',blanks:[1,3,5],answers:['I','A','A'],options:['A','I','E','O']},
+    {emoji:'🐊',word:'COCODRILO',blanks:[1,4,7],answers:['O','D','L'],options:['O','D','L','R']},
+    {emoji:'🌋',word:'VOLCAN',blanks:[1,3,5],answers:['O','C','N'],options:['O','C','N','L']},
+    {emoji:'🐠',word:'BARRACUDA',blanks:[1,3,5,7],answers:['A','R','C','D'],options:['A','R','C','D']},
+    {emoji:'🦋',word:'CRISALIDA',blanks:[2,4,7],answers:['I','A','I'],options:['A','I','E','O']},
+    {emoji:'🌍',word:'CONTINENTE',blanks:[1,4,7],answers:['O','I','E'],options:['A','O','I','E']},
+    {emoji:'🦅',word:'AGUILA',blanks:[0,2,5],answers:['A','U','A'],options:['A','U','E','I']},
+    {emoji:'🏔️',word:'MONTANA',blanks:[1,3,6],answers:['O','T','A'],options:['O','T','A','N']},
+    {emoji:'🎪',word:'CIRCO',blanks:[1,3],answers:['I','C'],options:['I','C','O','R']},
+    {emoji:'🦁',word:'MELENA',blanks:[1,3,5],answers:['E','E','A'],options:['A','E','I','O']},
+  ]
+};
+
+// ===== SONIDOS =====
+DATA.sonidos = [
+  {sound:'guau guau',answer:'perro',correctLabel:'el perro',options:[{emoji:'🐶',label:'perro'},{emoji:'🐱',label:'gato'},{emoji:'🐸',label:'rana'}]},
+  {sound:'miau miau',answer:'gato',correctLabel:'el gato',options:[{emoji:'🐱',label:'gato'},{emoji:'🐶',label:'perro'},{emoji:'🐭',label:'ratón'}]},
+  {sound:'mu mu',answer:'vaca',correctLabel:'la vaca',options:[{emoji:'🐮',label:'vaca'},{emoji:'🐷',label:'cerdo'},{emoji:'🐑',label:'oveja'}]},
+  {sound:'oink oink',answer:'cerdo',correctLabel:'el cerdo',options:[{emoji:'🐷',label:'cerdo'},{emoji:'🐮',label:'vaca'},{emoji:'🐔',label:'gallina'}]},
+  {sound:'quiquiriquí',answer:'gallo',correctLabel:'el gallo',options:[{emoji:'🐓',label:'gallo'},{emoji:'🦆',label:'pato'},{emoji:'🐧',label:'pingüino'}]},
+  {sound:'cuac cuac',answer:'pato',correctLabel:'el pato',options:[{emoji:'🦆',label:'pato'},{emoji:'🐓',label:'gallo'},{emoji:'🐦',label:'pájaro'}]},
+  {sound:'pío pío',answer:'pollito',correctLabel:'el pollito',options:[{emoji:'🐥',label:'pollito'},{emoji:'🦆',label:'pato'},{emoji:'🐦',label:'pájaro'}]},
+  {sound:'buaaah',answer:'bebé',correctLabel:'el bebé',options:[{emoji:'👶',label:'bebé'},{emoji:'🧒',label:'niño'},{emoji:'👦',label:'chico'}]},
+  {sound:'riiing riiing',answer:'teléfono',correctLabel:'el teléfono',options:[{emoji:'📱',label:'teléfono'},{emoji:'⏰',label:'despertador'},{emoji:'🔔',label:'campana'}]},
+  {sound:'toc toc',answer:'puerta',correctLabel:'la puerta',options:[{emoji:'🚪',label:'puerta'},{emoji:'🪟',label:'ventana'},{emoji:'🧱',label:'pared'}]},
+  {sound:'splash',answer:'agua',correctLabel:'el agua',options:[{emoji:'💧',label:'agua'},{emoji:'❄️',label:'hielo'},{emoji:'☁️',label:'nube'}]},
+  {sound:'aaachís',answer:'estornudo',correctLabel:'el estornudo',options:[{emoji:'🤧',label:'estornudo'},{emoji:'😂',label:'risa'},{emoji:'😴',label:'bostezo'}]},
+  {sound:'jiiii jiiii',answer:'caballo',correctLabel:'el caballo',options:[{emoji:'🐴',label:'caballo'},{emoji:'🦌',label:'ciervo'},{emoji:'🦓',label:'cebra'}]},
+  {sound:'pum pum pum',answer:'tambor',correctLabel:'el tambor',options:[{emoji:'🥁',label:'tambor'},{emoji:'🎸',label:'guitarra'},{emoji:'🎺',label:'trompeta'}]},
+  {sound:'chu chu',answer:'tren',correctLabel:'el tren',options:[{emoji:'🚂',label:'tren'},{emoji:'🚗',label:'coche'},{emoji:'✈️',label:'avión'}]},
+  {sound:'bzzzz',answer:'abeja',correctLabel:'la abeja',options:[{emoji:'🐝',label:'abeja'},{emoji:'🦟',label:'mosquito'},{emoji:'🦋',label:'mariposa'}]},
+  {sound:'croac croac',answer:'rana',correctLabel:'la rana',options:[{emoji:'🐸',label:'rana'},{emoji:'🐊',label:'cocodrilo'},{emoji:'🦎',label:'lagarto'}]},
+  {sound:'aaaahh',answer:'bostezo',correctLabel:'el bostezo',options:[{emoji:'😴',label:'bostezo'},{emoji:'😂',label:'risa'},{emoji:'😱',label:'susto'}]},
+  {sound:'niiiii',answer:'sirena',correctLabel:'la sirena',options:[{emoji:'🚨',label:'sirena'},{emoji:'📱',label:'teléfono'},{emoji:'⏰',label:'despertador'}]},
+  {sound:'grrr grrr',answer:'oso',correctLabel:'el oso',options:[{emoji:'🐻',label:'oso'},{emoji:'🦁',label:'león'},{emoji:'🐯',label:'tigre'}]},
+];
+
+// ===== CÁLCULO (sumas y restas) =====
+DATA.calculo = {
+  suma:[
+    {emoji:'🍎',a:1,b:1,op:'+',answer:2,options:[1,2,3]},
+    {emoji:'⭐',a:2,b:1,op:'+',answer:3,options:[2,3,4]},
+    {emoji:'🐶',a:2,b:2,op:'+',answer:4,options:[3,4,5]},
+    {emoji:'🌸',a:3,b:1,op:'+',answer:4,options:[3,4,5]},
+    {emoji:'🍕',a:3,b:2,op:'+',answer:5,options:[4,5,6]},
+    {emoji:'🎈',a:4,b:1,op:'+',answer:5,options:[4,5,6]},
+    {emoji:'🐱',a:3,b:3,op:'+',answer:6,options:[5,6,7]},
+    {emoji:'🍦',a:4,b:2,op:'+',answer:6,options:[5,6,7]},
+    {emoji:'🌟',a:5,b:2,op:'+',answer:7,options:[6,7,8]},
+    {emoji:'🦋',a:4,b:3,op:'+',answer:7,options:[6,7,8]},
+    {emoji:'🍓',a:5,b:3,op:'+',answer:8,options:[7,8,9]},
+    {emoji:'🐸',a:6,b:2,op:'+',answer:8,options:[7,8,9]},
+    {emoji:'🎀',a:5,b:4,op:'+',answer:9,options:[8,9,10]},
+    {emoji:'🐠',a:6,b:3,op:'+',answer:9,options:[8,9,10]},
+    {emoji:'🌈',a:5,b:5,op:'+',answer:10,options:[8,9,10]},
+  ],
+  resta:[
+    {emoji:'🍎',a:3,b:1,op:'-',answer:2,options:[1,2,3]},
+    {emoji:'⭐',a:4,b:1,op:'-',answer:3,options:[2,3,4]},
+    {emoji:'🐶',a:5,b:2,op:'-',answer:3,options:[2,3,4]},
+    {emoji:'🌸',a:5,b:1,op:'-',answer:4,options:[3,4,5]},
+    {emoji:'🍕',a:6,b:2,op:'-',answer:4,options:[3,4,5]},
+    {emoji:'🎈',a:7,b:2,op:'-',answer:5,options:[4,5,6]},
+    {emoji:'🐱',a:8,b:2,op:'-',answer:6,options:[5,6,7]},
+    {emoji:'🍦',a:9,b:3,op:'-',answer:6,options:[5,6,7]},
+    {emoji:'🌟',a:9,b:2,op:'-',answer:7,options:[6,7,8]},
+    {emoji:'🦋',a:10,b:3,op:'-',answer:7,options:[6,7,8]},
+    {emoji:'🍓',a:10,b:2,op:'-',answer:8,options:[7,8,9]},
+    {emoji:'🐸',a:10,b:4,op:'-',answer:6,options:[5,6,7]},
+    {emoji:'🎀',a:9,b:4,op:'-',answer:5,options:[4,5,6]},
+    {emoji:'🐠',a:8,b:5,op:'-',answer:3,options:[2,3,4]},
+    {emoji:'🌈',a:10,b:5,op:'-',answer:5,options:[4,5,6]},
+  ],
+  mix:[
+    {emoji:'🍎',a:2,b:3,op:'+',answer:5,options:[4,5,6]},
+    {emoji:'🐶',a:5,b:2,op:'-',answer:3,options:[2,3,4]},
+    {emoji:'⭐',a:4,b:4,op:'+',answer:8,options:[7,8,9]},
+    {emoji:'🌸',a:8,b:3,op:'-',answer:5,options:[4,5,6]},
+    {emoji:'🍕',a:3,b:5,op:'+',answer:8,options:[7,8,9]},
+    {emoji:'🎈',a:9,b:4,op:'-',answer:5,options:[4,5,6]},
+    {emoji:'🐱',a:6,b:4,op:'+',answer:10,options:[8,9,10]},
+    {emoji:'🍦',a:10,b:3,op:'-',answer:7,options:[6,7,8]},
+    {emoji:'🌟',a:4,b:6,op:'+',answer:10,options:[8,9,10]},
+    {emoji:'🦋',a:7,b:3,op:'-',answer:4,options:[3,4,5]},
+    {emoji:'🍓',a:5,b:5,op:'+',answer:10,options:[9,10,11]},
+    {emoji:'🐸',a:6,b:4,op:'-',answer:2,options:[1,2,3]},
+    {emoji:'🎀',a:3,b:7,op:'+',answer:10,options:[8,9,10]},
+    {emoji:'🐠',a:9,b:6,op:'-',answer:3,options:[2,3,4]},
+    {emoji:'🌈',a:7,b:3,op:'+',answer:10,options:[9,10,11]},
+  ]
+};
+
+// ===== COLORES =====
+DATA.colores = [
+  {emoji:'🌞',name:'sol',article:'el',correct:'amarillo',options:[{label:'amarillo',hex:'#FFD93D'},{label:'azul',hex:'#6EC6F5'},{label:'rojo',hex:'#FF6B6B'}]},
+  {emoji:'🌊',name:'mar',article:'el',correct:'azul',options:[{label:'azul',hex:'#6EC6F5'},{label:'verde',hex:'#6BCB77'},{label:'rojo',hex:'#FF6B6B'}]},
+  {emoji:'🍎',name:'manzana',article:'la',correct:'rojo',options:[{label:'rojo',hex:'#FF6B6B'},{label:'amarillo',hex:'#FFD93D'},{label:'azul',hex:'#6EC6F5'}]},
+  {emoji:'🌿',name:'hierba',article:'la',correct:'verde',options:[{label:'verde',hex:'#6BCB77'},{label:'azul',hex:'#6EC6F5'},{label:'amarillo',hex:'#FFD93D'}]},
+  {emoji:'🍇',name:'uva',article:'la',correct:'morado',options:[{label:'morado',hex:'#C77DFF'},{label:'rojo',hex:'#FF6B6B'},{label:'azul',hex:'#6EC6F5'}]},
+  {emoji:'🍊',name:'naranja',article:'la',correct:'naranja',options:[{label:'naranja',hex:'#FF9F43'},{label:'amarillo',hex:'#FFD93D'},{label:'rojo',hex:'#FF6B6B'}]},
+  {emoji:'🐘',name:'elefante',article:'el',correct:'gris',options:[{label:'gris',hex:'#888888'},{label:'azul',hex:'#6EC6F5'},{label:'verde',hex:'#6BCB77'}]},
+  {emoji:'❄️',name:'hielo',article:'el',correct:'blanco',options:[{label:'blanco',hex:'#dddddd'},{label:'azul',hex:'#6EC6F5'},{label:'gris',hex:'#888888'}]},
+  {emoji:'🌙',name:'luna',article:'la',correct:'amarillo',options:[{label:'amarillo',hex:'#FFD93D'},{label:'blanco',hex:'#e0e0e0'},{label:'azul',hex:'#6EC6F5'}]},
+  {emoji:'🌹',name:'rosa',article:'la',correct:'rojo',options:[{label:'rojo',hex:'#FF6B6B'},{label:'morado',hex:'#C77DFF'},{label:'amarillo',hex:'#FFD93D'}]},
+  {emoji:'🐸',name:'rana',article:'la',correct:'verde',options:[{label:'verde',hex:'#6BCB77'},{label:'amarillo',hex:'#FFD93D'},{label:'azul',hex:'#6EC6F5'}]},
+  {emoji:'🍋',name:'limón',article:'el',correct:'amarillo',options:[{label:'amarillo',hex:'#FFD93D'},{label:'verde',hex:'#6BCB77'},{label:'naranja',hex:'#FF9F43'}]},
+  {emoji:'🐦',name:'cielo',article:'el',correct:'azul',options:[{label:'azul',hex:'#6EC6F5'},{label:'verde',hex:'#6BCB77'},{label:'gris',hex:'#888'}]},
+  {emoji:'🐼',name:'panda',article:'el',correct:'blanco y negro',options:[{label:'blanco y negro',hex:'#555'},{label:'marrón',hex:'#a0522d'},{label:'gris',hex:'#888'}]},
+  {emoji:'🦊',name:'zorro',article:'el',correct:'naranja',options:[{label:'naranja',hex:'#FF9F43'},{label:'rojo',hex:'#FF6B6B'},{label:'amarillo',hex:'#FFD93D'}]},
+  {emoji:'🍫',name:'chocolate',article:'el',correct:'marrón',options:[{label:'marrón',hex:'#a0522d'},{label:'negro',hex:'#333'},{label:'naranja',hex:'#FF9F43'}]},
+  {emoji:'🍓',name:'fresa',article:'la',correct:'rojo',options:[{label:'rojo',hex:'#FF6B6B'},{label:'rosa',hex:'#FF6BD6'},{label:'naranja',hex:'#FF9F43'}]},
+  {emoji:'🌴',name:'palmera',article:'la',correct:'verde',options:[{label:'verde',hex:'#6BCB77'},{label:'amarillo',hex:'#FFD93D'},{label:'marrón',hex:'#a0522d'}]},
+  {emoji:'🦄',name:'unicornio',article:'el',correct:'blanco',options:[{label:'blanco',hex:'#ddd'},{label:'rosa',hex:'#FF6BD6'},{label:'morado',hex:'#C77DFF'}]},
+  {emoji:'🐧',name:'pingüino',article:'el',correct:'negro',options:[{label:'negro',hex:'#333'},{label:'gris',hex:'#888'},{label:'azul',hex:'#6EC6F5'}]},
+];
+
+// ===== MEMORIA emojis =====
+DATA.memoria = ['🐶','🐱','🐻','🦊','🐸','🦋','🌸','⭐','🍎','🚗','🎈','🏠','🌈','🎀','🐬','🦄','🌻','🍕','🎃','🦁','🐘','🐧','🚀','🦒'];
+
+// ===== FORMA LA PALABRA =====
+DATA.forma = {
+  easy: [
+    {emoji:'🐱',word:'GATO', letters:['G','A','T','O','R','S']},
+    {emoji:'🐶',word:'PERRO',letters:['P','E','R','O','A','L']},
+    {emoji:'🌸',word:'FLOR', letters:['F','L','O','R','A','E']},
+    {emoji:'🌙',word:'LUNA', letters:['L','U','N','A','E','O']},
+    {emoji:'🍎',word:'PERA', letters:['P','E','R','A','L','O']},
+    {emoji:'🐟',word:'PEZ',  letters:['P','E','Z','A','R','T']},
+    {emoji:'☀️',word:'SOL',  letters:['S','O','L','A','R','E']},
+    {emoji:'🐸',word:'RANA', letters:['R','A','N','A','E','L']},
+    {emoji:'🌊',word:'MAR',  letters:['M','A','R','E','S','L']},
+    {emoji:'🍌',word:'PINO', letters:['P','I','N','O','A','L']},
+    {emoji:'🦁',word:'LEON', letters:['L','E','O','N','R','S']},
+    {emoji:'🐻',word:'OSO',  letters:['O','S','O','A','R','E']},
+    {emoji:'🌺',word:'ROSA', letters:['R','O','S','A','L','E']},
+    {emoji:'🏠',word:'CASA', letters:['C','A','S','A','O','L']},
+    {emoji:'🐮',word:'VACA', letters:['V','A','C','A','O','L']},
+  ],
+  medium: [
+    {emoji:'🐬',word:'DELFIN',letters:['D','E','L','F','I','N','A','O']},
+    {emoji:'🦒',word:'JIRAFA',letters:['J','I','R','A','F','A','O','E']},
+    {emoji:'🚗',word:'COCHE', letters:['C','O','C','H','E','A','R','L']},
+    {emoji:'🌈',word:'ARCOIRIS',letters:['A','R','C','O','I','R','I','S','L','E']},
+    {emoji:'🍕',word:'PIZZA', letters:['P','I','Z','Z','A','O','R','L']},
+    {emoji:'🎈',word:'GLOBO', letters:['G','L','O','B','O','A','R','E']},
+    {emoji:'🦊',word:'ZORRO', letters:['Z','O','R','R','O','A','L','E']},
+    {emoji:'🐼',word:'PANDA', letters:['P','A','N','D','A','O','R','L']},
+    {emoji:'🌴',word:'PALMA', letters:['P','A','L','M','A','O','R','E']},
+    {emoji:'🎃',word:'BRUJA', letters:['B','R','U','J','A','O','L','E']},
+    {emoji:'🐙',word:'PULPO', letters:['P','U','L','P','O','A','R','E']},
+    {emoji:'🦄',word:'POTRO', letters:['P','O','T','R','O','A','L','E']},
+    {emoji:'🚀',word:'NAVE',  letters:['N','A','V','E','O','R','L','T']},
+    {emoji:'🌻',word:'CAMPO', letters:['C','A','M','P','O','R','L','E']},
+    {emoji:'🏰',word:'TORRE', letters:['T','O','R','R','E','A','L','N']},
+  ],
+  hard: [
+    {emoji:'🐊',word:'COCODRILO',letters:['C','O','C','O','D','R','I','L','O','A','E']},
+    {emoji:'🌋',word:'VOLCAN',letters:['V','O','L','C','A','N','R','E','T']},
+    {emoji:'🦋',word:'MARIPOSA',letters:['M','A','R','I','P','O','S','A','L','E']},
+    {emoji:'🐘',word:'ELEFANTE',letters:['E','L','E','F','A','N','T','E','O','R']},
+    {emoji:'🌺',word:'MARGARITA',letters:['M','A','R','G','A','R','I','T','A','O']},
+    {emoji:'🦩',word:'FLAMENCO',letters:['F','L','A','M','E','N','C','O','R','T']},
+    {emoji:'🦅',word:'AGUILA',letters:['A','G','U','I','L','A','O','R','E']},
+    {emoji:'🌍',word:'CONTINENTE',letters:['C','O','N','T','I','N','E','N','T','E','A','R']},
+    {emoji:'🎪',word:'ESPECTACULO',letters:['E','S','P','E','C','T','A','C','U','L','O','R']},
+    {emoji:'🦁',word:'MELENA',letters:['M','E','L','E','N','A','O','R','T']},
+  ]
+};
+
+// ===== CUENTOS =====
+DATA.cuentos = [
+  {
+    title:'El dragón Pipo',
+    hero:'Pipo',
+    scenes:[
+      {
+        type:'choice',
+        emoji:'🐉',
+        text:'Pipo el dragón se despierta hambriento. Quiere desayunar, pero no sabe qué comer. ¿Qué le recomiendas?',
+        choices:[
+          {emoji:'🍎',text:'Fruta del bosque',result:'¡Pipo coge manzanas rojas y peras jugosas! Está delicioso.'},
+          {emoji:'🍕',text:'Pizza de queso',result:'Pipo sopla fuego y hornea una pizza perfecta. ¡Ñam!'},
+          {emoji:'🐟',text:'Peces del río',result:'Pipo vuela al río y pesca peces plateados. ¡Qué rico!'},
+        ]
+      },
+      {
+        type:'choice',
+        emoji:'🌳',
+        text:'Después de desayunar, Pipo quiere jugar. El bosque tiene muchos sitios divertidos. ¿A dónde va?',
+        choices:[
+          {emoji:'🏔️',text:'A la montaña nevada',result:'¡Pipo desliza por la nieve con su cola. Es rapidísimo!'},
+          {emoji:'🌊',text:'Al lago azul',result:'Pipo se zambulle en el lago. ¡Hace unas olas enormes!'},
+          {emoji:'🌺',text:'Al prado de flores',result:'Pipo juega entre las flores y las mariposas le hacen cosquillas.'},
+        ]
+      },
+      {
+        type:'choice',
+        emoji:'😴',
+        text:'Ya es tarde y Pipo tiene sueño. Necesita un lugar para dormir. ¿Dónde duerme?',
+        choices:[
+          {emoji:'🏰',text:'En su cueva secreta',result:'Pipo se acurruca en su cueva con sus tesoros. ¡Está calentito!'},
+          {emoji:'☁️',text:'En una nube esponjosa',result:'Pipo flota sobre una nube suave. ¡Qué sueño tan dulce!'},
+          {emoji:'🌲',text:'En lo alto de un árbol',result:'Pipo abraza el árbol más alto. Las estrellas le hacen compañía.'},
+        ]
+      },
+      {type:'end',emoji:'🌟',text:'¡Buenas noches, Pipo!',sub:'Has ayudado al dragón a tener un día perfecto.'}
+    ]
+  },
+  {
+    title:'La sirena Coral',
+    hero:'Coral',
+    scenes:[
+      {
+        type:'choice',
+        emoji:'🧜‍♀️',
+        text:'Coral la sirena encuentra un cofre en el fondo del mar. Está muy oxidado. ¿Qué hace?',
+        choices:[
+          {emoji:'🔑',text:'Busca la llave',result:'Coral encuentra la llave entre las algas. ¡El cofre está lleno de perlas!'},
+          {emoji:'🪨',text:'Lo abre con una roca',result:'¡Bam! Dentro hay un mapa de un tesoro secreto.'},
+          {emoji:'🐙',text:'Pide ayuda al pulpo',result:'El pulpo usa sus tentáculos para abrir el cofre. ¡Hay monedas de oro!'},
+        ]
+      },
+      {
+        type:'choice',
+        emoji:'🌊',
+        text:'Una gran tormenta llega al mar. Las olas son muy grandes. ¿Cómo protege Coral a sus amigos?',
+        choices:[
+          {emoji:'🏝️',text:'Los lleva a una isla',result:'Coral guía a todos a una islita tranquila. Están a salvo.'},
+          {emoji:'🐚',text:'Se esconden en la cueva de coral',result:'La cueva de coral los protege del temporal. ¡Qué valiente es Coral!'},
+          {emoji:'🐋',text:'Pide ayuda a la ballena',result:'La ballena gigante los cubre con su aleta. ¡Son amigos para siempre!'},
+        ]
+      },
+      {type:'end',emoji:'🌈',text:'¡El mar vuelve a estar en calma!',sub:'Coral salvó a todos sus amigos del mar.'}
+    ]
+  },
+  {
+    title:'El robot Bip',
+    hero:'Bip',
+    scenes:[
+      {
+        type:'choice',
+        emoji:'🤖',
+        text:'Bip el robot se estrena hoy. Quiere aprender algo nuevo. ¿Qué aprende primero?',
+        choices:[
+          {emoji:'🎨',text:'A pintar cuadros',result:'Bip mezcla colores y pinta un cuadro precioso. ¡Es un artista!'},
+          {emoji:'⚽',text:'A jugar al fútbol',result:'Bip da una patada enorme. ¡Goool! Los niños lo celebran.'},
+          {emoji:'🎵',text:'A tocar música',result:'Bip aprende a tocar el piano. Toca una canción muy alegre.'},
+        ]
+      },
+      {
+        type:'choice',
+        emoji:'🏙️',
+        text:'Bip ve que una señora mayor necesita ayuda para llevar sus bolsas. ¿Qué hace Bip?',
+        choices:[
+          {emoji:'💪',text:'Le lleva las bolsas',result:'Bip lleva todas las bolsas a la vez. La señora está muy contenta.'},
+          {emoji:'🛒',text:'Le consigue un carrito',result:'Bip encuentra un carrito y se lo da. ¡Qué listo es Bip!'},
+          {emoji:'📞',text:'Llama a alguien para ayudar',result:'Bip llama al hijo de la señora. Vienen corriendo a ayudar.'},
+        ]
+      },
+      {type:'end',emoji:'🏆',text:'¡Bip es el mejor robot del mundo!',sub:'Aprendió cosas nuevas y ayudó a los demás.'}
+    ]
+  }
+];

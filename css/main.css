@@ -411,3 +411,66 @@ canvas { display: block; width: 100%; touch-action: none; }
 .english-btn.correct-en { background: var(--green) !important; box-shadow: 0 4px 0 var(--green-s); animation: correctPop 0.5s; }
 .english-btn.wrong-en   { background: var(--red)   !important; box-shadow: 0 4px 0 var(--red-s); animation: shake 0.4s; }
 .english-btn-icon { font-size: 1.5rem; }
+
+/* ===== COMPLETA LA PALABRA ===== */
+.word-display { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:10px 0; }
+.word-letter { font-family:'Fredoka One',cursive; font-size:2rem; color:#333; }
+.word-blank  { font-family:'Fredoka One',cursive; font-size:2rem; color:#6EC6F5;
+  border-bottom:3px solid #6EC6F5; min-width:28px; text-align:center; transition:color 0.3s; }
+
+/* ===== COLORES ===== */
+.color-choices { display:flex; flex-direction:column; gap:10px; padding:8px 14px; }
+.color-choice-btn {
+  font-family:'Fredoka One',cursive; font-size:1.2rem; padding:16px 20px;
+  border:none; border-radius:var(--radius-sm); cursor:pointer; color:white;
+  transition:transform 0.12s; text-align:center;
+}
+.color-choice-btn:active { transform:scale(0.95); }
+.color-correct { outline:5px solid #45a352 !important; transform:scale(1.04) !important; animation:correctPop 0.5s; }
+.color-wrong   { opacity:0.5 !important; transform:scale(0.95) !important; }
+
+/* ===== MEMORIA ===== */
+.mem-card {
+  aspect-ratio:1; border-radius:14px; border:none; cursor:pointer;
+  background:linear-gradient(135deg,#6EC6F5,#C77DFF);
+  font-size:1.8rem; position:relative; transition:transform 0.35s;
+  box-shadow:var(--shadow-sm); transform-style:preserve-3d;
+}
+.mem-card .mem-front, .mem-card .mem-back {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  border-radius:14px; backface-visibility:hidden;
+}
+.mem-card .mem-back { background:white; transform:rotateY(180deg); font-size:2rem; }
+.mem-card.mem-flipped { transform:rotateY(180deg); }
+.mem-card.mem-matched { transform:rotateY(180deg); background:white; box-shadow:0 2px 0 var(--green-s); border:3px solid var(--green); }
+.mem-card.mem-matched .mem-back { background:#f0fff4; }
+
+/* ===== FORMA LA PALABRA ===== */
+.forma-slots { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:8px 0 16px; }
+.forma-slot {
+  width:44px; height:52px; border-radius:10px;
+  border:2px dashed #ccc; display:flex; align-items:center; justify-content:center;
+  font-family:'Fredoka One',cursive; font-size:1.5rem; color:#ccc;
+  transition:all 0.2s;
+}
+.slot-correct { border-color:var(--green); color:var(--green); background:#f0fff4; }
+.slot-wrong   { border-color:var(--red);   color:var(--red);   background:#fff0f0; animation:shake 0.4s; }
+.forma-letters { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; padding:8px 14px 16px; }
+.forma-letter-btn {
+  font-family:'Fredoka One',cursive; font-size:1.3rem; width:52px; height:52px;
+  border-radius:14px; border:none; cursor:pointer; color:white;
+  box-shadow:var(--shadow-sm); transition:transform 0.12s;
+}
+.forma-letter-btn:active { transform:scale(0.88); }
+.forma-letter-btn.used { opacity:0.3; pointer-events:none; }
+
+/* ===== CUENTO ===== */
+.cuento-choices { display:flex; flex-direction:column; gap:10px; padding:8px 14px 20px; }
+.cuento-choice {
+  font-family:'Fredoka One',cursive; font-size:1rem; padding:14px 18px;
+  border-radius:var(--radius-sm); border:none; cursor:pointer; color:white;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:var(--shadow-sm); transition:transform 0.12s;
+  text-align:left;
+}
+.cuento-choice:active { transform:scale(0.97); }

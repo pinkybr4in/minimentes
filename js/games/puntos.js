@@ -1,7 +1,6 @@
 const GamePuntos = {
   level:'easy', puzzleIdx:0, nextPoint:1,
-  ctx:null, canvas:null, complete:false,
-  isDrawing:false, lastX:0, lastY:0,
+  ctx:null, canvas:null, complete:false, touching:false,
 
   init(container) {
     this.level='easy'; this.puzzleIdx=0; this.nextPoint=1; this.complete=false;
@@ -11,7 +10,7 @@ const GamePuntos = {
         <button class="lvl-btn lvl-med"  id="pl-med"  onclick="GamePuntos.setLevel('medium')">🌻 Medio</button>
         <button class="lvl-btn lvl-hard" id="pl-hard" onclick="GamePuntos.setLevel('hard')">🚀 Difícil</button>
       </div>
-      <div class="dots-info" id="p-info">¡Desliza el dedo desde el 1!</div>
+      <div class="dots-info" id="p-info">¡Desliza el dedo desde el número 1!</div>
       <div class="dots-canvas-wrap" id="p-wrap"><canvas id="p-canvas"></canvas></div>
       <div class="action-row" style="padding-bottom:10px">
         <button class="btn-action btn-clear2" onclick="GamePuntos.restart()">🔄 Reiniciar</button>
@@ -25,22 +24,79 @@ const GamePuntos = {
     this.canvas=document.getElementById('p-canvas');
     this.ctx=this.canvas.getContext('2d');
     const wrap=document.getElementById('p-wrap');
-    const w=Math.min(wrap.clientWidth,360);
+    const w=Math.min(wrap.clientWidth,380);
     this.canvas.width=w; this.canvas.height=w;
 
-    this.canvas.addEventListener('touchstart', e=>{e.preventDefault();this.handleStart(e.touches[0]);},{passive:false});
-    this.canvas.addEventListener('touchmove',  e=>{e.preventDefault();this.handleMove(e.touches[0]);},{passive:false});
-    this.canvas.addEventListener('touchend',   e=>{e.preventDefault();this.handleEnd();},{passive:false});
-    this.canvas.addEventListener('mousedown',  e=>this.handleStart(e));
-    this.canvas.addEventListener('mousemove',  e=>this.handleMove(e));
-    this.canvas.addEventListener('mouseup',    ()=>this.handleEnd());
-    this.canvas.addEventListener('mouseleave', ()=>this.handleEnd());
+    // Use a single unified pointer approach
+    const getXY=(e)=>{
+      const rect=this.canvas.getBoundingClientRect();
+      const scale=this.canvas.width/rect.width;
+      const src = e.touches ? e.touches[0] : e;
+      return{x:(src.clientX-rect.left)*scale, y:(src.clientY-rect.top)*scale};
+    };
+
+    const onStart=(e)=>{
+      e.preventDefault();
+      if(this.complete) return;
+      const pos=getXY(e);
+      const pts=this.scaledPoints();
+      const t=pts.find(p=>p.n===this.nextPoint);
+      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<38){
+        this.touching=true;
+      }
+    };
+
+    const onMove=(e)=>{
+      e.preventDefault();
+      if(!this.touching||this.complete) return;
+      const pos=getXY(e);
+      const pts=this.scaledPoints();
+      // Draw preview
+      this.render();
+      const prev=pts[this.nextPoint-2]||pts[0];
+      const ctx=this.ctx;
+      ctx.save();
+      ctx.beginPath(); ctx.moveTo(prev.x,prev.y); ctx.lineTo(pos.x,pos.y);
+      ctx.strokeStyle='rgba(110,198,245,0.5)'; ctx.lineWidth=3;
+      ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+      // Check arrival
+      const t=pts.find(p=>p.n===this.nextPoint);
+      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<38) this.arrive(pts);
+    };
+
+    const onEnd=(e)=>{
+      e.preventDefault();
+      this.touching=false;
+      this.render();
+    };
+
+    this.canvas.addEventListener('touchstart', onStart,{passive:false});
+    this.canvas.addEventListener('touchmove',  onMove, {passive:false});
+    this.canvas.addEventListener('touchend',   onEnd,  {passive:false});
+    this.canvas.addEventListener('mousedown',  onStart);
+    this.canvas.addEventListener('mousemove',  onMove);
+    this.canvas.addEventListener('mouseup',    onEnd);
+    this.canvas.addEventListener('mouseleave', onEnd);
   },
 
-  getPos(e) {
-    const rect=this.canvas.getBoundingClientRect();
-    const scale=this.canvas.width/rect.width;
-    return{x:(e.clientX-rect.left)*scale, y:(e.clientY-rect.top)*scale};
+  scaledPoints() {
+    const s=this.canvas.width/300;
+    return this.currentPuzzle().points.map(p=>({x:p.x*s, y:p.y*s, n:p.n}));
+  },
+
+  arrive(pts) {
+    this.nextPoint++;
+    const info=document.getElementById('p-info');
+    if(this.nextPoint>pts.length){
+      this.complete=true; this.touching=false;
+      info.textContent=`🎉 ¡${this.currentPuzzle().name} completado!`;
+      App.confetti(); App.speak('¡Lo has conseguido!');
+      App.saveScore('puntos',Math.min(this.puzzleIdx+1,5));
+      document.getElementById('p-next').style.display='';
+      this.render();
+    } else {
+      info.textContent=`¡Bien! Busca el número ${this.nextPoint} 🔍`;
+    }
   },
 
   currentPuzzle() {
@@ -48,13 +104,8 @@ const GamePuntos = {
     return lvl[this.puzzleIdx%lvl.length];
   },
 
-  scalePoint(pt) {
-    const s=this.canvas.width/300;
-    return{x:pt.x*s, y:pt.y*s, n:pt.n};
-  },
-
   loadPuzzle() {
-    this.nextPoint=1; this.complete=false; this.isDrawing=false;
+    this.nextPoint=1; this.complete=false; this.touching=false;
     document.getElementById('p-next').style.display='none';
     document.getElementById('p-info').textContent=`${this.currentPuzzle().name} · ¡Desliza desde el 1!`;
     this.render();
@@ -64,94 +115,34 @@ const GamePuntos = {
     const ctx=this.ctx, canvas=this.canvas;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle='white'; ctx.fillRect(0,0,canvas.width,canvas.height);
-    const puzzle=this.currentPuzzle();
-    const pts=puzzle.points.map(p=>this.scalePoint(p));
+    const pts=this.scaledPoints();
 
-    // Draw completed lines
+    // Completed path
     if(this.nextPoint>1){
-      ctx.beginPath();
-      ctx.moveTo(pts[0].x,pts[0].y);
+      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
       for(let i=1;i<Math.min(this.nextPoint-1,pts.length);i++) ctx.lineTo(pts[i].x,pts[i].y);
-      ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round';
-      ctx.stroke();
+      ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke();
     }
 
-    // BUGFIX: if complete, close the path AND draw the last segment
+    // Complete: close path + fill
     if(this.complete){
-      ctx.beginPath();
-      pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
+      pts.forEach(p=>ctx.lineTo(p.x,p.y));
       ctx.closePath();
       ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=4; ctx.lineCap='round'; ctx.stroke();
-      ctx.fillStyle='rgba(110,198,245,0.15)'; ctx.fill();
+      ctx.fillStyle='rgba(110,198,245,0.18)'; ctx.fill();
     }
 
-    // Draw dots — all look the same (white + number), done ones green
+    // Dots
     pts.forEach((pt,i)=>{
       const done=i+1<this.nextPoint;
       ctx.beginPath(); ctx.arc(pt.x,pt.y,14,0,Math.PI*2);
       ctx.fillStyle=done?'#6BCB77':'white'; ctx.fill();
       ctx.strokeStyle=done?'#45a352':'#aaa'; ctx.lineWidth=2.5; ctx.stroke();
       ctx.fillStyle=done?'white':'#555';
-      ctx.font=`bold 12px Nunito`; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.font='bold 12px Nunito'; ctx.textAlign='center'; ctx.textBaseline='middle';
       ctx.fillText(pt.n,pt.x,pt.y);
     });
-  },
-
-  handleStart(e) {
-    if(this.complete) return;
-    const pos=this.getPos(e);
-    const pts=this.currentPuzzle().points.map(p=>this.scalePoint(p));
-    const target=pts.find(p=>p.n===this.nextPoint);
-    if(!target) return;
-    const dist=Math.hypot(pos.x-target.x,pos.y-target.y);
-    if(dist<34){
-      this.isDrawing=true;
-      this.lastX=target.x; this.lastY=target.y;
-    }
-  },
-
-  handleMove(e) {
-    if(!this.isDrawing||this.complete) return;
-    const pos=this.getPos(e);
-    const pts=this.currentPuzzle().points.map(p=>this.scalePoint(p));
-    const target=pts.find(p=>p.n===this.nextPoint);
-    if(!target) return;
-
-    // Draw a preview line from last confirmed point to finger
-    this.render();
-    const ctx=this.ctx;
-    // Draw preview line
-    const confirmed=pts[this.nextPoint-2]||pts[0];
-    ctx.beginPath();
-    ctx.moveTo(confirmed.x, confirmed.y);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.strokeStyle='rgba(110,198,245,0.5)'; ctx.lineWidth=3; ctx.lineDash=[6,4];
-    ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]);
-
-    // Check if close enough to next point
-    const distToNext=Math.hypot(pos.x-target.x,pos.y-target.y);
-    if(distToNext<34) {
-      this.nextPoint++;
-      this.isDrawing=false;
-      const info=document.getElementById('p-info');
-      if(this.nextPoint>pts.length){
-        this.complete=true;
-        info.textContent=`🎉 ¡${this.currentPuzzle().name} completado!`;
-        App.confetti(); App.speak('¡Lo has conseguido!');
-        App.saveScore('puntos',Math.min(this.puzzleIdx+1,5));
-        document.getElementById('p-next').style.display='';
-      } else {
-        info.textContent=`¡Bien! Ahora busca el número ${this.nextPoint} 🔍`;
-        // Auto-start next drag from the point just landed
-        this.isDrawing=true;
-      }
-      this.render();
-    }
-  },
-
-  handleEnd() {
-    this.isDrawing=false;
-    this.render(); // remove preview line
   },
 
   restart() { this.loadPuzzle(); },

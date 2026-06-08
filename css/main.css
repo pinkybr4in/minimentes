@@ -474,3 +474,22 @@ canvas { display: block; width: 100%; touch-action: none; }
   text-align:left;
 }
 .cuento-choice:active { transform:scale(0.97); }
+
+/* ===== RELOJ ===== */
+#rl-clock { display:block; margin:0 auto; }
+
+/* ===== PATRÓN ===== */
+.patron-sequence { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:4px; }
+.patron-item { font-size:2rem; width:52px; height:52px; display:flex; align-items:center; justify-content:center;
+  background:#f8f8f8; border-radius:12px; border:2px solid #e0e0e0; }
+.patron-slot { font-size:2rem; width:52px; height:52px; display:flex; align-items:center; justify-content:center;
+  background:#fff9e0; border-radius:12px; border:3px dashed #FFD93D; font-family:'Fredoka One',cursive; color:#FFD93D;
+  transition:all 0.3s; }
+
+/* ===== LABERINTO ===== */
+.lab-btn { font-size:1.8rem; background:white; border:none; border-radius:14px;
+  box-shadow:0 3px 0 #ccc; cursor:pointer; padding:8px; transition:transform 0.1s; }
+.lab-btn:active { transform:translateY(2px); box-shadow:none; }
+
+/* ===== CLASIFICA ===== */
+.clasifica-cat { transition: all 0.2s; }

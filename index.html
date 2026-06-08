@@ -37,67 +37,91 @@
   </div>
 
   <div class="games-grid">
-    <button class="game-card" onclick="openGame('frases')"   style="--card-color:#FF6B6B;--card-shadow:#c94e4e">
+    <button class="game-card" onclick="openGame('frases')"      style="--card-color:#FF6B6B;--card-shadow:#c94e4e">
       <div class="game-icon">📝</div><div class="game-name">Ordena la Frase</div>
       <div class="game-desc">Pon las palabras en orden</div><div class="game-stars" id="stars-frases">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('colorear')" style="--card-color:#6BCB77;--card-shadow:#45a352">
+    <button class="game-card" onclick="openGame('colorear')"    style="--card-color:#6BCB77;--card-shadow:#45a352">
       <div class="game-icon">🎨</div><div class="game-name">Colorea</div>
       <div class="game-desc">Pinta dibujos bonitos</div><div class="game-stars" id="stars-colorear">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('puntos')"   style="--card-color:#6EC6F5;--card-shadow:#4a9ec9">
+    <button class="game-card" onclick="openGame('puntos')"      style="--card-color:#6EC6F5;--card-shadow:#4a9ec9">
       <div class="game-icon">🔢</div><div class="game-name">Une los Puntos</div>
       <div class="game-desc">Sigue los números</div><div class="game-stars" id="stars-puntos">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('letras')"   style="--card-color:#C77DFF;--card-shadow:#9955cc">
+    <button class="game-card" onclick="openGame('letras')"      style="--card-color:#C77DFF;--card-shadow:#9955cc">
       <div class="game-icon">✏️</div><div class="game-name">Traza la Letra</div>
       <div class="game-desc">Aprende a escribir</div><div class="game-stars" id="stars-letras">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('contar')"   style="--card-color:#FFD93D;--card-shadow:#c9a820">
+    <button class="game-card" onclick="openGame('contar')"      style="--card-color:#FFD93D;--card-shadow:#c9a820">
       <div class="game-icon">🔢</div><div class="game-name">¿Cuántos hay?</div>
       <div class="game-desc">Cuenta los objetos</div><div class="game-stars" id="stars-contar">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('sombras')"  style="--card-color:#FF9F43;--card-shadow:#cc7a1e">
+    <button class="game-card" onclick="openGame('sombras')"     style="--card-color:#FF9F43;--card-shadow:#cc7a1e">
       <div class="game-icon">🌑</div><div class="game-name">¿Qué Sombra es?</div>
       <div class="game-desc">Adivina la silueta</div><div class="game-stars" id="stars-sombras">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('ingles')"   style="--card-color:#4a9ec9;--card-shadow:#2c6e8a">
-      <div class="game-icon">🇬🇧</div><div class="game-name">¡Aprende Inglés!</div>
+    <button class="game-card" onclick="openGame('ingles')"      style="--card-color:#4a9ec9;--card-shadow:#2c6e8a">
+      <div class="game-icon">🇬🇧</div><div class="game-name">Aprende Inglés</div>
       <div class="game-desc">Transportes · Profesiones · Animales</div><div class="game-stars" id="stars-ingles">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('completa')" style="--card-color:#FF6BD6;--card-shadow:#cc45a3">
+    <button class="game-card" onclick="openGame('completa')"    style="--card-color:#FF6BD6;--card-shadow:#cc45a3">
       <div class="game-icon">🔤</div><div class="game-name">Completa la Palabra</div>
       <div class="game-desc">¿Qué letra falta?</div><div class="game-stars" id="stars-completa">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('sonidos')"  style="--card-color:#45a352;--card-shadow:#2d7a38">
+    <button class="game-card" onclick="openGame('sonidos')"     style="--card-color:#45a352;--card-shadow:#2d7a38">
       <div class="game-icon">🔊</div><div class="game-name">¿Qué Sonido es?</div>
       <div class="game-desc">Escucha y adivina</div><div class="game-stars" id="stars-sonidos">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('calculo')"  style="--card-color:#c94e4e;--card-shadow:#9e3030">
+    <button class="game-card" onclick="openGame('calculo')"     style="--card-color:#c94e4e;--card-shadow:#9e3030">
       <div class="game-icon">➕</div><div class="game-name">Sumas y Restas</div>
       <div class="game-desc">Matemáticas divertidas</div><div class="game-stars" id="stars-calculo">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('colores')"  style="--card-color:#9955cc;--card-shadow:#6e3099">
-      <div class="game-icon">🎨</div><div class="game-name">¿De Qué Color es?</div>
+    <button class="game-card" onclick="openGame('colores')"     style="--card-color:#9955cc;--card-shadow:#6e3099">
+      <div class="game-icon">🌈</div><div class="game-name">¿De Qué Color?</div>
       <div class="game-desc">Aprende los colores</div><div class="game-stars" id="stars-colores">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('memoria')"  style="--card-color:#1a6fa8;--card-shadow:#0f4a72">
+    <button class="game-card" onclick="openGame('memoria')"     style="--card-color:#1a6fa8;--card-shadow:#0f4a72">
       <div class="game-icon">🧠</div><div class="game-name">Memoria</div>
       <div class="game-desc">Encuentra las parejas</div><div class="game-stars" id="stars-memoria">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('forma')"    style="--card-color:#cc7a1e;--card-shadow:#9e5c0f">
-      <div class="game-icon">🔤</div><div class="game-name">Forma la Palabra</div>
+    <button class="game-card" onclick="openGame('forma')"       style="--card-color:#cc7a1e;--card-shadow:#9e5c0f">
+      <div class="game-icon">🔡</div><div class="game-name">Forma la Palabra</div>
       <div class="game-desc">Junta las letras</div><div class="game-stars" id="stars-forma">☆☆☆☆☆</div>
     </button>
-    <button class="game-card" onclick="openGame('cuento')"   style="--card-color:#2d7a38;--card-shadow:#1a5225">
+    <button class="game-card" onclick="openGame('cuento')"      style="--card-color:#2d7a38;--card-shadow:#1a5225">
       <div class="game-icon">📖</div><div class="game-name">Cuento Interactivo</div>
       <div class="game-desc">Elige la aventura</div><div class="game-stars" id="stars-cuento">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('reloj')"       style="--card-color:#185FA5;--card-shadow:#0f3f6e">
+      <div class="game-icon">🕐</div><div class="game-name">¿Qué Hora es?</div>
+      <div class="game-desc">Aprende el reloj</div><div class="game-stars" id="stars-reloj">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('tiempo')"      style="--card-color:#45b7d1;--card-shadow:#2d8a9e">
+      <div class="game-icon">🌤️</div><div class="game-name">¿Qué Ropa me Pongo?</div>
+      <div class="game-desc">Según el tiempo</div><div class="game-stars" id="stars-tiempo">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('ordena_nums')" style="--card-color:#e84393;--card-shadow:#b02e6e">
+      <div class="game-icon">🔢</div><div class="game-name">Ordena los Números</div>
+      <div class="game-desc">De menor a mayor</div><div class="game-stars" id="stars-ordena_nums">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('clasifica')"   style="--card-color:#f7b731;--card-shadow:#c9920f">
+      <div class="game-icon">🗂️</div><div class="game-name">Clasifica</div>
+      <div class="game-desc">¿A qué grupo pertenece?</div><div class="game-stars" id="stars-clasifica">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('patron')"      style="--card-color:#8e44ad;--card-shadow:#6c3483">
+      <div class="game-icon">🔁</div><div class="game-name">Sigue el Patrón</div>
+      <div class="game-desc">¿Qué viene después?</div><div class="game-stars" id="stars-patron">☆☆☆☆☆</div>
+    </button>
+    <button class="game-card" onclick="openGame('laberinto')"   style="--card-color:#27ae60;--card-shadow:#1a7a40">
+      <div class="game-icon">🌀</div><div class="game-name">Laberinto</div>
+      <div class="game-desc">Encuentra la salida</div><div class="game-stars" id="stars-laberinto">☆☆☆☆☆</div>
     </button>
   </div>
 
   <div class="home-footer">
     <div class="total-stars-label">Estrellas totales</div>
-    <div class="total-stars-count" id="totalStarsDisplay">0 / 70</div>
+    <div class="total-stars-count" id="totalStarsDisplay">0 / 100</div>
   </div>
 </div>
 
@@ -132,5 +156,11 @@
 <script src="js/games/memoria.js"></script>
 <script src="js/games/forma.js"></script>
 <script src="js/games/cuento.js"></script>
+<script src="js/games/reloj.js"></script>
+<script src="js/games/tiempo.js"></script>
+<script src="js/games/ordena_nums.js"></script>
+<script src="js/games/clasifica.js"></script>
+<script src="js/games/patron.js"></script>
+<script src="js/games/laberinto.js"></script>
 </body>
 </html>

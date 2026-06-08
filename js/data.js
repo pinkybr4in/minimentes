@@ -422,26 +422,6 @@ puntos: {
     {name:"🦁 León",points:[{"n":1,"x":150,"y":45},{"n":2,"x":175,"y":38},{"n":3,"x":200,"y":42},{"n":4,"x":220,"y":58},{"n":5,"x":232,"y":80},{"n":6,"x":235,"y":105},{"n":7,"x":228,"y":130},{"n":8,"x":218,"y":148},{"n":9,"x":228,"y":155},{"n":10,"x":240,"y":170},{"n":11,"x":238,"y":190},{"n":12,"x":225,"y":200},{"n":13,"x":210,"y":198},{"n":14,"x":198,"y":188},{"n":15,"x":192,"y":175},{"n":16,"x":185,"y":185},{"n":17,"x":175,"y":200},{"n":18,"x":165,"y":210},{"n":19,"x":150,"y":215},{"n":20,"x":135,"y":210},{"n":21,"x":125,"y":200},{"n":22,"x":115,"y":185},{"n":23,"x":108,"y":175},{"n":24,"x":102,"y":188},{"n":25,"x":90,"y":198},{"n":26,"x":75,"y":200},{"n":27,"x":62,"y":190},{"n":28,"x":60,"y":170},{"n":29,"x":72,"y":155},{"n":30,"x":82,"y":148},{"n":31,"x":72,"y":130},{"n":32,"x":65,"y":105},{"n":33,"x":68,"y":80},{"n":34,"x":80,"y":58},{"n":35,"x":100,"y":42},{"n":36,"x":125,"y":38},{"n":37,"x":150,"y":45},{"n":38,"x":82,"y":148},{"n":39,"x":70,"y":170},{"n":40,"x":65,"y":200},{"n":41,"x":72,"y":230},{"n":42,"x":88,"y":255},{"n":43,"x":105,"y":270},{"n":44,"x":130,"y":275},{"n":45,"x":150,"y":278},{"n":46,"x":170,"y":275},{"n":47,"x":195,"y":270},{"n":48,"x":212,"y":255},{"n":49,"x":228,"y":230},{"n":50,"x":235,"y":200},{"n":51,"x":228,"y":175},{"n":52,"x":218,"y":148}]},
     {name:"🦒 Jirafa",points:[{"n":1,"x":165,"y":25},{"n":2,"x":178,"y":35},{"n":3,"x":182,"y":55},{"n":4,"x":175,"y":70},{"n":5,"x":168,"y":78},{"n":6,"x":175,"y":70},{"n":7,"x":183,"y":55},{"n":8,"x":190,"y":48},{"n":9,"x":193,"y":60},{"n":10,"x":183,"y":72},{"n":11,"x":168,"y":78},{"n":12,"x":162,"y":62},{"n":13,"x":158,"y":50},{"n":14,"x":165,"y":45},{"n":15,"x":170,"y":58},{"n":16,"x":168,"y":78},{"n":17,"x":162,"y":95},{"n":18,"x":156,"y":125},{"n":19,"x":152,"y":160},{"n":20,"x":150,"y":195},{"n":21,"x":150,"y":195},{"n":22,"x":175,"y":195},{"n":23,"x":205,"y":200},{"n":24,"x":225,"y":210},{"n":25,"x":232,"y":230},{"n":26,"x":228,"y":250},{"n":27,"x":210,"y":265},{"n":28,"x":195,"y":270},{"n":29,"x":190,"y":250},{"n":30,"x":195,"y":230},{"n":31,"x":210,"y":215},{"n":32,"x":210,"y":265},{"n":33,"x":212,"y":285},{"n":34,"x":205,"y":295},{"n":35,"x":195,"y":285},{"n":36,"x":193,"y":265},{"n":37,"x":175,"y":270},{"n":38,"x":160,"y":272},{"n":39,"x":160,"y":272},{"n":40,"x":158,"y":290},{"n":41,"x":150,"y":298},{"n":42,"x":142,"y":288},{"n":43,"x":144,"y":270},{"n":44,"x":130,"y":268},{"n":45,"x":112,"y":262},{"n":46,"x":98,"y":250},{"n":47,"x":98,"y":250},{"n":48,"x":92,"y":270},{"n":49,"x":85,"y":295},{"n":50,"x":78,"y":285},{"n":51,"x":82,"y":262},{"n":52,"x":92,"y":240},{"n":53,"x":90,"y":215},{"n":54,"x":100,"y":200},{"n":55,"x":120,"y":195},{"n":56,"x":150,"y":195},{"n":57,"x":120,"y":195},{"n":58,"x":118,"y":265},{"n":59,"x":115,"y":290},{"n":60,"x":108,"y":280},{"n":61,"x":110,"y":258},{"n":62,"x":112,"y":235}]},
   ],
-},{n:2,x:190,y:120},{n:3,x:275,y:120},{n:4,x:210,y:175},{n:5,x:235,y:260},{n:6,x:150,y:210},{n:7,x:65,y:260},{n:8,x:90,y:175},{n:9,x:25,y:120},{n:10,x:110,y:120}]},
-    {name:"🏠 Casa",points:[{n:1,x:150,y:40},{n:2,x:260,y:130},{n:3,x:260,y:270},{n:4,x:40,y:270},{n:5,x:40,y:130}]},
-    {name:"❤️ Corazón",points:[{n:1,x:150,y:80},{n:2,x:200,y:40},{n:3,x:250,y:60},{n:4,x:265,y:110},{n:5,x:230,y:160},{n:6,x:150,y:240},{n:7,x:70,y:160},{n:8,x:35,y:110},{n:9,x:50,y:60},{n:10,x:100,y:40}]},
-    {name:"🔶 Diamante",points:[{n:1,x:150,y:30},{n:2,x:270,y:150},{n:3,x:150,y:270},{n:4,x:30,y:150}]},
-    {name:"🌙 Luna",points:[{n:1,x:200,y:40},{n:2,x:250,y:90},{n:3,x:260,y:155},{n:4,x:240,y:220},{n:5,x:190,y:265},{n:6,x:130,y:275},{n:7,x:100,y:240},{n:8,x:160,y:215},{n:9,x:185,y:155},{n:10,x:165,y:90}]},
-  ],
-  medium:[
-    {name:"🐟 Pez",points:[{n:1,x:260,y:150},{n:2,x:220,y:100},{n:3,x:170,y:80},{n:4,x:120,y:90},{n:5,x:80,y:130},{n:6,x:70,y:150},{n:7,x:80,y:170},{n:8,x:120,y:210},{n:9,x:170,y:220},{n:10,x:220,y:200},{n:11,x:260,y:150},{n:12,x:290,y:110},{n:13,x:290,y:190}]},
-    {name:"🦆 Pato",points:[{n:1,x:150,y:40},{n:2,x:190,y:60},{n:3,x:210,y:90},{n:4,x:200,y:120},{n:5,x:230,y:130},{n:6,x:240,y:110},{n:7,x:260,y:120},{n:8,x:220,y:150},{n:9,x:200,y:180},{n:10,x:220,y:230},{n:11,x:200,y:260},{n:12,x:150,y:265},{n:13,x:100,y:260},{n:14,x:80,y:230},{n:15,x:100,y:180}]},
-    {name:"🐌 Caracol",points:[{n:1,x:200,y:200},{n:2,x:240,y:160},{n:3,x:245,y:110},{n:4,x:215,y:70},{n:5,x:165,y:55},{n:6,x:115,y:70},{n:7,x:80,y:110},{n:8,x:75,y:160},{n:9,x:100,y:200},{n:10,x:145,y:218},{n:11,x:185,y:210},{n:12,x:210,y:185},{n:13,x:215,y:155},{n:14,x:195,y:130},{n:15,x:165,y:122}]},
-    {name:"🌂 Paraguas",points:[{n:1,x:150,y:40},{n:2,x:220,y:70},{n:3,x:265,y:130},{n:4,x:260,y:175},{n:5,x:210,y:160},{n:6,x:165,y:140},{n:7,x:150,y:170},{n:8,x:135,y:140},{n:9,x:90,y:160},{n:10,x:40,y:175},{n:11,x:35,y:130},{n:12,x:80,y:70}]},
-    {name:"🚗 Coche",points:[{n:1,x:60,y:190},{n:2,x:60,y:150},{n:3,x:100,y:110},{n:4,x:170,y:100},{n:5,x:230,y:110},{n:6,x:260,y:150},{n:7,x:260,y:190},{n:8,x:220,y:190},{n:9,x:200,y:210},{n:10,x:170,y:215},{n:11,x:140,y:210},{n:12,x:120,y:190},{n:13,x:100,y:190}]},
-  ],
-  hard:[
-    {name:"🦋 Mariposa",points:[{n:1,x:150,y:80},{n:2,x:120,y:60},{n:3,x:80,y:55},{n:4,x:50,y:80},{n:5,x:40,y:120},{n:6,x:60,y:160},{n:7,x:100,y:180},{n:8,x:140,y:165},{n:9,x:150,y:150},{n:10,x:160,y:165},{n:11,x:200,y:180},{n:12,x:240,y:160},{n:13,x:260,y:120},{n:14,x:250,y:80},{n:15,x:220,y:55},{n:16,x:180,y:60},{n:17,x:150,y:80},{n:18,x:145,y:220},{n:19,x:110,y:260},{n:20,x:150,y:255},{n:21,x:190,y:260},{n:22,x:155,y:220}]},
-    {name:"🐘 Elefante",points:[{n:1,x:60,y:80},{n:2,x:100,y:50},{n:3,x:160,y:45},{n:4,x:210,y:60},{n:5,x:250,y:90},{n:6,x:265,y:140},{n:7,x:250,y:190},{n:8,x:220,y:220},{n:9,x:200,y:260},{n:10,x:175,y:285},{n:11,x:155,y:260},{n:12,x:160,y:220},{n:13,x:145,y:260},{n:14,x:125,y:285},{n:15,x:105,y:260},{n:16,x:110,y:220},{n:17,x:90,y:260},{n:18,x:70,y:280},{n:19,x:55,y:255},{n:20,x:65,y:220},{n:21,x:60,y:180},{n:22,x:40,y:140},{n:23,x:45,y:100}]},
-    {name:"🏰 Castillo",points:[{n:1,x:40,y:280},{n:2,x:40,y:180},{n:3,x:60,y:180},{n:4,x:60,y:200},{n:5,x:80,y:200},{n:6,x:80,y:180},{n:7,x:100,y:180},{n:8,x:100,y:130},{n:9,x:80,y:100},{n:10,x:80,y:80},{n:11,x:100,y:80},{n:12,x:100,y:100},{n:13,x:130,y:100},{n:14,x:130,y:60},{n:15,x:150,y:40},{n:16,x:170,y:60},{n:17,x:170,y:100},{n:18,x:200,y:100},{n:19,x:200,y:80},{n:20,x:220,y:80},{n:21,x:220,y:100},{n:22,x:200,y:130},{n:23,x:200,y:180},{n:24,x:220,y:180},{n:25,x:220,y:200},{n:26,x:240,y:200},{n:27,x:240,y:180},{n:28,x:260,y:180},{n:29,x:260,y:280}]},
-    {name:"🦕 Dinosaurio",points:[{n:1,x:50,y:200},{n:2,x:60,y:240},{n:3,x:90,y:270},{n:4,x:120,y:265},{n:5,x:130,y:240},{n:6,x:140,y:210},{n:7,x:160,y:200},{n:8,x:190,y:210},{n:9,x:210,y:240},{n:10,x:220,y:265},{n:11,x:250,y:270},{n:12,x:265,y:240},{n:13,x:260,y:200},{n:14,x:240,y:170},{n:15,x:220,y:150},{n:16,x:230,y:120},{n:17,x:250,y:100},{n:18,x:240,y:80},{n:19,x:210,y:90},{n:20,x:200,y:110},{n:21,x:185,y:130},{n:22,x:165,y:140},{n:23,x:145,y:130},{n:24,x:120,y:110},{n:25,x:90,y:120},{n:26,x:70,y:150},{n:27,x:55,y:175}]},
-    {name:"🚀 Cohete",points:[{n:1,x:150,y:30},{n:2,x:175,y:60},{n:3,x:190,y:100},{n:4,x:195,y:150},{n:5,x:230,y:180},{n:6,x:255,y:220},{n:7,x:240,y:250},{n:8,x:210,y:235},{n:9,x:195,y:210},{n:10,x:195,y:260},{n:11,x:185,y:280},{n:12,x:165,y:270},{n:13,x:150,y:250},{n:14,x:135,y:270},{n:15,x:115,y:280},{n:16,x:105,y:260},{n:17,x:105,y:210},{n:18,x:90,y:235},{n:19,x:60,y:250},{n:20,x:45,y:220},{n:21,x:70,y:180},{n:22,x:105,y:150},{n:23,x:110,y:100},{n:24,x:125,y:60}]},
-  ]
 },
 
 // ===== LETRAS =====
@@ -922,3 +902,225 @@ DATA.cuentos = [
     ]
   }
 ];
+
+// ===== RELOJ =====
+DATA.reloj = [
+  {hours:3,  minutes:0,  answer:'3:00',  options:['3:00','6:00','9:00','12:00']},
+  {hours:6,  minutes:0,  answer:'6:00',  options:['3:00','6:00','9:00','12:00']},
+  {hours:9,  minutes:0,  answer:'9:00',  options:['6:00','9:00','3:00','12:00']},
+  {hours:12, minutes:0,  answer:'12:00', options:['3:00','6:00','9:00','12:00']},
+  {hours:1,  minutes:0,  answer:'1:00',  options:['1:00','2:00','4:00','7:00']},
+  {hours:2,  minutes:0,  answer:'2:00',  options:['1:00','2:00','5:00','8:00']},
+  {hours:4,  minutes:0,  answer:'4:00',  options:['3:00','4:00','5:00','8:00']},
+  {hours:7,  minutes:0,  answer:'7:00',  options:['6:00','7:00','8:00','11:00']},
+  {hours:10, minutes:0,  answer:'10:00', options:['9:00','10:00','11:00','2:00']},
+  {hours:11, minutes:0,  answer:'11:00', options:['10:00','11:00','12:00','5:00']},
+  {hours:3,  minutes:30, answer:'3:30',  options:['3:00','3:30','6:30','9:30']},
+  {hours:6,  minutes:30, answer:'6:30',  options:['6:00','6:30','12:30','3:30']},
+  {hours:9,  minutes:30, answer:'9:30',  options:['9:00','9:30','3:30','6:30']},
+  {hours:12, minutes:30, answer:'12:30', options:['12:00','12:30','6:30','3:30']},
+  {hours:1,  minutes:30, answer:'1:30',  options:['1:00','1:30','7:30','4:30']},
+  {hours:5,  minutes:30, answer:'5:30',  options:['5:00','5:30','11:30','2:30']},
+  {hours:8,  minutes:30, answer:'8:30',  options:['8:00','8:30','2:30','5:30']},
+  {hours:2,  minutes:30, answer:'2:30',  options:['2:00','2:30','8:30','5:30']},
+  {hours:7,  minutes:30, answer:'7:30',  options:['7:00','7:30','1:30','4:30']},
+  {hours:10, minutes:30, answer:'10:30', options:['10:00','10:30','4:30','1:30']},
+];
+
+// ===== TIEMPO METEOROLÓGICO =====
+DATA.tiempo = [
+  {scene:'☀️🌡️',weatherName:'mucho sol y calor',bgColor:'#FFD93D',textColor:'#7a5c00',correct:'camiseta',
+   clothing:[{emoji:'👕',label:'camiseta'},{emoji:'🧥',label:'abrigo'},{emoji:'🥾',label:'botas de lluvia'}]},
+  {scene:'🌧️💧',weatherName:'lluvia',bgColor:'#6EC6F5',textColor:'white',correct:'chubasquero',
+   clothing:[{emoji:'🌂',label:'chubasquero'},{emoji:'👙',label:'bañador'},{emoji:'🩳',label:'pantalón corto'}]},
+  {scene:'❄️🌨️',weatherName:'nieve y mucho frío',bgColor:'#b8e4f7',textColor:'#1a6fa8',correct:'abrigo',
+   clothing:[{emoji:'🧥',label:'abrigo'},{emoji:'👕',label:'camiseta'},{emoji:'🩴',label:'chanclas'}]},
+  {scene:'💨🍃',weatherName:'viento fuerte',bgColor:'#c7ceea',textColor:'#333',correct:'jersey',
+   clothing:[{emoji:'🧶',label:'jersey'},{emoji:'👙',label:'bañador'},{emoji:'🩲',label:'ropa de verano'}]},
+  {scene:'🌤️',weatherName:'sol con nubes',bgColor:'#e2f0cb',textColor:'#3B6D11',correct:'chaqueta',
+   clothing:[{emoji:'🧣',label:'chaqueta'},{emoji:'👙',label:'bañador'},{emoji:'🥾',label:'botas de nieve'}]},
+  {scene:'🌩️⛈️',weatherName:'tormenta eléctrica',bgColor:'#555',textColor:'white',correct:'impermeable',
+   clothing:[{emoji:'🌂',label:'impermeable'},{emoji:'👒',label:'sombrero de paja'},{emoji:'🩴',label:'chanclas'}]},
+  {scene:'🌊🏖️',weatherName:'verano en la playa',bgColor:'#FF9F43',textColor:'white',correct:'bañador',
+   clothing:[{emoji:'🩱',label:'bañador'},{emoji:'🧤',label:'guantes'},{emoji:'🧥',label:'abrigo'}]},
+  {scene:'🍂🍁',weatherName:'otoño fresco',bgColor:'#FF9F43',textColor:'white',correct:'bufanda',
+   clothing:[{emoji:'🧣',label:'bufanda'},{emoji:'👙',label:'bañador'},{emoji:'🩲',label:'ropa de verano'}]},
+  {scene:'🌸🌿',weatherName:'primavera templada',bgColor:'#6BCB77',textColor:'white',correct:'chaqueta ligera',
+   clothing:[{emoji:'🧥',label:'chaqueta ligera'},{emoji:'🥼',label:'abrigo de esquí'},{emoji:'🩲',label:'solo ropa interior'}]},
+  {scene:'🌫️😶‍🌫️',weatherName:'niebla y frío',bgColor:'#888',textColor:'white',correct:'ropa de abrigo',
+   clothing:[{emoji:'🧤',label:'ropa de abrigo'},{emoji:'👙',label:'bañador'},{emoji:'🩴',label:'chanclas'}]},
+];
+
+// ===== ORDENA NÚMEROS =====
+DATA.ordenaNums = {
+  easy:[
+    {nums:[3,1,2]},{nums:[5,2,4]},{nums:[1,4,3]},{nums:[2,5,1]},{nums:[4,3,5]},
+    {nums:[6,2,4]},{nums:[1,5,3]},{nums:[7,4,2]},{nums:[3,6,1]},{nums:[5,2,7]},
+    {nums:[8,3,5]},{nums:[2,7,4]},{nums:[9,1,6]},{nums:[4,8,2]},{nums:[6,3,9]},
+  ],
+  medium:[
+    {nums:[5,2,8,1]},{nums:[9,3,6,4]},{nums:[7,1,5,3]},{nums:[4,8,2,6]},{nums:[10,3,7,1]},
+    {nums:[6,9,2,5]},{nums:[8,4,1,7]},{nums:[3,10,5,2]},{nums:[7,4,9,1]},{nums:[2,6,8,4]},
+    {nums:[11,3,8,1]},{nums:[5,12,2,9]},{nums:[10,4,7,2]},{nums:[6,13,1,8]},{nums:[9,5,14,3]},
+  ],
+  hard:[
+    {nums:[7,2,9,4,1]},{nums:[5,10,3,8,6]},{nums:[12,4,7,1,9]},{nums:[8,3,11,5,2]},{nums:[6,13,2,9,4]},
+    {nums:[15,3,8,1,6]},{nums:[9,4,12,7,2]},{nums:[5,14,3,10,1]},{nums:[11,6,2,8,4]},{nums:[7,15,3,9,5]},
+  ]
+};
+
+// ===== CLASIFICA =====
+DATA.clasifica = [
+  {categories:[{emoji:'🌳',label:'Animales'},{emoji:'🍎',label:'Frutas'}],
+   items:[{emoji:'🐶',label:'Perro',category:0},{emoji:'🍊',label:'Naranja',category:1},{emoji:'🐱',label:'Gato',category:0},{emoji:'🍇',label:'Uvas',category:1}]},
+  {categories:[{emoji:'🌊',label:'Mar'},{emoji:'🌿',label:'Tierra'}],
+   items:[{emoji:'🐬',label:'Delfín',category:0},{emoji:'🐘',label:'Elefante',category:1},{emoji:'🦈',label:'Tiburón',category:0},{emoji:'🦁',label:'León',category:1}]},
+  {categories:[{emoji:'🥕',label:'Verduras'},{emoji:'🍓',label:'Frutas'}],
+   items:[{emoji:'🥦',label:'Brócoli',category:0},{emoji:'🍋',label:'Limón',category:1},{emoji:'🥕',label:'Zanahoria',category:0},{emoji:'🍒',label:'Cerezas',category:1}]},
+  {categories:[{emoji:'🏠',label:'Domésticos'},{emoji:'🌲',label:'Salvajes'}],
+   items:[{emoji:'🐕',label:'Perro',category:0},{emoji:'🐆',label:'Leopardo',category:1},{emoji:'🐈',label:'Gato',category:0},{emoji:'🦁',label:'León',category:1}]},
+  {categories:[{emoji:'✈️',label:'Vuelan'},{emoji:'🌊',label:'Nadan'}],
+   items:[{emoji:'🦅',label:'Águila',category:0},{emoji:'🐟',label:'Pez',category:1},{emoji:'🦋',label:'Mariposa',category:0},{emoji:'🐬',label:'Delfín',category:1}]},
+  {categories:[{emoji:'🔵',label:'Frío'},{emoji:'🔴',label:'Caliente'}],
+   items:[{emoji:'❄️',label:'Hielo',category:0},{emoji:'🌋',label:'Volcán',category:1},{emoji:'🌨️',label:'Nieve',category:0},{emoji:'☀️',label:'Sol',category:1}]},
+  {categories:[{emoji:'🌙',label:'De noche'},{emoji:'☀️',label:'De día'}],
+   items:[{emoji:'🦉',label:'Búho',category:0},{emoji:'🐓',label:'Gallo',category:1},{emoji:'🦇',label:'Murciélago',category:0},{emoji:'🦋',label:'Mariposa',category:1}]},
+  {categories:[{emoji:'🎵',label:'Instrumentos'},{emoji:'⚽',label:'Deportes'}],
+   items:[{emoji:'🎸',label:'Guitarra',category:0},{emoji:'🏀',label:'Baloncesto',category:1},{emoji:'🥁',label:'Tambor',category:0},{emoji:'🎾',label:'Tenis',category:1}]},
+  {categories:[{emoji:'🌍',label:'Países'},{emoji:'🏙️',label:'Ciudades'}],
+   items:[{emoji:'🇪🇸',label:'España',category:0},{emoji:'🗼',label:'París',category:1},{emoji:'🇮🇹',label:'Italia',category:0},{emoji:'🗽',label:'Nueva York',category:1}]},
+  {categories:[{emoji:'📚',label:'Para leer'},{emoji:'🖊️',label:'Para escribir'}],
+   items:[{emoji:'📖',label:'Libro',category:0},{emoji:'✏️',label:'Lápiz',category:1},{emoji:'📰',label:'Periódico',category:0},{emoji:'🖊️',label:'Bolígrafo',category:1}]},
+];
+
+// ===== PATRÓN =====
+DATA.patron = {
+  easy:[
+    {sequence:['🔴','🔵','🔴','🔵','?'],answer:'🔴',options:['🔴','🔵','🟡']},
+    {sequence:['⭐','🌙','⭐','🌙','?'],answer:'⭐',options:['⭐','🌙','☀️']},
+    {sequence:['🍎','🍊','🍎','🍊','?'],answer:'🍎',options:['🍎','🍊','🍋']},
+    {sequence:['🐶','🐱','🐶','🐱','?'],answer:'🐶',options:['🐶','🐱','🐸']},
+    {sequence:['🔺','🟦','🔺','🟦','?'],answer:'🔺',options:['🔺','🟦','🟩']},
+    {sequence:['1','2','1','2','?'],answer:'1',options:['1','2','3']},
+    {sequence:['🌸','🌺','🌸','🌺','?'],answer:'🌸',options:['🌸','🌺','🌻']},
+    {sequence:['🚗','🚌','🚗','🚌','?'],answer:'🚗',options:['🚗','🚌','🚂']},
+    {sequence:['🟡','🟢','🟡','🟢','?'],answer:'🟡',options:['🟡','🟢','🔴']},
+    {sequence:['🐘','🦒','🐘','🦒','?'],answer:'🐘',options:['🐘','🦒','🦁']},
+    {sequence:['A','B','A','B','?'],answer:'A',options:['A','B','C']},
+    {sequence:['🌞','🌧️','🌞','🌧️','?'],answer:'🌞',options:['🌞','🌧️','❄️']},
+    {sequence:['🍕','🍔','🍕','🍔','?'],answer:'🍕',options:['🍕','🍔','🌮']},
+    {sequence:['🎸','🥁','🎸','🥁','?'],answer:'🎸',options:['🎸','🥁','🎺']},
+    {sequence:['🦋','🐝','🦋','🐝','?'],answer:'🦋',options:['🦋','🐝','🐞']},
+  ],
+  medium:[
+    {sequence:['🔴','🔵','🟡','🔴','🔵','?'],answer:'🟡',options:['🔴','🟡','🔵']},
+    {sequence:['1','2','3','1','2','?'],answer:'3',options:['1','2','3']},
+    {sequence:['🐶','🐱','🐸','🐶','🐱','?'],answer:'🐸',options:['🐶','🐸','🐱']},
+    {sequence:['⭐','⭐','🌙','⭐','⭐','?'],answer:'🌙',options:['⭐','🌙','☀️']},
+    {sequence:['🍎','🍊','🍋','🍎','🍊','?'],answer:'🍋',options:['🍎','🍋','🍊']},
+    {sequence:['🔺','🟦','🟦','🔺','🟦','?'],answer:'🟦',options:['🔺','🟦','🟩']},
+    {sequence:['A','B','C','A','B','?'],answer:'C',options:['A','B','C']},
+    {sequence:['🌸','🌺','🌻','🌸','🌺','?'],answer:'🌻',options:['🌸','🌻','🌺']},
+    {sequence:['2','4','6','2','4','?'],answer:'6',options:['2','6','8']},
+    {sequence:['🚗','🚌','🚂','🚗','🚌','?'],answer:'🚂',options:['🚗','🚂','🚌']},
+    {sequence:['🐘','🐘','🦒','🐘','🐘','?'],answer:'🦒',options:['🐘','🦒','🦁']},
+    {sequence:['🍕','🍔','🌮','🍕','🍔','?'],answer:'🌮',options:['🍕','🌮','🍔']},
+    {sequence:['🎸','🥁','🎺','🎸','🥁','?'],answer:'🎺',options:['🎸','🎺','🥁']},
+    {sequence:['1','1','2','1','1','?'],answer:'2',options:['1','2','3']},
+    {sequence:['🦋','🐝','🐞','🦋','🐝','?'],answer:'🐞',options:['🦋','🐞','🐝']},
+  ],
+  hard:[
+    {sequence:['1','2','4','8','?'],answer:'16',options:['10','12','16']},
+    {sequence:['🔴','🔵','🔵','🟡','🔴','🔵','🔵','?'],answer:'🟡',options:['🔴','🔵','🟡']},
+    {sequence:['A','C','E','G','?'],answer:'I',options:['H','I','J']},
+    {sequence:['1','3','5','7','?'],answer:'9',options:['8','9','10']},
+    {sequence:['2','4','8','16','?'],answer:'32',options:['20','32','24']},
+    {sequence:['🌱','🌿','🌳','🌱','🌿','?'],answer:'🌳',options:['🌱','🌿','🌳']},
+    {sequence:['10','20','30','40','?'],answer:'50',options:['45','50','55']},
+    {sequence:['🐣','🐥','🐔','🐣','🐥','?'],answer:'🐔',options:['🐣','🐥','🐔']},
+    {sequence:['1','2','3','5','8','?'],answer:'13',options:['11','12','13']},
+    {sequence:['Z','Y','X','W','?'],answer:'V',options:['U','V','W']},
+  ]
+};
+
+// ===== LABERINTOS =====
+// Grid: 0=path, 1=wall. start=[col,row], exit=[col,row]
+DATA.laberintos = {
+  easy:[
+    {grid:[
+      [1,1,1,1,1],
+      [1,0,0,0,1],
+      [1,0,1,0,1],
+      [1,0,0,0,1],
+      [1,1,1,1,1]
+    ], start:[1,1], exit:[3,3]},
+    {grid:[
+      [1,1,1,1,1,1],
+      [1,0,0,1,0,1],
+      [1,1,0,1,0,1],
+      [1,0,0,0,0,1],
+      [1,0,1,1,1,1],
+      [1,1,1,1,1,1]
+    ], start:[1,3], exit:[4,1]},
+    {grid:[
+      [1,1,1,1,1],
+      [1,0,1,0,1],
+      [1,0,1,0,1],
+      [1,0,0,0,1],
+      [1,1,1,1,1]
+    ], start:[1,1], exit:[3,1]},
+  ],
+  medium:[
+    {grid:[
+      [1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,1],
+      [1,0,1,0,0,0,1],
+      [1,0,1,1,1,0,1],
+      [1,0,0,0,1,0,1],
+      [1,1,1,0,0,0,1],
+      [1,1,1,1,1,1,1]
+    ], start:[1,1], exit:[5,5]},
+    {grid:[
+      [1,1,1,1,1,1,1],
+      [1,0,1,0,0,0,1],
+      [1,0,1,0,1,0,1],
+      [1,0,0,0,1,0,1],
+      [1,1,1,0,1,0,1],
+      [1,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1]
+    ], start:[1,1], exit:[5,1]},
+    {grid:[
+      [1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,1],
+      [1,0,1,1,1,0,1],
+      [1,0,1,0,0,0,1],
+      [1,0,1,0,1,1,1],
+      [1,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1]
+    ], start:[1,1], exit:[5,5]},
+  ],
+  hard:[
+    {grid:[
+      [1,1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,0,1],
+      [1,0,1,0,1,0,1,0,1],
+      [1,0,1,0,0,0,1,0,1],
+      [1,0,1,1,1,1,1,0,1],
+      [1,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,0,1,1,1],
+      [1,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1,1]
+    ], start:[1,1], exit:[7,7]},
+    {grid:[
+      [1,1,1,1,1,1,1,1,1],
+      [1,0,1,0,0,0,1,0,1],
+      [1,0,1,0,1,0,1,0,1],
+      [1,0,0,0,1,0,0,0,1],
+      [1,1,1,0,1,1,1,0,1],
+      [1,0,0,0,0,0,1,0,1],
+      [1,0,1,1,1,0,1,0,1],
+      [1,0,0,0,1,0,0,0,1],
+      [1,1,1,1,1,1,1,1,1]
+    ], start:[1,1], exit:[7,7]},
+  ]
+};

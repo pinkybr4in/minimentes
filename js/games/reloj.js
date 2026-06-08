@@ -20,12 +20,41 @@ const GameReloj = {
     document.getElementById('rl-pbar').style.width=(this.idx/total*100)+'%';
     document.getElementById('rl-plabel').textContent=`Pregunta ${this.idx+1} de ${total}`;
 
-    const opts=App.shuffle([...q.options]);
+    // Format time in 24h style: pad hours to 2 digits
+    const fmt=(h,m)=>{
+      const hh=String(h).padStart(2,'0');
+      const mm=String(m).padStart(2,'0');
+      return `${hh}:${mm}`;
+    };
+
+    // Rebuild options using 24h format
+    const correctStr=fmt(q.hours,q.minutes);
+    // Generate 3 wrong options from the base options list but reformat to 24h
+    const wrongOpts=q.options
+      .filter(o=>o!==q.answer) // remove old 12h correct
+      .map(o=>{
+        // Parse the old 12h string and convert
+        const parts=o.split(':');
+        let h=parseInt(parts[0]); const m=parseInt(parts[1]||0);
+        // Keep as-is but pad
+        return fmt(h,m);
+      })
+      .filter(o=>o!==correctStr)
+      .slice(0,3);
+
+    // Fill to 3 wrong if needed with nearby times
+    while(wrongOpts.length<3){
+      const h=(q.hours+wrongOpts.length+1)%24;
+      const candidate=fmt(h,q.minutes);
+      if(!wrongOpts.includes(candidate)&&candidate!==correctStr) wrongOpts.push(candidate);
+    }
+
+    const opts=App.shuffle([correctStr,...wrongOpts.slice(0,3)]);
     const colors=['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D'];
     const optsHTML=opts.map((o,i)=>`
       <button class="count-btn" id="rlb-${encodeURIComponent(o)}"
-        style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1rem;width:auto;min-width:80px;height:56px;padding:0 14px;border-radius:16px"
-        onclick="GameReloj.answer('${o}','${q.answer}')">
+        style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.1rem;width:auto;min-width:80px;height:58px;padding:0 16px;border-radius:16px;font-family:'Fredoka One',cursive"
+        onclick="GameReloj.answer('${o}','${correctStr}')">
         ${o}
       </button>`).join('');
 
@@ -39,55 +68,41 @@ const GameReloj = {
         <button class="btn-action btn-next" id="rl-next" onclick="GameReloj.next()" style="display:none">Siguiente ➡️</button>
       </div>`;
 
-    this.drawClock(q.hours, q.minutes);
+    this.drawClock(q.hours,q.minutes);
+    const spoken=`${String(q.hours).padStart(2,'0')} y ${q.minutes===0?'en punto':q.minutes+' minutos'}`;
     App.speak('¿Qué hora marca el reloj?');
   },
 
-  drawClock(hours, minutes) {
+  drawClock(hours,minutes) {
     const canvas=document.getElementById('rl-clock');
     if(!canvas) return;
     const ctx=canvas.getContext('2d');
-    const cx=100, cy=100, r=90;
+    const cx=100,cy=100,r=90;
     ctx.clearRect(0,0,200,200);
-
-    // Face
     ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
     ctx.fillStyle='white'; ctx.fill();
     ctx.strokeStyle='#333'; ctx.lineWidth=4; ctx.stroke();
-
-    // Hour markers
     for(let i=0;i<12;i++){
-      const angle=i*Math.PI/6 - Math.PI/2;
+      const angle=i*Math.PI/6-Math.PI/2;
       const len=i%3===0?12:6;
       ctx.beginPath();
-      ctx.moveTo(cx+Math.cos(angle)*(r-4), cy+Math.sin(angle)*(r-4));
-      ctx.lineTo(cx+Math.cos(angle)*(r-4-len), cy+Math.sin(angle)*(r-4-len));
+      ctx.moveTo(cx+Math.cos(angle)*(r-4),cy+Math.sin(angle)*(r-4));
+      ctx.lineTo(cx+Math.cos(angle)*(r-4-len),cy+Math.sin(angle)*(r-4-len));
       ctx.strokeStyle='#333'; ctx.lineWidth=i%3===0?3:1.5; ctx.stroke();
     }
-
-    // Numbers 12,3,6,9
-    ctx.fillStyle='#333'; ctx.font='bold 16px Nunito'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillStyle='#333'; ctx.font='bold 15px Nunito'; ctx.textAlign='center'; ctx.textBaseline='middle';
     [{n:'12',x:cx,y:cy-68},{n:'3',x:cx+68,y:cy},{n:'6',x:cx,y:cy+68},{n:'9',x:cx-68,y:cy}]
       .forEach(p=>ctx.fillText(p.n,p.x,p.y));
-
-    // Hour hand
-    const hAngle=((hours%12)+minutes/60)*Math.PI/6 - Math.PI/2;
-    ctx.beginPath(); ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+Math.cos(hAngle)*52, cy+Math.sin(hAngle)*52);
+    const hAngle=((hours%12)+minutes/60)*Math.PI/6-Math.PI/2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(hAngle)*52,cy+Math.sin(hAngle)*52);
     ctx.strokeStyle='#333'; ctx.lineWidth=5; ctx.lineCap='round'; ctx.stroke();
-
-    // Minute hand
-    const mAngle=minutes*Math.PI/30 - Math.PI/2;
-    ctx.beginPath(); ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+Math.cos(mAngle)*72, cy+Math.sin(mAngle)*72);
+    const mAngle=minutes*Math.PI/30-Math.PI/2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(mAngle)*72,cy+Math.sin(mAngle)*72);
     ctx.strokeStyle='#FF6B6B'; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
-
-    // Center dot
-    ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
-    ctx.fillStyle='#333'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2); ctx.fillStyle='#333'; ctx.fill();
   },
 
-  answer(val, correct) {
+  answer(val,correct) {
     if(this.answered) return;
     this.answered=true;
     const ok=val===correct;

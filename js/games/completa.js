@@ -1,5 +1,7 @@
 const GameCompleta = {
   level:'easy', idx:0, correct:0, answered:false, order:[],
+  pendingBlanks:[], // blanks still to fill
+  filledBlanks:{},  // pos -> letter
 
   init(container) {
     this.level='easy'; this.idx=0; this.correct=0; this.answered=false;
@@ -32,44 +34,77 @@ const GameCompleta = {
   },
 
   loadQuestion() {
-    this.answered=false;
+    this.answered=false; this.filledBlanks={}; this.pendingBlanks=[];
     const items=DATA.completa[this.level];
     const total=items.length;
     const q=items[this.order[this.idx%total]];
     document.getElementById('cp-pbar').style.width=(this.idx/total*100)+'%';
     document.getElementById('cp-plabel').textContent=`Pregunta ${this.idx+1} de ${total}`;
 
-    // Build word display: shown letters + blank slots
-    const letters=q.word.split('');
-    const displayHTML=letters.map((ch,i)=>{
-      if(q.blanks.includes(i)){
-        return `<span class="word-blank" id="blank-${i}" data-pos="${i}">_</span>`;
+    // KEY FIX: each blank position is INDEPENDENT.
+    // blanks = array of positions. Each position needs ONE specific letter.
+    // We show ONE question at a time: fill blank[0], then blank[1], etc.
+    this.currentQ = q;
+    this.pendingBlanks = [...q.blanks]; // copy
+    this.filledBlanks = {};
+
+    this.renderQuestion();
+  },
+
+  renderQuestion() {
+    const q = this.currentQ;
+    const letters = q.word.split('');
+
+    // Build word display
+    const displayHTML = letters.map((ch, i) => {
+      if (this.filledBlanks[i] !== undefined) {
+        // Already filled
+        return `<span class="word-letter" style="color:#45a352">${this.filledBlanks[i]}</span>`;
+      } else if (this.pendingBlanks[0] === i) {
+        // Current blank to fill — highlighted
+        return `<span class="word-blank active-blank" id="blank-${i}">_</span>`;
+      } else if (this.pendingBlanks.includes(i)) {
+        // Future blank — greyed out
+        return `<span class="word-blank" style="opacity:0.4" id="blank-${i}">_</span>`;
+      } else {
+        return `<span class="word-letter">${ch}</span>`;
       }
-      return `<span class="word-letter">${ch}</span>`;
     }).join('');
 
-    // Options — always strings, safe to iterate
-    const opts=App.shuffle([...q.options]);
-    const colors=['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D','#C77DFF','#FF9F43'];
+    // Current blank to fill
+    const currentBlankPos = this.pendingBlanks[0];
+    const correctLetter = q.word[currentBlankPos].toUpperCase();
 
-    const optsHTML=opts.map((opt,i)=>{
-      const safeOpt=String(opt);
-      const safeId='cpb_'+safeOpt.replace(/[^a-zA-Z0-9]/g,'_')+'_'+i;
-      return `<button class="count-btn"
-        id="${safeId}"
-        style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.3rem;min-width:60px;height:60px;padding:0 10px"
-        onclick="GameCompleta.answer(this,'${safeOpt.replace(/'/g,"\\'")}')">
-        ${safeOpt}
+    // Build options — include correct + distractors, always distinct
+    // The options pool from q.options but we ensure correct is in there
+    let optPool = [...q.options].map(o => o.toUpperCase());
+    if (!optPool.includes(correctLetter)) optPool[0] = correctLetter;
+    // Remove duplicates, shuffle
+    optPool = [...new Set(optPool)];
+    while (optPool.length < 3) optPool.push(['A','E','I','O','U'].find(v=>!optPool.includes(v))||'X');
+    const opts = App.shuffle(optPool.slice(0,4));
+
+    const colors = ['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D','#C77DFF','#FF9F43'];
+    const optsHTML = opts.map((opt, i) => {
+      const safeId = `cpb_${i}_${opt.replace(/[^a-zA-Z0-9]/g,'_')}`;
+      return `<button class="count-btn" id="${safeId}"
+        style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.4rem;min-width:60px;height:64px;padding:0 14px"
+        onclick="GameCompleta.pickLetter('${opt}','${correctLetter}',${currentBlankPos})">
+        ${opt}
       </button>`;
     }).join('');
 
-    document.getElementById('cp-area').innerHTML=`
+    const blankNum = q.blanks.indexOf(currentBlankPos) + 1;
+    const totalBlanks = q.blanks.length;
+    const hint = totalBlanks > 1 ? ` (hueco ${blankNum} de ${totalBlanks})` : '';
+
+    document.getElementById('cp-area').innerHTML = `
       <div style="text-align:center;padding:16px 14px 8px">
         <div style="font-size:4rem;margin-bottom:8px">${q.emoji}</div>
         <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#aaa;margin-bottom:12px">
-          ¿Qué letra falta? Toca la respuesta
+          ¿Qué letra falta?${hint}
         </div>
-        <div class="word-display" style="margin-bottom:16px">${displayHTML}</div>
+        <div class="word-display" style="margin-bottom:20px">${displayHTML}</div>
       </div>
       <div class="count-options" style="justify-content:center;padding:10px 14px;gap:12px">${optsHTML}</div>
       <div class="action-row">
@@ -79,53 +114,56 @@ const GameCompleta = {
     App.speak(q.word);
   },
 
-  answer(btnEl, val) {
-    if(this.answered) return;
-    this.answered=true;
+  pickLetter(chosen, correct, blankPos) {
+    if (this.answered) return;
+    const ok = chosen.toUpperCase() === correct.toUpperCase();
 
-    const items=DATA.completa[this.level];
-    const q=items[this.order[this.idx%items.length]];
+    // Disable all option buttons immediately
+    document.querySelectorAll('#cp-area .count-btn').forEach(b => b.disabled = true);
 
-    // Check if val matches any of the accepted answers
-    const ok=q.answers.map(a=>String(a).toUpperCase()).includes(String(val).toUpperCase());
+    if (ok) {
+      // Fill this blank and move to next
+      this.filledBlanks[blankPos] = chosen;
+      this.pendingBlanks.shift(); // remove first pending
 
-    if(ok){
-      // Fill all blanks with the chosen letter
-      document.querySelectorAll('.word-blank').forEach(b=>{
-        b.textContent=val;
-        b.style.color='#45a352';
-        b.style.borderBottomColor='#45a352';
-      });
-      this.correct++;
-      App.confetti();
-      App.speak('¡Correcto! '+q.word);
+      if (this.pendingBlanks.length === 0) {
+        // All blanks filled correctly!
+        this.correct++;
+        this.answered = true;
+        App.confetti();
+        App.speak('¡Correcto! ' + this.currentQ.word);
+        App.showFeedback(true);
+        setTimeout(() => {
+          document.getElementById('cp-next').style.display = '';
+        }, 800);
+      } else {
+        // More blanks to fill — show next blank after brief pause
+        App.speak('¡Bien! Siguiente hueco');
+        setTimeout(() => this.renderQuestion(), 700);
+      }
     } else {
-      btnEl.classList.add('wrong-btn');
-      // Reveal correct answer in blanks
-      q.blanks.forEach(pos=>{
-        const bl=document.getElementById('blank-'+pos);
-        if(bl){ bl.textContent=q.word[pos]; bl.style.color='#c94e4e'; bl.style.borderBottomColor='#c94e4e'; }
-      });
-      App.speak('La respuesta es '+q.word);
+      // Wrong — show correct answer, mark as failed
+      this.answered = true;
+      const slot = document.getElementById('blank-' + blankPos);
+      if (slot) { slot.textContent = correct; slot.style.color = '#c94e4e'; slot.style.borderBottomColor = '#c94e4e'; }
+      App.speak('La letra es ' + correct);
+      App.showFeedback(false);
+      setTimeout(() => {
+        document.getElementById('cp-next').style.display = '';
+      }, 800);
     }
-
-    btnEl.classList.add(ok?'correct-btn':'wrong-btn');
-    // Disable all buttons
-    document.querySelectorAll('#cp-area .count-btn').forEach(b=>{ b.disabled=true; b.style.cursor='default'; });
-    App.showFeedback(ok);
-    document.getElementById('cp-next').style.display='';
   },
 
   next() {
     this.idx++;
-    const total=DATA.completa[this.level].length;
-    if(this.idx>=total){
-      const stars=Math.round((this.correct/total)*5);
-      const levels=['easy','medium','hard'];
-      const nextLvl=levels[levels.indexOf(this.level)+1];
-      App.levelComplete('completa',stars,
-        ()=>GameCompleta.setLevel(this.level),
-        nextLvl?()=>GameCompleta.setLevel(nextLvl):null,!!nextLvl);
+    const total = DATA.completa[this.level].length;
+    if (this.idx >= total) {
+      const stars = Math.round((this.correct / total) * 5);
+      const levels = ['easy','medium','hard'];
+      const nextLvl = levels[levels.indexOf(this.level) + 1];
+      App.levelComplete('completa', stars,
+        () => GameCompleta.setLevel(this.level),
+        nextLvl ? () => GameCompleta.setLevel(nextLvl) : null, !!nextLvl);
     } else { this.loadQuestion(); }
   }
 };

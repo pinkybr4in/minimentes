@@ -27,61 +27,51 @@ const GamePuntos = {
     const w=Math.min(wrap.clientWidth,380);
     this.canvas.width=w; this.canvas.height=w;
 
-    // Use a single unified pointer approach
     const getXY=(e)=>{
       const rect=this.canvas.getBoundingClientRect();
       const scale=this.canvas.width/rect.width;
-      const src = e.touches ? e.touches[0] : e;
+      const src=e.touches?e.touches[0]:e;
       return{x:(src.clientX-rect.left)*scale, y:(src.clientY-rect.top)*scale};
     };
-
     const onStart=(e)=>{
       e.preventDefault();
       if(this.complete) return;
       const pos=getXY(e);
       const pts=this.scaledPoints();
       const t=pts.find(p=>p.n===this.nextPoint);
-      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<38){
-        this.touching=true;
-      }
+      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<40) this.touching=true;
     };
-
     const onMove=(e)=>{
       e.preventDefault();
       if(!this.touching||this.complete) return;
       const pos=getXY(e);
       const pts=this.scaledPoints();
-      // Draw preview
       this.render();
-      const prev=pts[this.nextPoint-2]||pts[0];
-      const ctx=this.ctx;
-      ctx.save();
-      ctx.beginPath(); ctx.moveTo(prev.x,prev.y); ctx.lineTo(pos.x,pos.y);
-      ctx.strokeStyle='rgba(110,198,245,0.5)'; ctx.lineWidth=3;
-      ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
-      // Check arrival
+      if(this.nextPoint>1){
+        const prev=pts[this.nextPoint-2];
+        const ctx=this.ctx;
+        ctx.save();
+        ctx.beginPath(); ctx.moveTo(prev.x,prev.y); ctx.lineTo(pos.x,pos.y);
+        ctx.strokeStyle='rgba(110,198,245,0.5)'; ctx.lineWidth=3;
+        ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+      }
       const t=pts.find(p=>p.n===this.nextPoint);
-      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<38) this.arrive(pts);
+      if(t && Math.hypot(pos.x-t.x,pos.y-t.y)<40) this.arrive(pts);
     };
+    const onEnd=(e)=>{e.preventDefault(); this.touching=false; this.render();};
 
-    const onEnd=(e)=>{
-      e.preventDefault();
-      this.touching=false;
-      this.render();
-    };
-
-    this.canvas.addEventListener('touchstart', onStart,{passive:false});
-    this.canvas.addEventListener('touchmove',  onMove, {passive:false});
-    this.canvas.addEventListener('touchend',   onEnd,  {passive:false});
-    this.canvas.addEventListener('mousedown',  onStart);
-    this.canvas.addEventListener('mousemove',  onMove);
-    this.canvas.addEventListener('mouseup',    onEnd);
-    this.canvas.addEventListener('mouseleave', onEnd);
+    this.canvas.addEventListener('touchstart',onStart,{passive:false});
+    this.canvas.addEventListener('touchmove', onMove, {passive:false});
+    this.canvas.addEventListener('touchend',  onEnd,  {passive:false});
+    this.canvas.addEventListener('mousedown', onStart);
+    this.canvas.addEventListener('mousemove', onMove);
+    this.canvas.addEventListener('mouseup',   onEnd);
+    this.canvas.addEventListener('mouseleave',onEnd);
   },
 
   scaledPoints() {
     const s=this.canvas.width/300;
-    return this.currentPuzzle().points.map(p=>({x:p.x*s, y:p.y*s, n:p.n}));
+    return this.currentPuzzle().points.map(p=>({x:p.x*s,y:p.y*s,n:p.n}));
   },
 
   arrive(pts) {
@@ -107,40 +97,52 @@ const GamePuntos = {
   loadPuzzle() {
     this.nextPoint=1; this.complete=false; this.touching=false;
     document.getElementById('p-next').style.display='none';
-    document.getElementById('p-info').textContent=`${this.currentPuzzle().name} · ¡Desliza desde el 1!`;
+    const p=this.currentPuzzle();
+    // BUGFIX: verify point 1 exists and log if missing
+    const hasOne=p.points.some(pt=>pt.n===1);
+    if(!hasOne) console.warn('Missing point n=1 in puzzle:', p.name);
+    document.getElementById('p-info').textContent=`${p.name} · ¡Desliza desde el 1!`;
     this.render();
   },
 
   render() {
-    const ctx=this.ctx, canvas=this.canvas;
+    const ctx=this.ctx,canvas=this.canvas;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle='white'; ctx.fillRect(0,0,canvas.width,canvas.height);
     const pts=this.scaledPoints();
 
+    // Sort to ensure correct draw order
+    const sorted=[...pts].sort((a,b)=>a.n-b.n);
+
     // Completed path
     if(this.nextPoint>1){
-      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
-      for(let i=1;i<Math.min(this.nextPoint-1,pts.length);i++) ctx.lineTo(pts[i].x,pts[i].y);
+      ctx.beginPath();
+      const drawn=sorted.filter(p=>p.n<this.nextPoint);
+      ctx.moveTo(drawn[0].x,drawn[0].y);
+      drawn.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));
       ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=4; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke();
     }
 
-    // Complete: close path + fill
+    // Complete: close + fill
     if(this.complete){
-      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
-      pts.forEach(p=>ctx.lineTo(p.x,p.y));
+      ctx.beginPath();
+      ctx.moveTo(sorted[0].x,sorted[0].y);
+      sorted.forEach(p=>ctx.lineTo(p.x,p.y));
       ctx.closePath();
       ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=4; ctx.lineCap='round'; ctx.stroke();
       ctx.fillStyle='rgba(110,198,245,0.18)'; ctx.fill();
     }
 
-    // Dots
-    pts.forEach((pt,i)=>{
-      const done=i+1<this.nextPoint;
-      ctx.beginPath(); ctx.arc(pt.x,pt.y,14,0,Math.PI*2);
+    // Draw ALL dots — use sorted order, find by n
+    sorted.forEach(pt=>{
+      const done=pt.n<this.nextPoint;
+      // Dot
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,15,0,Math.PI*2);
       ctx.fillStyle=done?'#6BCB77':'white'; ctx.fill();
-      ctx.strokeStyle=done?'#45a352':'#aaa'; ctx.lineWidth=2.5; ctx.stroke();
-      ctx.fillStyle=done?'white':'#555';
-      ctx.font='bold 12px Nunito'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.strokeStyle=done?'#45a352':'#999'; ctx.lineWidth=2.5; ctx.stroke();
+      // Number
+      ctx.fillStyle=done?'white':'#444';
+      ctx.font=`bold 12px Nunito`; ctx.textAlign='center'; ctx.textBaseline='middle';
       ctx.fillText(pt.n,pt.x,pt.y);
     });
   },

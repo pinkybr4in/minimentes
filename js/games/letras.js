@@ -2,8 +2,10 @@ const GameLetras = {
   mode:'upper', idx:0,
   ctx:null, canvas:null,
   drawing:false, lastX:0, lastY:0,
-  strokeLength:0,  // total pixel distance drawn
-  REQUIRED:150,    // minimum px of stroke to count as "drawn"
+  strokeLength:0,
+  // Minimum stroke required scales with canvas size
+  // A letter like 'I' needs less than 'M', so we use a generous but real threshold
+  REQUIRED:200,
 
   init(container) {
     this.mode='upper'; this.idx=0; this.strokeLength=0; this.drawing=false;
@@ -18,11 +20,14 @@ const GameLetras = {
         <div class="letter-hint"><div class="letter-hint-char" id="l-hint"></div></div>
         <canvas id="l-canvas"></canvas>
       </div>
-      <div id="l-progress-bar" style="height:8px;background:#e0e0e0;margin:6px 14px;border-radius:8px;overflow:hidden">
-        <div id="l-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#6EC6F5,#6BCB77);border-radius:8px;transition:width 0.2s"></div>
-      </div>
-      <div id="l-progress-label" style="text-align:center;font-family:'Fredoka One',cursive;font-size:0.8rem;color:#aaa">
-        Sigue trazando...
+      <!-- Progress bar shows real drawing effort -->
+      <div style="margin:6px 14px 0">
+        <div style="height:10px;background:#e0e0e0;border-radius:10px;overflow:hidden">
+          <div id="l-prog-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#6EC6F5,#6BCB77);border-radius:10px;transition:width 0.15s"></div>
+        </div>
+        <div id="l-prog-label" style="text-align:center;font-family:'Fredoka One',cursive;font-size:0.8rem;color:#aaa;margin-top:3px">
+          Dibuja la letra con el dedo ✏️
+        </div>
       </div>
       <div class="letter-nav">
         <button class="letter-nav-btn btn-prev-letter" onclick="GameLetras.prev()">◀ Anterior</button>
@@ -30,7 +35,9 @@ const GameLetras = {
         <button class="letter-nav-btn btn-next-letter" onclick="GameLetras.next()">Siguiente ▶</button>
       </div>
       <div class="action-row" style="padding-bottom:16px">
-        <button class="btn-action btn-check" id="l-done-btn" onclick="GameLetras.celebrate()">🌟 ¡Listo!</button>
+        <button class="btn-action btn-check" id="l-done-btn" onclick="GameLetras.celebrate()" style="opacity:0.5">
+          🌟 ¡Listo!
+        </button>
       </div>`;
     this.setupCanvas();
     this.renderLetter();
@@ -42,6 +49,8 @@ const GameLetras = {
     const wrap=document.getElementById('l-wrap');
     const w=Math.min(wrap.clientWidth,360);
     this.canvas.width=w; this.canvas.height=Math.round(w*0.72);
+    // Scale the threshold with canvas size
+    this.REQUIRED = w * 0.6; // ~60% of canvas width in pixels of stroke
 
     const add=(ev,fn,opts)=>this.canvas.addEventListener(ev,fn,opts||{});
     add('mousedown',  e=>this.startDraw(e));
@@ -65,15 +74,18 @@ const GameLetras = {
     this.drawing=true;
     const p=this.getPos(e);
     this.lastX=p.x; this.lastY=p.y;
-    this.ctx.beginPath();
-    this.ctx.arc(p.x,p.y,9,0,Math.PI*2);
+    this.ctx.beginPath(); this.ctx.arc(p.x,p.y,9,0,Math.PI*2);
     this.ctx.fillStyle='#6EC6F5'; this.ctx.fill();
+    this.strokeLength+=5; // count start tap
+    this.updateProgress();
   },
 
   draw(e) {
     if(!this.drawing) return;
     const p=this.getPos(e);
-    const dist=Math.hypot(p.x-this.lastX, p.y-this.lastY);
+    const dist=Math.hypot(p.x-this.lastX,p.y-this.lastY);
+    // Only count if actually moving (ignore jitter < 2px)
+    if(dist<2) return;
     const ctx=this.ctx;
     ctx.beginPath(); ctx.moveTo(this.lastX,this.lastY); ctx.lineTo(p.x,p.y);
     ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=18; ctx.lineCap='round'; ctx.stroke();
@@ -84,13 +96,14 @@ const GameLetras = {
 
   updateProgress() {
     const pct=Math.min(100,(this.strokeLength/this.REQUIRED)*100);
-    document.getElementById('l-progress-fill').style.width=pct+'%';
+    document.getElementById('l-prog-fill').style.width=pct+'%';
+    const btn=document.getElementById('l-done-btn');
     if(pct>=100){
-      document.getElementById('l-progress-label').textContent='¡Ya puedes pulsar Listo! 🌟';
-      document.getElementById('l-done-btn').style.background='#6BCB77';
+      document.getElementById('l-prog-label').textContent='¡Pulsa Listo cuando termines! 🌟';
+      if(btn){ btn.style.opacity='1'; btn.style.background='#6BCB77'; }
     } else {
-      document.getElementById('l-progress-label').textContent='Sigue trazando... '+(Math.round(pct))+'%';
-      document.getElementById('l-done-btn').style.background='';
+      document.getElementById('l-prog-label').textContent=`Sigue trazando… ${Math.round(pct)}%`;
+      if(btn){ btn.style.opacity='0.5'; btn.style.background=''; }
     }
   },
 
@@ -121,17 +134,29 @@ const GameLetras = {
   next() { this.idx=(this.idx+1)%DATA.letras[this.mode].length; this.renderLetter(); },
 
   celebrate() {
-    if(this.strokeLength<this.REQUIRED){
-      document.getElementById('l-progress-label').textContent='¡Traza la letra un poco más! ✏️';
-      App.speak('¡Sigue trazando!');
-      // Shake the canvas hint
+    const pct=(this.strokeLength/this.REQUIRED)*100;
+    if(pct<100){
+      document.getElementById('l-prog-label').textContent='¡Traza más la letra antes de continuar! ✏️';
       const wrap=document.getElementById('l-wrap');
       wrap.style.animation='shake 0.4s'; setTimeout(()=>wrap.style.animation='',500);
+      App.speak('¡Dibuja más la letra!');
       return;
     }
-    App.confetti(); App.showFeedback(true);
-    App.speak('¡Muy bien! ¡Qué bonita letra!');
+    // SUCCESS — use speakSequence so audio doesn't cut
     App.saveScore('letras',Math.min(this.idx+1,5));
-    setTimeout(()=>this.next(),1600);
+    App.confetti();
+    // Show feedback overlay, then speak AFTER it fades
+    App.showFeedback(true, ()=>{
+      // speakSequence: cancel any current, wait 100ms, then speak
+      if('speechSynthesis' in window){
+        speechSynthesis.cancel();
+        setTimeout(()=>{
+          const u=new SpeechSynthesisUtterance('¡Muy bien! ¡Qué bonita letra!');
+          u.lang='es-ES'; u.rate=0.85; u.pitch=1.15;
+          speechSynthesis.speak(u);
+        },150);
+      }
+    });
+    setTimeout(()=>this.next(), 2200);
   }
 };

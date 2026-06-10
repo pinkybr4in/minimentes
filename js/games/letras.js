@@ -2,13 +2,11 @@ const GameLetras = {
   mode:'upper', idx:0,
   ctx:null, canvas:null,
   drawing:false, lastX:0, lastY:0,
-  strokeLength:0,
-  // Minimum stroke required scales with canvas size
-  // A letter like 'I' needs less than 'M', so we use a generous but real threshold
-  REQUIRED:200,
+  strokeLength:0, strokeBounds:{minX:9999,maxX:0,minY:9999,maxY:0},
 
   init(container) {
     this.mode='upper'; this.idx=0; this.strokeLength=0; this.drawing=false;
+    this.strokeBounds={minX:9999,maxX:0,minY:9999,maxY:0};
     container.innerHTML=`
       <div class="game-level-bar">
         <button class="lvl-btn lvl-easy active" id="ll-up" onclick="GameLetras.setMode('upper')">🔠 Mayús.</button>
@@ -20,7 +18,6 @@ const GameLetras = {
         <div class="letter-hint"><div class="letter-hint-char" id="l-hint"></div></div>
         <canvas id="l-canvas"></canvas>
       </div>
-      <!-- Progress bar shows real drawing effort -->
       <div style="margin:6px 14px 0">
         <div style="height:10px;background:#e0e0e0;border-radius:10px;overflow:hidden">
           <div id="l-prog-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#6EC6F5,#6BCB77);border-radius:10px;transition:width 0.15s"></div>
@@ -49,8 +46,8 @@ const GameLetras = {
     const wrap=document.getElementById('l-wrap');
     const w=Math.min(wrap.clientWidth,360);
     this.canvas.width=w; this.canvas.height=Math.round(w*0.72);
-    // Scale the threshold with canvas size
-    this.REQUIRED = w * 0.6; // ~60% of canvas width in pixels of stroke
+    // Threshold: need to cover at least 25% of canvas width AND height
+    this.minSpread = w * 0.20;
 
     const add=(ev,fn,opts)=>this.canvas.addEventListener(ev,fn,opts||{});
     add('mousedown',  e=>this.startDraw(e));
@@ -74,9 +71,10 @@ const GameLetras = {
     this.drawing=true;
     const p=this.getPos(e);
     this.lastX=p.x; this.lastY=p.y;
+    this.updateBounds(p.x,p.y);
     this.ctx.beginPath(); this.ctx.arc(p.x,p.y,9,0,Math.PI*2);
     this.ctx.fillStyle='#6EC6F5'; this.ctx.fill();
-    this.strokeLength+=5; // count start tap
+    this.strokeLength+=5;
     this.updateProgress();
   },
 
@@ -84,8 +82,8 @@ const GameLetras = {
     if(!this.drawing) return;
     const p=this.getPos(e);
     const dist=Math.hypot(p.x-this.lastX,p.y-this.lastY);
-    // Only count if actually moving (ignore jitter < 2px)
     if(dist<2) return;
+    this.updateBounds(p.x,p.y);
     const ctx=this.ctx;
     ctx.beginPath(); ctx.moveTo(this.lastX,this.lastY); ctx.lineTo(p.x,p.y);
     ctx.strokeStyle='#6EC6F5'; ctx.lineWidth=18; ctx.lineCap='round'; ctx.stroke();
@@ -94,22 +92,44 @@ const GameLetras = {
     this.updateProgress();
   },
 
+  updateBounds(x,y) {
+    const b=this.strokeBounds;
+    b.minX=Math.min(b.minX,x); b.maxX=Math.max(b.maxX,x);
+    b.minY=Math.min(b.minY,y); b.maxY=Math.max(b.maxY,y);
+  },
+
+  // Check if drawing covers enough of the canvas in both dimensions
+  hasGoodSpread() {
+    const b=this.strokeBounds;
+    const spreadX=b.maxX-b.minX;
+    const spreadY=b.maxY-b.minY;
+    return spreadX>=this.minSpread && spreadY>=this.minSpread;
+  },
+
   updateProgress() {
-    const pct=Math.min(100,(this.strokeLength/this.REQUIRED)*100);
+    // Progress based on BOTH total length AND spatial spread
+    const lenPct=Math.min(100,(this.strokeLength/(this.canvas.width*0.5))*100);
+    const b=this.strokeBounds;
+    const spreadX=Math.max(0,(b.maxX-b.minX)/this.minSpread);
+    const spreadY=Math.max(0,(b.maxY-b.minY)/this.minSpread);
+    const spreadPct=Math.min(100,Math.min(spreadX,spreadY)*100);
+    const pct=Math.min(lenPct,spreadPct);
     document.getElementById('l-prog-fill').style.width=pct+'%';
     const btn=document.getElementById('l-done-btn');
     if(pct>=100){
       document.getElementById('l-prog-label').textContent='¡Pulsa Listo cuando termines! 🌟';
-      if(btn){ btn.style.opacity='1'; btn.style.background='#6BCB77'; }
+      if(btn){btn.style.opacity='1';btn.style.background='#6BCB77';}
     } else {
-      document.getElementById('l-prog-label').textContent=`Sigue trazando… ${Math.round(pct)}%`;
-      if(btn){ btn.style.opacity='0.5'; btn.style.background=''; }
+      const hint=spreadPct<lenPct?'Traza la letra más grande':'Sigue trazando…';
+      document.getElementById('l-prog-label').textContent=`${hint} ${Math.round(pct)}%`;
+      if(btn){btn.style.opacity='0.5';btn.style.background='';}
     }
   },
 
   clearCanvas() {
     this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
     this.strokeLength=0;
+    this.strokeBounds={minX:9999,maxX:0,minY:9999,maxY:0};
     this.updateProgress();
   },
 
@@ -134,20 +154,21 @@ const GameLetras = {
   next() { this.idx=(this.idx+1)%DATA.letras[this.mode].length; this.renderLetter(); },
 
   celebrate() {
-    const pct=(this.strokeLength/this.REQUIRED)*100;
-    if(pct<100){
-      document.getElementById('l-prog-label').textContent='¡Traza más la letra antes de continuar! ✏️';
+    const b=this.strokeBounds;
+    const spreadX=b.maxX-b.minX;
+    const spreadY=b.maxY-b.minY;
+    if(this.strokeLength<this.canvas.width*0.4 || spreadX<this.minSpread || spreadY<this.minSpread){
+      document.getElementById('l-prog-label').textContent='¡Traza la letra más grande! ✏️';
       const wrap=document.getElementById('l-wrap');
-      wrap.style.animation='shake 0.4s'; setTimeout(()=>wrap.style.animation='',500);
-      App.speak('¡Dibuja más la letra!');
+      wrap.style.animation='shake 0.4s';
+      setTimeout(()=>wrap.style.animation='',500);
+      App.speak('¡Traza la letra más grande!');
       return;
     }
-    // SUCCESS — use speakSequence so audio doesn't cut
     App.saveScore('letras',Math.min(this.idx+1,5));
     App.confetti();
-    // Show feedback overlay, then speak AFTER it fades
+    // Show feedback first, then speak after it fades so audio doesn't cut
     App.showFeedback(true, ()=>{
-      // speakSequence: cancel any current, wait 100ms, then speak
       if('speechSynthesis' in window){
         speechSynthesis.cancel();
         setTimeout(()=>{
@@ -157,6 +178,6 @@ const GameLetras = {
         },150);
       }
     });
-    setTimeout(()=>this.next(), 2200);
+    setTimeout(()=>this.next(), 2400);
   }
 };

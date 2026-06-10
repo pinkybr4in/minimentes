@@ -603,55 +603,7 @@ ingles: {
 }; // end DATA
 
 // ===== COMPLETA LA PALABRA =====
-DATA.completa = {
-  easy: [
-    {emoji:'🐱',word:'GATO', blanks:[1,3], answers:['A','O'], options:['A','E','O','U']},
-    {emoji:'🐶',word:'PERRO',blanks:[1,3], answers:['E','O'], options:['A','E','O','I']},
-    {emoji:'🌸',word:'FLOR', blanks:[2,3], answers:['O','R'], options:['A','O','R','E']},
-    {emoji:'🌙',word:'LUNA', blanks:[1,3], answers:['U','A'], options:['U','A','E','I']},
-    {emoji:'☀️',word:'SOL',  blanks:[1,2], answers:['O','L'], options:['O','L','A','E']},
-    {emoji:'🐟',word:'PEZ',  blanks:[1],   answers:['E'],     options:['A','E','I','O']},
-    {emoji:'🐸',word:'RANA', blanks:[1,3], answers:['A'],     options:['A','E','O','U']},
-    {emoji:'🍎',word:'MANZANA',blanks:[1,3],answers:['A'],    options:['A','E','O','I']},
-    {emoji:'🐻',word:'OSO',  blanks:[0,2], answers:['O'],     options:['A','O','E','U']},
-    {emoji:'🌊',word:'MAR',  blanks:[1],   answers:['A'],     options:['A','E','O','U']},
-    {emoji:'🦁',word:'LEON', blanks:[1,3], answers:['E','O'], options:['A','E','O','U']},
-    {emoji:'🍌',word:'PLATANO',blanks:[2,5],answers:['A'],    options:['A','E','O','I']},
-    {emoji:'🐘',word:'ELEFANTE',blanks:[0,2],answers:['E'],   options:['A','E','I','O']},
-    {emoji:'🦋',word:'MARIPOSA',blanks:[1,5],answers:['A','O'],options:['A','E','O','U']},
-    {emoji:'🌻',word:'GIRASOL',blanks:[1,4],answers:['I','A'],options:['A','E','I','O']},
-  ],
-  medium: [
-    {emoji:'🚗',word:'COCHE', blanks:[1,3], answers:['O','H'], options:['O','H','A','E']},
-    {emoji:'🌈',word:'ARCOIRIS',blanks:[1,4],answers:['R','I'],options:['R','I','L','E']},
-    {emoji:'🐬',word:'DELFIN',blanks:[2,4],answers:['L','I'],options:['L','I','N','E']},
-    {emoji:'🦄',word:'UNICORNIO',blanks:[1,5],answers:['N','N'],options:['N','M','R','L']},
-    {emoji:'🍕',word:'PIZZA',blanks:[1,3],answers:['I','Z'],options:['I','Z','A','E']},
-    {emoji:'🎈',word:'GLOBO',blanks:[1,3],answers:['L','B'],options:['L','B','R','M']},
-    {emoji:'🌴',word:'PALMERA',blanks:[1,4],answers:['A','E'],options:['A','E','I','O']},
-    {emoji:'🦊',word:'ZORRO',blanks:[1,3],answers:['O'],options:['A','O','E','U']},
-    {emoji:'🐼',word:'PANDA',blanks:[1,4],answers:['A'],options:['A','E','O','I']},
-    {emoji:'🚀',word:'COHETE',blanks:[1,3],answers:['O','E'],options:['A','O','E','I']},
-    {emoji:'🎺',word:'TROMPETA',blanks:[2,5],answers:['O','E'],options:['A','O','E','I']},
-    {emoji:'🐙',word:'PULPO',blanks:[1,4],answers:['U','O'],options:['A','U','O','I']},
-    {emoji:'🏠',word:'CASTILLO',blanks:[1,5],answers:['A','L'],options:['A','L','E','R']},
-    {emoji:'🌺',word:'MARGARITA',blanks:[1,5],answers:['A'],options:['A','E','O','I']},
-    {emoji:'🦩',word:'FLAMENCO',blanks:[2,5],answers:['A','E'],options:['A','E','O','I']},
-  ],
-  hard: [
-    {emoji:'🦒',word:'JIRAFA',blanks:[1,3,5],answers:['I','A','A'],options:['A','I','E','O']},
-    {emoji:'🐊',word:'COCODRILO',blanks:[1,4,7],answers:['O','D','L'],options:['O','D','L','R']},
-    {emoji:'🌋',word:'VOLCAN',blanks:[1,3,5],answers:['O','C','N'],options:['O','C','N','L']},
-    {emoji:'🐠',word:'BARRACUDA',blanks:[1,3,5,7],answers:['A','R','C','D'],options:['A','R','C','D']},
-    {emoji:'🦋',word:'CRISALIDA',blanks:[2,4,7],answers:['I','A','I'],options:['A','I','E','O']},
-    {emoji:'🌍',word:'CONTINENTE',blanks:[1,4,7],answers:['O','I','E'],options:['A','O','I','E']},
-    {emoji:'🦅',word:'AGUILA',blanks:[0,2,5],answers:['A','U','A'],options:['A','U','E','I']},
-    {emoji:'🏔️',word:'MONTANA',blanks:[1,3,6],answers:['O','T','A'],options:['O','T','A','N']},
-    {emoji:'🎪',word:'CIRCO',blanks:[1,3],answers:['I','C'],options:['I','C','O','R']},
-    {emoji:'🦁',word:'MELENA',blanks:[1,3,5],answers:['E','E','A'],options:['A','E','I','O']},
-  ]
-};
-
+DATA.completa = {"easy": [{"emoji": "🐱", "word": "GATO", "blanks": [1, 3], "answers": ["A", "O"], "options": ["A", "O", "E", "I", "R"]}, {"emoji": "🐶", "word": "PERRO", "blanks": [1, 4], "answers": ["E", "O"], "options": ["E", "O", "A", "I", "L"]}, {"emoji": "🌸", "word": "FLOR", "blanks": [2], "answers": ["O"], "options": ["O", "A", "E", "U"]}, {"emoji": "🌙", "word": "LUNA", "blanks": [1, 3], "answers": ["U", "A"], "options": ["U", "A", "E", "I", "R"]}, {"emoji": "🍎", "word": "PERA", "blanks": [1, 3], "answers": ["E", "A"], "options": ["E", "A", "I", "O", "R"]}, {"emoji": "🐟", "word": "PEZ", "blanks": [1], "answers": ["E"], "options": ["E", "A", "I", "O"]}, {"emoji": "☀️", "word": "SOL", "blanks": [1], "answers": ["O"], "options": ["O", "A", "E", "U"]}, {"emoji": "🐸", "word": "RANA", "blanks": [1], "answers": ["A"], "options": ["A", "E", "I", "O"]}, {"emoji": "🌊", "word": "MAR", "blanks": [1], "answers": ["A"], "options": ["A", "E", "I", "O"]}, {"emoji": "🐻", "word": "OSO", "blanks": [1], "answers": ["S"], "options": ["S", "A", "E", "O"]}, {"emoji": "🦁", "word": "LEON", "blanks": [1, 3], "answers": ["E", "N"], "options": ["E", "N", "A", "I"]}, {"emoji": "🌺", "word": "ROSA", "blanks": [1, 3], "answers": ["O", "A"], "options": ["O", "A", "E", "I", "R"]}, {"emoji": "🏠", "word": "CASA", "blanks": [1, 3], "answers": ["A", "A"], "options": ["A", "E", "I", "R"]}, {"emoji": "🐮", "word": "VACA", "blanks": [1, 3], "answers": ["A", "A"], "options": ["A", "E", "I", "R"]}, {"emoji": "🌈", "word": "ARCO", "blanks": [1, 3], "answers": ["R", "O"], "options": ["R", "O", "E", "I", "L"]}], "medium": [{"emoji": "🐬", "word": "DELFIN", "blanks": [2, 4], "answers": ["L", "I"], "options": ["L", "I", "A", "O", "R"]}, {"emoji": "🦒", "word": "JIRAFA", "blanks": [1, 4], "answers": ["I", "F"], "options": ["I", "F", "O", "E", "L"]}, {"emoji": "🚗", "word": "COCHE", "blanks": [1, 3], "answers": ["O", "H"], "options": ["O", "H", "A", "I", "L"]}, {"emoji": "🍕", "word": "PIZZA", "blanks": [1, 3], "answers": ["I", "Z"], "options": ["I", "Z", "O", "E", "L"]}, {"emoji": "🎈", "word": "GLOBO", "blanks": [1, 4], "answers": ["L", "O"], "options": ["L", "O", "A", "E", "R"]}, {"emoji": "🦊", "word": "ZORRO", "blanks": [1, 3], "answers": ["O", "R"], "options": ["O", "R", "A", "E", "L"]}, {"emoji": "🐼", "word": "PANDA", "blanks": [1, 4], "answers": ["A", "A"], "options": ["A", "E", "O", "L"]}, {"emoji": "🌴", "word": "PALMA", "blanks": [1, 4], "answers": ["A", "A"], "options": ["A", "E", "O", "R"]}, {"emoji": "🎃", "word": "BRUJA", "blanks": [2, 4], "answers": ["U", "A"], "options": ["U", "A", "E", "O", "L"]}, {"emoji": "🐙", "word": "PULPO", "blanks": [1, 4], "answers": ["U", "O"], "options": ["U", "O", "A", "E", "R"]}, {"emoji": "🦄", "word": "POTRO", "blanks": [1, 4], "answers": ["O", "O"], "options": ["O", "A", "E", "L"]}, {"emoji": "🚀", "word": "COHETE", "blanks": [1, 3], "answers": ["O", "E"], "options": ["O", "E", "A", "I", "L"]}, {"emoji": "🌻", "word": "CAMPO", "blanks": [1, 4], "answers": ["A", "O"], "options": ["A", "O", "E", "I", "L"]}, {"emoji": "🏰", "word": "TORRE", "blanks": [1, 3], "answers": ["O", "R"], "options": ["O", "R", "A", "I", "L"]}, {"emoji": "🌺", "word": "PLANTA", "blanks": [2, 5], "answers": ["A", "A"], "options": ["A", "E", "O", "R"]}], "hard": [{"emoji": "🐊", "word": "COCODRILO", "blanks": [1, 5, 8], "answers": ["O", "R", "O"], "options": ["O", "R", "A", "E", "N"]}, {"emoji": "🌋", "word": "VOLCAN", "blanks": [1, 4], "answers": ["O", "A"], "options": ["O", "A", "E", "I", "T"]}, {"emoji": "🦋", "word": "MARIPOSA", "blanks": [1, 4], "answers": ["A", "P"], "options": ["A", "P", "E", "O", "L"]}, {"emoji": "🐘", "word": "ELEFANTE", "blanks": [0, 4], "answers": ["E", "A"], "options": ["E", "A", "I", "O", "R"]}, {"emoji": "🦩", "word": "FLAMENCO", "blanks": [2, 5], "answers": ["A", "N"], "options": ["A", "N", "I", "O", "T"]}, {"emoji": "🦅", "word": "AGUILA", "blanks": [0, 3], "answers": ["A", "I"], "options": ["A", "I", "E", "O", "R"]}, {"emoji": "🎪", "word": "CIRCO", "blanks": [1, 4], "answers": ["I", "O"], "options": ["I", "O", "A", "E", "L"]}, {"emoji": "🦁", "word": "MELENA", "blanks": [1, 3], "answers": ["E", "E"], "options": ["E", "I", "O", "T"]}, {"emoji": "🌊", "word": "OCEANO", "blanks": [0, 3], "answers": ["O", "A"], "options": ["O", "A", "I", "U", "R"]}, {"emoji": "🦜", "word": "PAPAGAYO", "blanks": [1, 4], "answers": ["A", "G"], "options": ["A", "G", "E", "O", "L"]}]};
 // ===== SONIDOS =====
 DATA.sonidos = [
   {sound:'guau guau',answer:'perro',correctLabel:'el perro',options:[{emoji:'🐶',label:'perro'},{emoji:'🐱',label:'gato'},{emoji:'🐸',label:'rana'}]},
@@ -904,29 +856,7 @@ DATA.cuentos = [
 ];
 
 // ===== RELOJ =====
-DATA.reloj = [
-  {hours:3,  minutes:0,  answer:'3:00',  options:['3:00','6:00','9:00','12:00']},
-  {hours:6,  minutes:0,  answer:'6:00',  options:['3:00','6:00','9:00','12:00']},
-  {hours:9,  minutes:0,  answer:'9:00',  options:['6:00','9:00','3:00','12:00']},
-  {hours:12, minutes:0,  answer:'12:00', options:['3:00','6:00','9:00','12:00']},
-  {hours:1,  minutes:0,  answer:'1:00',  options:['1:00','2:00','4:00','7:00']},
-  {hours:2,  minutes:0,  answer:'2:00',  options:['1:00','2:00','5:00','8:00']},
-  {hours:4,  minutes:0,  answer:'4:00',  options:['3:00','4:00','5:00','8:00']},
-  {hours:7,  minutes:0,  answer:'7:00',  options:['6:00','7:00','8:00','11:00']},
-  {hours:10, minutes:0,  answer:'10:00', options:['9:00','10:00','11:00','2:00']},
-  {hours:11, minutes:0,  answer:'11:00', options:['10:00','11:00','12:00','5:00']},
-  {hours:3,  minutes:30, answer:'3:30',  options:['3:00','3:30','6:30','9:30']},
-  {hours:6,  minutes:30, answer:'6:30',  options:['6:00','6:30','12:30','3:30']},
-  {hours:9,  minutes:30, answer:'9:30',  options:['9:00','9:30','3:30','6:30']},
-  {hours:12, minutes:30, answer:'12:30', options:['12:00','12:30','6:30','3:30']},
-  {hours:1,  minutes:30, answer:'1:30',  options:['1:00','1:30','7:30','4:30']},
-  {hours:5,  minutes:30, answer:'5:30',  options:['5:00','5:30','11:30','2:30']},
-  {hours:8,  minutes:30, answer:'8:30',  options:['8:00','8:30','2:30','5:30']},
-  {hours:2,  minutes:30, answer:'2:30',  options:['2:00','2:30','8:30','5:30']},
-  {hours:7,  minutes:30, answer:'7:30',  options:['7:00','7:30','1:30','4:30']},
-  {hours:10, minutes:30, answer:'10:30', options:['10:00','10:30','4:30','1:30']},
-];
-
+DATA.reloj = [{"hours": 3, "minutes": 0, "answer": "03:00", "options": ["06:00", "09:00", "12:00"]}, {"hours": 6, "minutes": 0, "answer": "06:00", "options": ["03:00", "09:00", "12:00"]}, {"hours": 9, "minutes": 0, "answer": "09:00", "options": ["06:00", "03:00", "12:00"]}, {"hours": 12, "minutes": 0, "answer": "12:00", "options": ["03:00", "06:00", "09:00"]}, {"hours": 1, "minutes": 0, "answer": "01:00", "options": ["02:00", "04:00", "07:00"]}, {"hours": 2, "minutes": 0, "answer": "02:00", "options": ["01:00", "05:00", "08:00"]}, {"hours": 4, "minutes": 0, "answer": "04:00", "options": ["03:00", "05:00", "08:00"]}, {"hours": 7, "minutes": 0, "answer": "07:00", "options": ["06:00", "08:00", "11:00"]}, {"hours": 10, "minutes": 0, "answer": "10:00", "options": ["09:00", "11:00", "02:00"]}, {"hours": 11, "minutes": 0, "answer": "11:00", "options": ["10:00", "12:00", "05:00"]}, {"hours": 3, "minutes": 30, "answer": "03:30", "options": ["03:00", "06:30", "09:30"]}, {"hours": 6, "minutes": 30, "answer": "06:30", "options": ["06:00", "12:30", "03:30"]}, {"hours": 9, "minutes": 30, "answer": "09:30", "options": ["09:00", "03:30", "06:30"]}, {"hours": 12, "minutes": 30, "answer": "12:30", "options": ["12:00", "06:30", "03:30"]}, {"hours": 15, "minutes": 0, "answer": "15:00", "options": ["13:00", "16:00", "18:00"]}, {"hours": 16, "minutes": 0, "answer": "16:00", "options": ["14:00", "17:00", "19:00"]}, {"hours": 18, "minutes": 0, "answer": "18:00", "options": ["16:00", "20:00", "15:00"]}, {"hours": 20, "minutes": 0, "answer": "20:00", "options": ["18:00", "22:00", "19:00"]}, {"hours": 15, "minutes": 30, "answer": "15:30", "options": ["15:00", "16:30", "14:30"]}, {"hours": 19, "minutes": 30, "answer": "19:30", "options": ["19:00", "20:30", "18:30"]}];
 // ===== TIEMPO METEOROLÓGICO =====
 DATA.tiempo = [
   {scene:'☀️🌡️',weatherName:'mucho sol y calor',bgColor:'#FFD93D',textColor:'#7a5c00',correct:'camiseta',

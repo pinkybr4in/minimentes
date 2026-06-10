@@ -2,7 +2,7 @@ const App = {
   currentGame:null, scores:{},
   GAMES:['frases','colorear','puntos','letras','contar','sombras','ingles',
          'completa','sonidos','calculo','colores','memoria','forma','cuento',
-         'reloj','tiempo','ordena_nums','clasifica','patron','laberinto'],
+         'reloj','tiempo','ordena_nums','clasifica','patron','laberinto','mini'],
 
   init() {
     try{this.scores=JSON.parse(localStorage.getItem('mm_scores')||'{}');}catch(e){this.scores={};}
@@ -26,7 +26,7 @@ const App = {
       calculo:'➕ Sumas y Restas',colores:'🌈 ¿De qué Color?',memoria:'🧠 Memoria',
       forma:'🔡 Forma la Palabra',cuento:'📖 Cuento Interactivo',reloj:'🕐 ¿Qué Hora es?',
       tiempo:'🌤️ ¿Qué Ropa me Pongo?',ordena_nums:'🔢 Ordena los Números',
-      clasifica:'🗂️ Clasifica',patron:'🔁 Sigue el Patrón',laberinto:'🌀 Laberinto'
+      clasifica:'🗂️ Clasifica',patron:'🔁 Sigue el Patrón',laberinto:'🌀 Laberinto',mini:'🔍 ¿Dónde está Mini?'
     };
     document.getElementById('topbarTitle').textContent=names[gameId]||gameId;
     this.updateTopbarScore();
@@ -36,7 +36,7 @@ const App = {
       contar:GameContar,sombras:GameSombras,ingles:GameIngles,completa:GameCompleta,
       sonidos:GameSonidos,calculo:GameCalculo,colores:GameColores,memoria:GameMemoria,
       forma:GameForma,cuento:GameCuento,reloj:GameReloj,tiempo:GameTiempo,
-      ordena_nums:GameOrdenaNums,clasifica:GameClasifica,patron:GamePatron,laberinto:GameLaberinto
+      ordena_nums:GameOrdenaNums,clasifica:GameClasifica,patron:GamePatron,laberinto:GameLaberinto,mini:GameMini
     };
     if(games[gameId]) games[gameId].init(document.getElementById('gameContent'));
   },
@@ -62,7 +62,7 @@ const App = {
       const el=document.getElementById('stars-'+g);
       if(el){el.textContent=s>0?'⭐'.repeat(s):'☆☆☆☆☆';el.classList.toggle('has-stars',s>0);}
     });
-    document.getElementById('totalStarsDisplay').textContent=total+' / 100';
+    document.getElementById('totalStarsDisplay').textContent=total+' / 105';
   },
 
   showFeedback(correct,callback) {

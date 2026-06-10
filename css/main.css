@@ -493,3 +493,8 @@ canvas { display: block; width: 100%; touch-action: none; }
 
 /* ===== CLASIFICA ===== */
 .clasifica-cat { transition: all 0.2s; }
+
+/* ===== ¿DÓNDE ESTÁ MINI? ===== */
+.mi-chip { transition: all 0.3s; }
+.mi-chip-found { background: #6BCB77 !important; color: white !important; text-decoration: line-through; opacity: 0.7; }
+#mi-scene-wrap canvas { display: block; border-radius: 16px; }

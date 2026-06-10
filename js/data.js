@@ -1133,231 +1133,356 @@ DATA.laberintos = {
 
 
 // ===== ¿DÓNDE ESTÁ MINI? =====
+// Escenas con 150-200 personajes, dificultad tipo "Donde está Wally"
 DATA.mini = [
-  // SCENE 1: Parque
+  // ===== ESCENA 1: PLAYA DE VERANO =====
   {
-    name: "El Parque",
-    bgColor: '#c8e6c9',
-    draw(ctx, W, H) {
-      // Sky
-      ctx.fillStyle='#87CEEB'; ctx.fillRect(0,0,W,H*0.45);
-      // Ground
-      ctx.fillStyle='#7CB87A'; ctx.fillRect(0,H*0.45,W,H*0.55);
-      // Sun
-      ctx.fillStyle='#FFD93D'; ctx.beginPath(); ctx.arc(W*0.85,H*0.12,W*0.07,0,Math.PI*2); ctx.fill();
-      // Clouds
-      [[0.15,0.1],[0.45,0.08],[0.65,0.14]].forEach(([rx,ry])=>{
-        ctx.fillStyle='white';
-        ctx.beginPath(); ctx.ellipse(W*rx,H*ry,W*0.08,H*0.04,0,0,Math.PI*2); ctx.fill();
-        ctx.beginPath(); ctx.ellipse(W*(rx+0.05),H*(ry-0.02),W*0.06,H*0.035,0,0,Math.PI*2); ctx.fill();
-      });
-      // Trees
-      [[0.08,0.38],[0.22,0.35],[0.75,0.36],[0.88,0.40],[0.55,0.33]].forEach(([rx,ry])=>{
-        ctx.fillStyle='#4a7c59';
-        ctx.beginPath(); ctx.moveTo(W*rx,H*(ry-0.18)); ctx.lineTo(W*(rx-0.055),H*(ry+0.02)); ctx.lineTo(W*(rx+0.055),H*(ry+0.02)); ctx.fill();
-        ctx.fillStyle='#6d4c41'; ctx.fillRect(W*rx-W*0.012,H*ry,W*0.024,H*0.07);
-      });
-      // Pond
-      ctx.fillStyle='#6EC6F5'; ctx.beginPath(); ctx.ellipse(W*0.5,H*0.7,W*0.12,H*0.06,0,0,Math.PI*2); ctx.fill();
-      // Path
-      ctx.fillStyle='#d4a96a'; ctx.fillRect(W*0.46,H*0.5,W*0.08,H*0.5);
-      // Bench
-      ctx.fillStyle='#8B6343'; ctx.fillRect(W*0.28,H*0.6,W*0.1,H*0.025); ctx.fillRect(W*0.3,H*0.62,W*0.02,H*0.05); ctx.fillRect(W*0.35,H*0.62,W*0.02,H*0.05);
-      // Flowers
-      [[0.15,0.65],[0.62,0.58],[0.78,0.72],[0.35,0.78],[0.2,0.82]].forEach(([rx,ry])=>{
-        ctx.fillStyle='#FF6BD6'; ctx.beginPath(); ctx.arc(W*rx,H*ry,W*0.018,0,Math.PI*2); ctx.fill();
-        ctx.fillStyle='#FFD93D'; ctx.beginPath(); ctx.arc(W*rx,H*ry,W*0.008,0,Math.PI*2); ctx.fill();
-      });
-    },
-    targets:[
-      {emoji:'👧🏻', name:'Mini', rx:0.42, ry:0.62, size:0.08},
-      {emoji:'🐕',  name:'Roco', rx:0.68, ry:0.68, size:0.065},
-      {emoji:'🤖',  name:'Beep', rx:0.25, ry:0.55, size:0.07},
-    ],
-    distractors:[
-      {emoji:'👦',rx:0.12,ry:0.60,size:0.065},{emoji:'👴',rx:0.82,ry:0.58,size:0.065},
-      {emoji:'👩',rx:0.58,ry:0.62,size:0.065},{emoji:'🐈',rx:0.38,ry:0.70,size:0.055},
-      {emoji:'🐦',rx:0.70,ry:0.22,size:0.045},{emoji:'🐦',rx:0.30,ry:0.18,size:0.045},
-      {emoji:'🦆',rx:0.52,ry:0.72,size:0.055},{emoji:'👧',rx:0.72,ry:0.52,size:0.06},
-      {emoji:'🧒',rx:0.18,ry:0.72,size:0.055},{emoji:'🐿️',rx:0.88,ry:0.65,size:0.045},
-      {emoji:'🎈',rx:0.35,ry:0.42,size:0.05},{emoji:'⚽',rx:0.62,ry:0.80,size:0.045},
-    ]
-  },
-  // SCENE 2: Playa
-  {
-    name: "La Playa",
-    bgColor: '#87CEEB',
-    draw(ctx, W, H) {
-      ctx.fillStyle='#87CEEB'; ctx.fillRect(0,0,W,H*0.5);
-      ctx.fillStyle='#6EC6F5'; ctx.fillRect(0,H*0.35,W,H*0.2);
-      ctx.fillStyle='#F5DEB3'; ctx.fillRect(0,H*0.52,W,H*0.48);
-      // Sun
-      ctx.fillStyle='#FFD93D'; ctx.beginPath(); ctx.arc(W*0.88,H*0.1,W*0.065,0,Math.PI*2); ctx.fill();
+    name: 'Playa de Verano',
+    drawBg(ctx, W, H) {
+      // Sky gradient
+      const sky = ctx.createLinearGradient(0,0,0,H*0.45);
+      sky.addColorStop(0,'#4fc3f7'); sky.addColorStop(1,'#b3e5fc');
+      ctx.fillStyle=sky; ctx.fillRect(0,0,W,H*0.45);
+      // Sea
+      const sea = ctx.createLinearGradient(0,H*0.38,0,H*0.55);
+      sea.addColorStop(0,'#039be5'); sea.addColorStop(1,'#0277bd');
+      ctx.fillStyle=sea; ctx.fillRect(0,H*0.38,W,H*0.18);
+      // Sand
+      const sand = ctx.createLinearGradient(0,H*0.53,0,H);
+      sand.addColorStop(0,'#ffe082'); sand.addColorStop(1,'#ffca28');
+      ctx.fillStyle=sand; ctx.fillRect(0,H*0.53,W,H*0.47);
       // Waves
+      ctx.strokeStyle='rgba(255,255,255,0.6)'; ctx.lineWidth=2;
+      for(let i=0;i<8;i++){
+        ctx.beginPath();
+        for(let x=0;x<W;x+=20) ctx.lineTo(x, H*(0.44+0.01*Math.sin((x+i*80)*0.04)));
+        ctx.stroke();
+      }
+      // Umbrellas every 120px
+      for(let x=60;x<W;x+=120){
+        const col=['#FF6B6B','#6EC6F5','#FFD93D','#6BCB77','#C77DFF'][Math.floor(x/120)%5];
+        ctx.fillStyle=col;
+        ctx.beginPath(); ctx.moveTo(x,H*0.55); ctx.lineTo(x-40,H*0.72); ctx.lineTo(x+40,H*0.72); ctx.fill();
+        ctx.strokeStyle='#8B6343'; ctx.lineWidth=3;
+        ctx.beginPath(); ctx.moveTo(x,H*0.55); ctx.lineTo(x+5,H*0.88); ctx.stroke();
+      }
+      // Horizon boats
+      ['⛵','🚢','⛵','🛥️'].forEach((b,i)=>{
+        ctx.font=`${W*0.04}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText(b, W*(0.1+i*0.25), H*0.41);
+      });
+    },
+    targets:[
+      {emoji:'👧🏻', name:'Mini (gorra roja)',   description:'niña con gorra roja'},
+      {emoji:'🐕',  name:'Roco (collar azul)',  description:'perro con collar azul'},
+      {emoji:'🤖',  name:'Beep (antena)',        description:'robot pequeño'},
+      {emoji:'🎩',  name:'Mago (sombrero negro)',description:'señor con sombrero de copa'},
+    ],
+    distractors:[
+      '👦','👧','👩','👨','👴','👵','🧒','👶','🧑','👱','👩‍🦰','👨‍🦳',
+      '🩱','🩲','🏊','🤽','🏄','🤿','⛱️','🏖️',
+      '🐕','🐩','🐈','🐇','🦮',
+      '🦀','🐚','🦑','🐠','🐟','🦞',
+      '🏐','⚽','🎾','🪁','🎣',
+      '🍦','🧃','🍧','🍉','🥤',
+      '👒','🕶️','👙','🩴','🧴',
+      '🌊','☀️','🌈','⛅','🌤️',
+      '👦🏿','👧🏽','👩🏻','👨🏾','🧔',
+    ],
+    overlays:[
+      {emoji:'🌴',rx:0.05,ry:0.40,size:0.09,alpha:1},
+      {emoji:'🌴',rx:0.18,ry:0.38,size:0.08,alpha:1},
+      {emoji:'🌴',rx:0.82,ry:0.39,size:0.09,alpha:1},
+      {emoji:'🌴',rx:0.95,ry:0.37,size:0.08,alpha:1},
+      {emoji:'🌴',rx:0.50,ry:0.36,size:0.07,alpha:0.9},
+      {emoji:'☁️',rx:0.12,ry:0.08,size:0.065,alpha:0.9},
+      {emoji:'☁️',rx:0.40,ry:0.06,size:0.075,alpha:0.85},
+      {emoji:'☁️',rx:0.70,ry:0.09,size:0.06,alpha:0.9},
+    ]
+  },
+
+  // ===== ESCENA 2: FERIA Y MERCADO MEDIEVAL =====
+  {
+    name: 'Feria Medieval',
+    drawBg(ctx, W, H) {
+      const sky = ctx.createLinearGradient(0,0,0,H*0.4);
+      sky.addColorStop(0,'#ffcc02'); sky.addColorStop(1,'#ff8c00');
+      ctx.fillStyle=sky; ctx.fillRect(0,0,W,H*0.4);
+      // Ground cobblestone
+      ctx.fillStyle='#9e9e9e';
+      for(let row=0;row<6;row++) for(let col=0;col<20;col++){
+        const shade=row%2===col%2?'#bbb':'#999';
+        ctx.fillStyle=shade;
+        ctx.fillRect(W*col/20, H*(0.4+row*0.1), W/20, H*0.1);
+        ctx.strokeStyle='#777'; ctx.lineWidth=0.5;
+        ctx.strokeRect(W*col/20, H*(0.4+row*0.1), W/20, H*0.1);
+      }
+      // Castle/building backdrop
+      const buildings=[
+        {x:0,w:0.18,h:0.35,col:'#8d6e63'},{x:0.16,w:0.14,h:0.28,col:'#795548'},
+        {x:0.28,w:0.2,h:0.38,col:'#6d4c41'},{x:0.46,w:0.16,h:0.3,col:'#5d4037'},
+        {x:0.6,w:0.22,h:0.34,col:'#4e342e'},{x:0.8,w:0.22,h:0.32,col:'#3e2723'},
+      ];
+      buildings.forEach(b=>{
+        ctx.fillStyle=b.col;
+        ctx.fillRect(W*b.x, H*(0.4-b.h), W*b.w, H*b.h);
+        // Battlements
+        for(let i=0;i<4;i++) ctx.fillRect(W*(b.x+i*b.w/4), H*(0.4-b.h)-H*0.03, W*(b.w/5), H*0.03);
+        // Windows
+        ctx.fillStyle='#87CEEB';
+        ctx.fillRect(W*(b.x+b.w*0.2), H*(0.4-b.h*0.7), W*(b.w*0.2), H*0.05);
+        ctx.fillRect(W*(b.x+b.w*0.6), H*(0.4-b.h*0.5), W*(b.w*0.2), H*0.05);
+      });
+      // Market stall canopies
+      const stallCols=['#FF6B6B','#6EC6F5','#FFD93D','#6BCB77','#C77DFF','#FF9F43','#FF6BD6','#4a9ec9'];
+      for(let i=0;i<8;i++){
+        ctx.fillStyle=stallCols[i];
+        ctx.fillRect(W*(0.02+i*0.125), H*0.38, W*0.11, H*0.025);
+        ctx.fillStyle=stallCols[i]+'99';
+        ctx.fillRect(W*(0.02+i*0.125), H*0.405, W*0.11, H*0.12);
+        // Striped awning
+        for(let s=0;s<4;s++){
+          ctx.fillStyle=s%2===0?stallCols[i]:'white';
+          ctx.fillRect(W*(0.02+i*0.125+s*0.0275), H*0.38, W*0.0275, H*0.025);
+        }
+      }
+      // Flags & pennants
+      ['🚩','🏳️','🎌','🏴'].forEach((f,i)=>{
+        ctx.font=`${W*0.04}px serif`; ctx.textAlign='center';
+        ctx.fillText(f, W*(0.08+i*0.28), H*0.12);
+      });
+    },
+    targets:[
+      {emoji:'👧🏻', name:'Mini (trenza)',       description:'niña con trenza'},
+      {emoji:'🐉',  name:'Dragón pequeño',      description:'dragón verde pequeño'},
+      {emoji:'🧙',  name:'Merlín el mago',      description:'mago con túnica'},
+      {emoji:'👸',  name:'Princesa Iris',       description:'princesa con corona'},
+      {emoji:'🦁',  name:'León domado',         description:'león con lacito'},
+    ],
+    distractors:[
+      '👦','👧','👩','👨','👴','👵','🧒','👶','🧑','👱','🧔','👩‍🦱',
+      '🛡️','⚔️','🏹','🪄','🔮','🪬',
+      '🐴','🐎','🦄','🐏','🐐','🐖','🐓','🦢',
+      '🍖','🥩','🍺','🍯','🧁','🎂','🍞','🥨',
+      '🎠','🎡','🎪','🎭','🎺','🥁','🎻','🪗',
+      '👑','🎓','⛑️','🪖','👒','🧢','🎩','🪆',
+      '🐲','🐸','🦎','🦖','🐊','🦕',
+      '🌹','🌺','💐','🌻','🌼','🌷',
+      '👩‍🦰','👨‍🦳','👩‍🦲','🧛','🧟','🧝','🧜','🧚',
+    ],
+    overlays:[
+      {emoji:'🎠',rx:0.05,ry:0.70,size:0.08,alpha:0.95},
+      {emoji:'🎡',rx:0.92,ry:0.65,size:0.09,alpha:0.95},
+      {emoji:'🏰',rx:0.50,ry:0.18,size:0.10,alpha:0.9},
+      {emoji:'⛩️',rx:0.22,ry:0.22,size:0.07,alpha:0.9},
+      {emoji:'🗼',rx:0.78,ry:0.20,size:0.07,alpha:0.9},
+      {emoji:'🎆',rx:0.35,ry:0.08,size:0.055,alpha:0.8},
+      {emoji:'🎆',rx:0.65,ry:0.10,size:0.055,alpha:0.8},
+    ]
+  },
+
+  // ===== ESCENA 3: ESTADIO DE FÚTBOL =====
+  {
+    name: 'Gran Partido de Fútbol',
+    drawBg(ctx, W, H) {
+      // Stands gradient
+      ctx.fillStyle='#e3f2fd'; ctx.fillRect(0,0,W,H);
+      // Pitch
+      ctx.fillStyle='#2e7d32'; ctx.fillRect(W*0.08,H*0.32,W*0.84,H*0.55);
+      // Pitch lines
       ctx.strokeStyle='white'; ctx.lineWidth=2;
-      [[0.1,0.45],[0.35,0.42],[0.6,0.44],[0.8,0.43]].forEach(([rx,ry])=>{
-        ctx.beginPath(); ctx.arc(W*rx,H*ry,W*0.06,Math.PI,0); ctx.stroke();
-      });
-      // Umbrella
-      ctx.fillStyle='#FF6B6B'; ctx.beginPath(); ctx.moveTo(W*0.72,H*0.52); ctx.lineTo(W*0.58,H*0.72); ctx.lineTo(W*0.86,H*0.72); ctx.fill();
-      ctx.strokeStyle='#8B6343'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(W*0.72,H*0.52); ctx.lineTo(W*0.72,H*0.82); ctx.stroke();
-      // Towels
-      ctx.fillStyle='#6BCB77'; ctx.fillRect(W*0.08,H*0.68,W*0.18,H*0.08);
-      ctx.fillStyle='#C77DFF'; ctx.fillRect(W*0.3,H*0.7,W*0.16,H*0.08);
-      // Castle
-      ctx.fillStyle='#D4A96A'; ctx.fillRect(W*0.78,H*0.74,W*0.1,H*0.1); ctx.fillRect(W*0.77,H*0.71,W*0.03,H*0.04); ctx.fillRect(W*0.83,H*0.71,W*0.03,H*0.04); ctx.fillRect(W*0.87,H*0.71,W*0.02,H*0.04);
-      // Seagulls
-      [[0.2,0.15],[0.4,0.12],[0.6,0.18]].forEach(([rx,ry])=>{
-        ctx.strokeStyle='#555'; ctx.lineWidth=1.5;
-        ctx.beginPath(); ctx.arc(W*rx,H*ry,W*0.02,Math.PI,0); ctx.stroke();
-        ctx.beginPath(); ctx.arc(W*(rx+0.03),H*ry,W*0.02,Math.PI,0); ctx.stroke();
-      });
+      ctx.strokeRect(W*0.1,H*0.34,W*0.8,H*0.51);
+      ctx.beginPath(); ctx.moveTo(W*0.5,H*0.34); ctx.lineTo(W*0.5,H*0.85); ctx.stroke();
+      ctx.beginPath(); ctx.arc(W*0.5,H*0.595,W*0.1,0,Math.PI*2); ctx.stroke();
+      // Goals
+      ctx.strokeStyle='white'; ctx.lineWidth=3;
+      ctx.strokeRect(W*0.1,H*0.50,W*0.04,H*0.18);
+      ctx.strokeRect(W*0.86,H*0.50,W*0.04,H*0.18);
+      // Stands rows
+      const standCols=['#e53935','#1e88e5','#43a047','#fb8c00','#8e24aa'];
+      for(let row=0;row<5;row++){
+        for(let col=0;col<30;col++){
+          ctx.fillStyle=standCols[(row+col)%5];
+          ctx.fillRect(W*(col/30), H*(row*0.06), W*(1/30)-1, H*0.055);
+        }
+      }
+      // Scoreboard
+      ctx.fillStyle='#1a1a2e'; ctx.fillRect(W*0.38,H*0.02,W*0.24,H*0.08);
+      ctx.fillStyle='white'; ctx.font=`bold ${W*0.03}px Nunito`; ctx.textAlign='center';
+      ctx.fillText('2 - 1', W*0.5, H*0.065);
     },
     targets:[
-      {emoji:'👧🏻', name:'Mini',   rx:0.42, ry:0.65, size:0.08},
-      {emoji:'🐚',  name:'Concha', rx:0.16, ry:0.88, size:0.06},
-      {emoji:'🦀',  name:'Cangrejo',rx:0.62,ry:0.82, size:0.065},
+      {emoji:'👧🏻', name:'Mini (bufanda amarilla)',  description:'niña bufanda amarilla'},
+      {emoji:'🐕',  name:'Roco (mascota)',           description:'perro mascota'},
+      {emoji:'🎺',  name:'Trompetista',              description:'persona con trompeta'},
+      {emoji:'🤖',  name:'Beep (robot árbitro)',     description:'robot con silbato'},
     ],
     distractors:[
-      {emoji:'👦',rx:0.25,ry:0.70,size:0.065},{emoji:'👩',rx:0.62,ry:0.68,size:0.065},
-      {emoji:'👨',rx:0.78,ry:0.62,size:0.065},{emoji:'🏄',rx:0.08,ry:0.44,size:0.065},
-      {emoji:'🐟',rx:0.45,ry:0.42,size:0.055},{emoji:'⛵',rx:0.72,ry:0.32,size:0.065},
-      {emoji:'🦀',rx:0.88,ry:0.78,size:0.055},{emoji:'🐚',rx:0.35,ry:0.90,size:0.05},
-      {emoji:'🏖️',rx:0.50,ry:0.82,size:0.055},{emoji:'🎣',rx:0.08,ry:0.62,size:0.06},
-      {emoji:'🦈',rx:0.55,ry:0.47,size:0.055},{emoji:'🐬',rx:0.25,ry:0.40,size:0.055},
-    ]
-  },
-  // SCENE 3: Mercado
-  {
-    name: "El Mercado",
-    bgColor: '#FFF9E0',
-    draw(ctx, W, H) {
-      // Ground
-      ctx.fillStyle='#DEB887'; ctx.fillRect(0,H*0.5,W,H*0.5);
-      // Sky/background
-      ctx.fillStyle='#e8f4fd'; ctx.fillRect(0,0,W,H*0.5);
-      // Stalls
-      [[0.05,'#FF6B6B'],[0.28,'#6EC6F5'],[0.52,'#6BCB77'],[0.75,'#C77DFF']].forEach(([rx,col])=>{
-        ctx.fillStyle=col; ctx.fillRect(W*rx,H*0.3,W*0.2,H*0.04);
-        ctx.fillStyle=col+'88'; ctx.fillRect(W*rx,H*0.34,W*0.2,H*0.2);
-        // Goods
-        ctx.font=`${W*0.05}px serif`;
-        ['🍎','🥕','🍌','🧀'].forEach((em,i)=>{ if(i===[[0,1,2],[0,1,2],[0,1,2,3],[0,1]][Math.floor(rx*4)]||true){ ctx.fillText(em, W*(rx+0.03+i*0.045), H*0.5); }});
-      });
-      // Building back
-      ctx.fillStyle='#f0c080'; ctx.fillRect(W*0.1,H*0.05,W*0.35,H*0.27);
-      ctx.fillStyle='#d4a040'; ctx.fillRect(W*0.5,H*0.08,W*0.42,H*0.24);
-      // Windows
-      [[0.14,0.1],[0.22,0.1],[0.14,0.2],[0.22,0.2],[0.54,0.12],[0.64,0.12],[0.74,0.12],[0.84,0.12]].forEach(([rx,ry])=>{
-        ctx.fillStyle='#87CEEB'; ctx.fillRect(W*rx,H*ry,W*0.06,H*0.07);
-      });
-    },
-    targets:[
-      {emoji:'👧🏻', name:'Mini',    rx:0.48, ry:0.62, size:0.08},
-      {emoji:'🎩',  name:'Mago',    rx:0.18, ry:0.58, size:0.07},
-      {emoji:'🐕',  name:'Roco',    rx:0.78, ry:0.72, size:0.065},
+      '👦','👧','👩','👨','👴','👵','🧒','👶','🧑','👱','🧔','👩‍🦱',
+      '👦🏿','👧🏽','👩🏻','👨🏾','👴🏾','👵🏼','🧒🏿',
+      '⚽','🥅','🏆','🥇','🎽','👟','🧤',
+      '🎉','🎊','📣','🪅','🎈','🎁',
+      '🐯','🦁','🦅','🐻','🦊','🐺',
+      '🍿','🌭','🥤','🍺','🥨','🧆',
+      '📱','📸','🎥','📺','🔭','📡',
+      '🏳️','🚩','🎌','🇪🇸','🇩🇪','🇫🇷','🇧🇷','🇦🇷',
+      '🥁','🎸','🎻','🎷','🎺','🪗','🎵','🎶',
+      '👒','🧢','⛑️','🪖','🎓','👑','🎩','🥸',
     ],
-    distractors:[
-      {emoji:'👴',rx:0.08,ry:0.60,size:0.065},{emoji:'👩',rx:0.35,ry:0.62,size:0.065},
-      {emoji:'👦',rx:0.62,ry:0.65,size:0.065},{emoji:'👨',rx:0.85,ry:0.60,size:0.065},
-      {emoji:'🧒',rx:0.25,ry:0.70,size:0.055},{emoji:'👧',rx:0.55,ry:0.75,size:0.06},
-      {emoji:'🐈',rx:0.70,ry:0.62,size:0.055},{emoji:'🎩',rx:0.42,ry:0.55,size:0.065},
-      {emoji:'🛒',rx:0.30,ry:0.80,size:0.055},{emoji:'🎪',rx:0.90,ry:0.45,size:0.055},
-      {emoji:'🦜',rx:0.12,ry:0.45,size:0.05},{emoji:'🐕',rx:0.60,ry:0.80,size:0.055},
+    overlays:[
+      {emoji:'🏟️',rx:0.02,ry:0.95,size:0.09,alpha:0.7},
+      {emoji:'🏟️',rx:0.98,ry:0.95,size:0.09,alpha:0.7},
+      {emoji:'🎆',rx:0.15,ry:0.04,size:0.055,alpha:0.8},
+      {emoji:'🎆',rx:0.85,ry:0.04,size:0.055,alpha:0.8},
     ]
   },
-  // SCENE 4: Biblioteca
+
+  // ===== ESCENA 4: CIUDAD FUTURISTA =====
   {
-    name: "La Biblioteca",
-    bgColor: '#f5f0e8',
-    draw(ctx, W, H) {
-      ctx.fillStyle='#f5f0e8'; ctx.fillRect(0,0,W,H);
-      // Floor
-      ctx.fillStyle='#D2B48C'; ctx.fillRect(0,H*0.75,W,H*0.25);
-      // Bookshelves
-      [[0.0,'#8B6343'],[0.5,'#6d4c41']].forEach(([rx,col])=>{
-        ctx.fillStyle=col; ctx.fillRect(W*rx,H*0.05,W*0.46,H*0.72);
-        // Shelf boards
-        [0.2,0.38,0.56].forEach(ry=>{ ctx.fillStyle='#5D4037'; ctx.fillRect(W*rx,H*ry,W*0.46,H*0.025); });
-        // Books
-        const cols2=['#FF6B6B','#6EC6F5','#FFD93D','#6BCB77','#C77DFF','#FF9F43'];
-        [0.1,0.28,0.46].forEach((ry,ri)=>{
-          for(let i=0;i<7;i++){
-            ctx.fillStyle=cols2[(ri*7+i)%6];
-            ctx.fillRect(W*(rx+0.02+i*0.06),H*(ry+0.01),W*0.04,H*0.16);
+    name: 'Ciudad del Futuro',
+    drawBg(ctx, W, H) {
+      // Night sky
+      const night = ctx.createLinearGradient(0,0,0,H*0.5);
+      night.addColorStop(0,'#0d0d2b'); night.addColorStop(1,'#1a237e');
+      ctx.fillStyle=night; ctx.fillRect(0,0,W,H*0.55);
+      // Stars
+      for(let i=0;i<120;i++){
+        ctx.fillStyle=`rgba(255,255,255,${0.4+Math.random()*0.6})`;
+        ctx.beginPath(); ctx.arc(W*Math.random(), H*0.5*Math.random(), Math.random()*2, 0, Math.PI*2); ctx.fill();
+      }
+      // Moon
+      ctx.fillStyle='#FFF9C4'; ctx.beginPath(); ctx.arc(W*0.88, H*0.08, W*0.04, 0, Math.PI*2); ctx.fill();
+      // Buildings silhouette
+      const builds=[
+        {x:0,w:0.1,h:0.55,col:'#1565c0'},{x:0.08,w:0.08,h:0.45,col:'#0d47a1'},
+        {x:0.14,w:0.12,h:0.6,col:'#1a237e'},{x:0.24,w:0.09,h:0.4,col:'#283593'},
+        {x:0.31,w:0.14,h:0.65,col:'#1565c0'},{x:0.43,w:0.08,h:0.35,col:'#0d47a1'},
+        {x:0.49,w:0.16,h:0.7,col:'#1a237e'},{x:0.63,w:0.1,h:0.45,col:'#283593'},
+        {x:0.71,w:0.13,h:0.58,col:'#1565c0'},{x:0.82,w:0.09,h:0.42,col:'#0d47a1'},
+        {x:0.89,w:0.13,h:0.52,col:'#1a237e'},
+      ];
+      builds.forEach(b=>{
+        ctx.fillStyle=b.col;
+        ctx.fillRect(W*b.x, H*(0.55-b.h), W*b.w, H*b.h);
+        // Lit windows
+        for(let wy=0;wy<8;wy++) for(let wx=0;wx<3;wx++){
+          if(Math.random()<0.55){
+            ctx.fillStyle=Math.random()<0.3?'#FFD93D':'#87CEEB';
+            ctx.fillRect(W*(b.x+0.01+wx*b.w*0.3), H*(0.55-b.h+0.04+wy*0.08), W*(b.w*0.22), H*0.04);
           }
+        }
+      });
+      // Ground / street
+      ctx.fillStyle='#212121'; ctx.fillRect(0,H*0.55,W,H*0.45);
+      // Street lights
+      for(let x=50;x<W;x+=150){
+        ctx.strokeStyle='#FFD93D'; ctx.lineWidth=3;
+        ctx.beginPath(); ctx.moveTo(x, H*0.55); ctx.lineTo(x, H*0.65); ctx.stroke();
+        ctx.fillStyle='rgba(255,220,60,0.3)';
+        ctx.beginPath(); ctx.arc(x, H*0.65, 15, 0, Math.PI*2); ctx.fill();
+      }
+      // Flying vehicles
+      ['🚀','🛸','🚁','✈️','🛩️','🛺'].forEach((v,i)=>{
+        ctx.font=`${W*0.04}px serif`; ctx.textAlign='center';
+        ctx.fillText(v, W*(0.08+i*0.17), H*(0.12+i%2*0.06));
+      });
+    },
+    targets:[
+      {emoji:'👧🏻', name:'Mini (casco espacial)',   description:'niña con casco'},
+      {emoji:'🤖',  name:'Beep (grande)',            description:'robot grande azul'},
+      {emoji:'👽',  name:'Zox el alien',             description:'alien verde'},
+      {emoji:'🚀',  name:'Cohete Mini',              description:'cohete pequeño rojo'},
+      {emoji:'🐱',  name:'Gato cibernético',        description:'gato con gafas futuristas'},
+    ],
+    distractors:[
+      '👦','👧','👩','👨','🧒','👩‍🔬','👨‍🚀','👩‍💻','🧑‍🔧',
+      '🤖','🦾','🦿','🧬','💊','🔬','🧪','⚗️',
+      '👽','🛸','🌌','🪐','⭐','🌟','💫','✨',
+      '🐱','🐶','🦊','🐺','🦁','🐯','🐻','🐼',
+      '🚗','🏎️','🚕','🚙','🛻','🚐','🚌','🏍️',
+      '📱','💻','⌨️','🖥️','📡','🔭','🛰️','🤳',
+      '🌆','🏙️','🌃','🌉','🌁','🏗️','🏢','🏬',
+      '💡','🔋','⚡','🔌','💾','💿','📀','🖨️',
+      '🎮','🕹️','👾','🎲','🃏','🎯','🏆','🥇',
+      '👒','🪖','⛑️','🥽','🦺','🧣','🧤','🧥',
+    ],
+    overlays:[
+      {emoji:'🌙',rx:0.88,ry:0.08,size:0.06,alpha:1},
+      {emoji:'🪐',rx:0.15,ry:0.10,size:0.07,alpha:0.9},
+      {emoji:'🌌',rx:0.5,ry:0.05,size:0.08,alpha:0.7},
+    ]
+  },
+
+  // ===== ESCENA 5: SELVA Y AVENTURA =====
+  {
+    name: 'La Gran Selva',
+    drawBg(ctx, W, H) {
+      // Sky through canopy
+      ctx.fillStyle='#1b5e20'; ctx.fillRect(0,0,W,H);
+      // Light patches
+      const lg = ctx.createRadialGradient(W*0.5,0,0,W*0.5,0,H*0.6);
+      lg.addColorStop(0,'rgba(255,255,150,0.3)'); lg.addColorStop(1,'transparent');
+      ctx.fillStyle=lg; ctx.fillRect(0,0,W,H);
+      // Ground
+      ctx.fillStyle='#33691e'; ctx.fillRect(0,H*0.6,W,H*0.4);
+      ctx.fillStyle='#558b2f'; ctx.fillRect(0,H*0.65,W,H*0.1);
+      // River
+      ctx.fillStyle='#1565c0'; ctx.fillRect(W*0.3,H*0.68,W*0.4,H*0.08);
+      ctx.strokeStyle='rgba(255,255,255,0.4)'; ctx.lineWidth=2;
+      for(let i=0;i<5;i++){ ctx.beginPath(); ctx.moveTo(W*(0.3+i*0.08),H*0.7); ctx.lineTo(W*(0.35+i*0.08),H*0.74); ctx.stroke(); }
+      // Big trees
+      [[0.05,0.3],[0.2,0.25],[0.38,0.22],[0.62,0.24],[0.78,0.27],[0.93,0.3],[0.12,0.5],[0.5,0.18],[0.85,0.45]].forEach(([rx,ry])=>{
+        // Trunk
+        ctx.fillStyle='#4e342e'; ctx.fillRect(W*(rx-0.018),H*ry,W*0.036,H*(0.62-ry));
+        // Canopy layers
+        [[0,'#2e7d32',0.12],[0.06,'#388e3c',0.10],[0.11,'#43a047',0.09]].forEach(([dy,col,r])=>{
+          ctx.fillStyle=col; ctx.beginPath();
+          ctx.arc(W*rx,H*(ry+dy),W*r,0,Math.PI*2); ctx.fill();
         });
       });
-      // Reading table
-      ctx.fillStyle='#A0522D'; ctx.fillRect(W*0.15,H*0.6,W*0.7,H*0.04); ctx.fillRect(W*0.2,H*0.64,W*0.03,H*0.1); ctx.fillRect(W*0.77,H*0.64,W*0.03,H*0.1);
-      // Lamp
-      ctx.fillStyle='#FFD93D'; ctx.beginPath(); ctx.arc(W*0.5,H*0.45,W*0.04,0,Math.PI*2); ctx.fill();
-      ctx.strokeStyle='#888'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(W*0.5,H*0.49); ctx.lineTo(W*0.5,H*0.6); ctx.stroke();
-      // Window
-      ctx.fillStyle='#87CEEB'; ctx.fillRect(W*0.16,H*0.06,W*0.18,H*0.25);
-      ctx.strokeStyle='#555'; ctx.lineWidth=2; ctx.strokeRect(W*0.16,H*0.06,W*0.18,H*0.25);
-    },
-    targets:[
-      {emoji:'👧🏻', name:'Mini',  rx:0.38, ry:0.65, size:0.08},
-      {emoji:'📕',  name:'Libro rojo', rx:0.62, ry:0.65, size:0.07},
-      {emoji:'🤖',  name:'Beep',  rx:0.72, ry:0.62, size:0.07},
-    ],
-    distractors:[
-      {emoji:'👩',rx:0.25,ry:0.65,size:0.065},{emoji:'👦',rx:0.52,ry:0.68,size:0.065},
-      {emoji:'👴',rx:0.80,ry:0.62,size:0.065},{emoji:'🧒',rx:0.15,ry:0.70,size:0.06},
-      {emoji:'📗',rx:0.55,ry:0.15,size:0.055},{emoji:'📘',rx:0.08,ry:0.15,size:0.055},
-      {emoji:'📕',rx:0.35,ry:0.15,size:0.055},{emoji:'🐱',rx:0.45,ry:0.72,size:0.055},
-      {emoji:'🦉',rx:0.88,ry:0.30,size:0.055},{emoji:'🎒',rx:0.18,ry:0.80,size:0.055},
-      {emoji:'✏️',rx:0.65,ry:0.78,size:0.05},{emoji:'🔍',rx:0.50,ry:0.75,size:0.05},
-    ]
-  },
-  // SCENE 5: Circo
-  {
-    name: "El Circo",
-    bgColor: '#1a1a2e',
-    draw(ctx, W, H) {
-      // Night sky
-      ctx.fillStyle='#1a1a2e'; ctx.fillRect(0,0,W,H);
-      // Stars
-      for(let i=0;i<40;i++){
-        ctx.fillStyle='white'; ctx.beginPath();
-        ctx.arc(W*(0.05+i*0.023),H*(0.05+(i%5)*0.06),1.5,0,Math.PI*2); ctx.fill();
+      // Vines
+      ctx.strokeStyle='#33691e'; ctx.lineWidth=3;
+      for(let x=80;x<W;x+=120){
+        ctx.beginPath();
+        for(let y=0;y<H*0.7;y+=5) ctx.lineTo(x+15*Math.sin(y*0.1), y);
+        ctx.stroke();
       }
-      // Big top tent
-      ctx.fillStyle='#FF6B6B';
-      ctx.beginPath(); ctx.moveTo(W*0.5,H*0.02); ctx.lineTo(W*0.05,H*0.45); ctx.lineTo(W*0.95,H*0.45); ctx.fill();
-      // Tent stripes
-      [[0.2,0.25],[0.35,0.12],[0.65,0.12],[0.8,0.25]].forEach(([rx,ry])=>{
-        ctx.fillStyle='#FFD93D';
-        ctx.beginPath(); ctx.moveTo(W*0.5,H*0.02); ctx.lineTo(W*(rx-0.03),H*ry+H*0.43); ctx.lineTo(W*(rx+0.03),H*ry+H*0.43); ctx.fill();
-      });
-      // Tent body
-      ctx.fillStyle='#fff9e0'; ctx.fillRect(W*0.05,H*0.45,W*0.9,H*0.5);
-      ctx.fillStyle='#FF6B6B';
-      for(let i=0;i<9;i++){ if(i%2===0) ctx.fillRect(W*(0.05+i*0.1),H*0.45,W*0.1,H*0.5); }
-      // Ground
-      ctx.fillStyle='#D2B48C'; ctx.fillRect(0,H*0.88,W,H*0.12);
-      // Ring
-      ctx.strokeStyle='#8B6343'; ctx.lineWidth=4;
-      ctx.beginPath(); ctx.ellipse(W*0.5,H*0.8,W*0.3,H*0.06,0,0,Math.PI*2); ctx.stroke();
-      // Spotlights
-      [[0.1,0.1,0.4,0.7],[0.9,0.1,0.6,0.7]].forEach(([x1,y1,x2,y2])=>{
-        ctx.strokeStyle='rgba(255,255,180,0.3)'; ctx.lineWidth=W*0.08;
-        ctx.beginPath(); ctx.moveTo(W*x1,H*y1); ctx.lineTo(W*x2,H*y2); ctx.stroke();
-      });
+      // Waterfalls
+      ctx.fillStyle='rgba(100,180,255,0.5)';
+      ctx.fillRect(W*0.05,H*0.35,W*0.025,H*0.25);
+      ctx.fillRect(W*0.91,H*0.32,W*0.025,H*0.28);
+      // Ancient ruins
+      ctx.fillStyle='#78909c';
+      ctx.fillRect(W*0.44,H*0.52,W*0.12,H*0.12);
+      ctx.fillRect(W*0.46,H*0.48,W*0.03,H*0.05);
+      ctx.fillRect(W*0.51,H*0.46,W*0.03,H*0.07);
+      ctx.fillRect(W*0.56,H*0.48,W*0.03,H*0.05);
     },
     targets:[
-      {emoji:'👧🏻', name:'Mini',   rx:0.35, ry:0.75, size:0.08},
-      {emoji:'🎪',  name:'Carpa',  rx:0.65, ry:0.82, size:0.07},
-      {emoji:'🦁',  name:'León',   rx:0.55, ry:0.78, size:0.07},
+      {emoji:'👧🏻', name:'Mini (sombrero explorer)',  description:'niña con sombrero'},
+      {emoji:'🐒',  name:'Mono Koko',                 description:'mono con banana'},
+      {emoji:'🦜',  name:'Loro Perico',               description:'loro colorido'},
+      {emoji:'🧭',  name:'Brújula perdida',           description:'brújula dorada'},
+      {emoji:'🦁',  name:'León de la selva',          description:'león escondido'},
     ],
     distractors:[
-      {emoji:'🤹',rx:0.20,ry:0.72,size:0.07},{emoji:'🎠',rx:0.75,ry:0.68,size:0.07},
-      {emoji:'🎭',rx:0.48,ry:0.70,size:0.065},{emoji:'🐘',rx:0.12,ry:0.82,size:0.07},
-      {emoji:'👦',rx:0.82,ry:0.75,size:0.065},{emoji:'👩',rx:0.42,ry:0.80,size:0.065},
-      {emoji:'🐯',rx:0.28,ry:0.82,size:0.065},{emoji:'🎺',rx:0.60,ry:0.65,size:0.055},
-      {emoji:'🎪',rx:0.88,ry:0.50,size:0.055},{emoji:'🎡',rx:0.05,ry:0.55,size:0.065},
-      {emoji:'🦅',rx:0.50,ry:0.55,size:0.055},{emoji:'🤡',rx:0.70,ry:0.78,size:0.065},
+      '👦','👧','👩','👨','🧒','👩‍🌾','👨‍🌾','🏕️','⛺',
+      '🐒','🦍','🦧','🐵','🙈','🙉','🙊',
+      '🦜','🦚','🦩','🐦','🦅','🦉','🦆','🐧',
+      '🐯','🦁','🐆','🐊','🦛','🦏','🐘','🦒',
+      '🐍','🦎','🐸','🦋','🐛','🐜','🐝','🪲',
+      '🌿','🍃','🍀','🌱','🌾','🎋','🎍','🌵',
+      '🍌','🍍','🥭','🍊','🍋','🍈','🫐','🍇',
+      '💎','🪨','🏺','🗿','🪬','🧿','🔮','🪄',
+      '🌊','💧','🫧','🌈','⛈️','🌩️','🌪️','🌫️',
+      '🐢','🦋','🪳','🦗','🪰','🪱','🐌','🐞',
+    ],
+    overlays:[
+      {emoji:'🌿',rx:0.0,ry:0.45,size:0.1,alpha:0.95},
+      {emoji:'🌿',rx:1.0,ry:0.40,size:0.1,alpha:0.95},
+      {emoji:'🍃',rx:0.25,ry:0.30,size:0.08,alpha:0.8},
+      {emoji:'🍃',rx:0.72,ry:0.28,size:0.08,alpha:0.8},
+      {emoji:'🌿',rx:0.5,ry:0.95,size:0.09,alpha:0.9},
     ]
   },
 ];

@@ -118,7 +118,7 @@ const GameForma = {
       App.speak('La palabra es '+q.word);
     }
     App.showFeedback(ok);
-    document.querySelector('.btn-clear2').style.display='none';
+    const cb2f=document.querySelector('#fo-area .btn-clear2,#fo-area~.btn-clear2,.btn-clear2');if(cb2f)cb2f.style.display='none';
     document.getElementById('fo-next').style.display='';
   },
 

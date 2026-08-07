@@ -1,5 +1,6 @@
+// MEMORIA - Fixed: updateCard uses data-index instead of nth-child
 const GameMemoria = {
-  level:'easy', cards:[], flipped:[], matched:[], waiting:false, moves:0, stars:0,
+  level:'easy', cards:[], flipped:[], matched:[], waiting:false, moves:0,
 
   init(container) {
     this.level='easy';
@@ -9,7 +10,9 @@ const GameMemoria = {
         <button class="lvl-btn lvl-med"  id="me-med"  onclick="GameMemoria.setLevel('medium')">🌻 Medio (12)</button>
         <button class="lvl-btn lvl-hard" id="me-hard" onclick="GameMemoria.setLevel('hard')">🚀 Difícil (16)</button>
       </div>
-      <div style="font-family:'Fredoka One',cursive;font-size:0.9rem;color:#aaa;text-align:center;padding:6px" id="me-info">¡Encuentra las parejas!</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:0.9rem;color:#aaa;text-align:center;padding:8px 14px 4px" id="me-info">
+        ¡Encuentra las parejas!
+      </div>
       <div id="me-grid" style="padding:8px 14px 30px"></div>`;
     this.startLevel();
   },
@@ -26,15 +29,18 @@ const GameMemoria = {
     const counts={easy:8,medium:12,hard:16};
     const n=counts[this.level];
     const pool=App.shuffle([...DATA.memoria]).slice(0,n/2);
-    this.cards=App.shuffle([...pool,...pool].map((e,i)=>({emoji:e,id:i,pairId:pool.indexOf(e)})));
+    // Each card gets a unique id
+    this.cards=App.shuffle([...pool,...pool].map((emoji,i)=>({
+      emoji, id:i, pairId:pool.indexOf(emoji)
+    })));
     document.getElementById('me-info').textContent='¡Encuentra las parejas!';
     this.render();
   },
 
   render() {
-    const cols=this.level==='hard'?4:4;
+    const cols=4;
     const grid=document.getElementById('me-grid');
-    grid.innerHTML=`<div style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:10px">
+    grid.innerHTML=`<div style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:8px">
       ${this.cards.map((c,i)=>this.cardHTML(c,i)).join('')}
     </div>`;
   },
@@ -42,11 +48,16 @@ const GameMemoria = {
   cardHTML(card,i) {
     const isFlipped=this.flipped.includes(i)||this.matched.includes(card.pairId);
     const isMatched=this.matched.includes(card.pairId);
+    // Use data-cardidx for reliable selection
     return `<button class="mem-card ${isFlipped?'mem-flipped':''} ${isMatched?'mem-matched':''}"
-      onclick="GameMemoria.flip(${i})" ${isMatched?'disabled':''}>
-      <div class="mem-front">🌟</div>
+      data-cardidx="${i}" onclick="GameMemoria.flip(${i})" ${isMatched?'disabled':''}>
+      <div class="mem-front">⭐</div>
       <div class="mem-back">${card.emoji}</div>
     </button>`;
+  },
+
+  getCardEl(i) {
+    return document.querySelector(`[data-cardidx="${i}"]`);
   },
 
   flip(i) {
@@ -57,48 +68,50 @@ const GameMemoria = {
 
     this.flipped.push(i);
     this.moves++;
-    this.updateCard(i);
+
+    // Flip this card visually
+    const el=this.getCardEl(i);
+    if(el) el.classList.add('mem-flipped');
 
     if(this.flipped.length===2){
       const [a,b]=this.flipped;
       if(this.cards[a].pairId===this.cards[b].pairId){
-        // Match!
+        // MATCH
         this.matched.push(this.cards[a].pairId);
         this.flipped=[];
         App.speak('¡Pareja!');
-        this.updateCard(a); this.updateCard(b);
+        // Mark both as matched
+        [a,b].forEach(idx=>{
+          const el=this.getCardEl(idx);
+          if(el){ el.classList.add('mem-matched'); el.disabled=true; }
+        });
+        document.getElementById('me-info').textContent=
+          `Movimientos: ${this.moves} | Parejas: ${this.matched.length}/${this.cards.length/2}`;
         if(this.matched.length===this.cards.length/2){
           setTimeout(()=>this.levelDone(),600);
         }
       } else {
+        // NO MATCH - flip back after delay
         this.waiting=true;
         setTimeout(()=>{
+          const [a2,b2]=[...this.flipped];
           this.flipped=[];
           this.waiting=false;
-          this.render();
-        },1000);
+          [a2,b2].forEach(idx=>{
+            const el=this.getCardEl(idx);
+            if(el) el.classList.remove('mem-flipped');
+          });
+          document.getElementById('me-info').textContent=
+            `Movimientos: ${this.moves} | Parejas: ${this.matched.length}/${this.cards.length/2}`;
+        },900);
       }
-    }
-    const counts={easy:8,medium:12,hard:16};
-    document.getElementById('me-info').textContent=`Movimientos: ${this.moves} | Parejas: ${this.matched.length}/${counts[this.level]/2}`;
-  },
-
-  updateCard(i) {
-    const card=this.cards[i];
-    const isFlipped=this.flipped.includes(i)||this.matched.includes(card.pairId);
-    const isMatched=this.matched.includes(card.pairId);
-    const btn=document.querySelector(`#me-grid button:nth-child(${i+1})`);
-    if(btn){
-      btn.className=`mem-card ${isFlipped?'mem-flipped':''} ${isMatched?'mem-matched':''}`;
-      if(isMatched) btn.disabled=true;
     }
   },
 
   levelDone() {
-    const counts={easy:8,medium:12,hard:16};
-    const n=counts[this.level]/2;
-    // Stars based on moves efficiency
-    const ideal=n; const stars=this.moves<=ideal+2?5:this.moves<=ideal+6?4:this.moves<=ideal+10?3:2;
+    const n=this.cards.length/2;
+    const ideal=n;
+    const stars=this.moves<=ideal+2?5:this.moves<=ideal+6?4:this.moves<=ideal+10?3:2;
     App.confetti(); App.speak('¡Lo has conseguido!');
     App.levelComplete('memoria',stars,
       ()=>GameMemoria.setLevel(this.level),

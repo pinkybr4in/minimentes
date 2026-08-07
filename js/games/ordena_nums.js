@@ -121,7 +121,7 @@ const GameOrdenaNums = {
     if(ok){this.correct++;App.confetti();App.speak('¡Muy bien! '+correct.join(', '));}
     else App.speak('El orden es '+correct.join(', '));
 
-    document.querySelector('.btn-clear2').style.display='none';
+    const cb2=document.querySelector('#on-area .btn-clear2');if(cb2)cb2.style.display='none';
     App.showFeedback(ok);
     document.getElementById('on-next').style.display='';
   },

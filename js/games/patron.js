@@ -1,5 +1,6 @@
 const GamePatron = {
   level:'easy', idx:0, correct:0, order:[], answered:false,
+  _opts:[], _correct:'',
 
   init(container) {
     this.level='easy'; this.idx=0; this.correct=0; this.answered=false;
@@ -39,27 +40,29 @@ const GamePatron = {
     document.getElementById('pt-pbar').style.width=(this.idx/total*100)+'%';
     document.getElementById('pt-plabel').textContent=`Patrón ${this.idx+1} de ${total}`;
 
-    const seqHTML=q.sequence.map((item,i)=>
+    const seqHTML=q.sequence.map((item)=>
       item==='?'
-        ? `<div class="patron-slot" id="pt-blank">?</div>`
-        : `<div class="patron-item">${item}</div>`
+        ? `<div class="patron-slot" id="pt-blank" style="font-size:2rem;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:#fff9e0;border-radius:12px;border:3px dashed #FFD93D;font-family:'Fredoka One',cursive;color:#FFD93D">?</div>`
+        : `<div style="font-size:2rem;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:#f8f8f8;border-radius:12px;border:2px solid #e0e0e0">${item}</div>`
     ).join('');
 
+    // Store opts for index-based lookup
     const opts=App.shuffle([...q.options]);
+    this._opts=opts; this._correct=q.answer;
+
     const colors=['#FF6B6B','#6EC6F5','#6BCB77','#FFD93D','#C77DFF'];
-    const optsHTML=opts.map((o,i)=>`
-      <button class="count-btn" id="ptb-${encodeURIComponent(o)}"
+    const optsHTML=opts.map((o,i)=>
+      `<button class="count-btn" id="ptb-${i}"
         style="background:${colors[i%colors.length]};box-shadow:0 4px 0 rgba(0,0,0,0.2);font-size:1.8rem;width:68px;height:68px"
-        onclick="GamePatron.answer('${o.replace(/'/g,"\\'")}','${q.answer.replace(/'/g,"\\'")}')">
-        ${o}
-      </button>`).join('');
+        onclick="GamePatron.answer(${i})">${o}</button>`
+    ).join('');
 
     document.getElementById('pt-area').innerHTML=`
       <div style="background:white;margin:8px 14px;border-radius:20px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,0.08)">
         <div style="font-family:'Fredoka One',cursive;font-size:0.9rem;color:#aaa;text-align:center;margin-bottom:10px">
           ¿Qué sigue en el patrón?
         </div>
-        <div class="patron-sequence">${seqHTML}</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">${seqHTML}</div>
       </div>
       <div style="font-family:'Fredoka One',cursive;font-size:0.9rem;color:#aaa;text-align:center;padding:12px 0 8px">
         Elige la respuesta correcta 👇
@@ -70,15 +73,26 @@ const GamePatron = {
       </div>`;
   },
 
-  answer(val, correct) {
+  answer(idx) {
     if(this.answered) return;
     this.answered=true;
+    const val=this._opts[idx];
+    const correct=this._correct;
     const ok=val===correct;
+
     const blank=document.getElementById('pt-blank');
-    if(blank){ blank.textContent=ok?val:correct; blank.style.background=ok?'#f0fff4':'#fff0f0'; blank.style.borderColor=ok?'#6BCB77':'#FF6B6B'; }
-    const btn=document.getElementById('ptb-'+encodeURIComponent(val));
+    if(blank){
+      blank.textContent=ok?val:correct;
+      blank.style.background=ok?'#f0fff4':'#fff0f0';
+      blank.style.borderColor=ok?'#6BCB77':'#FF6B6B';
+    }
+    const btn=document.getElementById('ptb-'+idx);
     if(btn) btn.classList.add(ok?'correct-btn':'wrong-btn');
-    if(!ok){ const cb=document.getElementById('ptb-'+encodeURIComponent(correct)); if(cb) cb.classList.add('correct-btn'); }
+    if(!ok){
+      this._opts.forEach((o,i)=>{
+        if(o===correct){ const cb=document.getElementById('ptb-'+i); if(cb) cb.classList.add('correct-btn'); }
+      });
+    }
     if(ok){this.correct++;App.confetti();}
     App.speak(ok?'¡Correcto!':'La respuesta es '+correct);
     App.showFeedback(ok);
